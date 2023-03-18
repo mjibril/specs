@@ -1,0 +1,177 @@
+info:
+  contact:
+    name: Auckland Museum API Team
+    url: http://www.aucklandmuseum.com
+  description: 'This is technical documentation for the Auckland Museum API
+
+    '
+  license:
+    name: Auckland Museum licence
+    url: http://www.aucklandmuseum.com
+  termsOfService: http://api.aucklandmuseum.com/terms/
+  title: Auckland Museum API
+  version: 2.0.0-oas3
+  x-apisguru-categories:
+  - open_data
+  x-logo:
+    backgroundColor: '#FFFFFF'
+    url: https://api.apis.guru/v2/cache/logo/https_twitter.com_aucklandmuseum_profile_image.jpeg
+  x-origin:
+  - format: swagger
+    url: http://api.aucklandmuseum.com/apidoc
+    version: '2.0'
+  x-providerName: aucklandmuseum.com
+openapi: 3.0.0
+paths:
+  /id/media/{path}:
+    get:
+      description: 'Gets `media` at a given path'
+      operationId: getIdMediaPath
+      parameters:
+      - description: 'The media `identifier`'
+        in: path
+        name: path
+        required: true
+        schema:
+          type: string
+      - description: 'The desired media `rendering`
+
+
+          Possible values:
+
+          * `original.jpg`
+
+          * `original.pdf`
+
+          * `thumbnail.jpg` (fixed with 70px)
+
+          * `standard.jpg` (fixed width 440px and height 440px)
+
+          * `preview.jpg` (fixed height 100px)
+
+          '
+        in: query
+        name: rendering
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '`media` found
+
+            '
+        '404':
+          description: '`media` not found
+
+            '
+      summary: Retrieve media associated with Collections and Cenotaph subjects in
+        Auckland Museum
+      tags:
+      - media
+
+  /search/{index}/{operation}:
+    get:
+      description: "Use this endpoint to perform simple search queries for finding
+        information and subjects you may be interested in\n\nSearches performed via
+        this endpoint run against an [Elastic](www.elastic.co) server"
+      operationId: getSearchIndexOperation
+      parameters:
+      - description: 'search index name
+
+          Possible values:
+
+          * `collectionsonline`
+
+          * `cenotaph`
+
+          '
+        in: path
+        name: index
+        required: true
+        schema:
+          type: string
+          enum: 
+          - collectionsonline
+          - cenotaph
+      - description: One of the supported elasticsearch operations like `_search`
+          or `_suggest`
+        in: path
+        name: operation
+        required: true
+        schema:
+          type: string
+      - description: One of the supported elasticsearch query parameter values for
+          key `q`
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: search results found
+        '400':
+          description: bad request
+        '404':
+          description: not found
+      summary: Perform simple search queries over Auckland Museum Collections and
+        Cenotaph data
+      tags:
+      - search
+    post:
+      description: "Searches performed via this endpoint run against an [Elastic](www.elastic.co) server"
+      operationId: postSearchIndexOperation
+      parameters:
+      - description: 'search index name
+
+          Possible values:
+
+          * `collectionsonline`
+
+          * `cenotaph`
+
+          '
+        in: path
+        name: index
+        required: true
+        schema:
+          type: string
+          enum: 
+          - collectionsonline
+          - cenotaph
+      - description: One of the supported elasticsearch operations like `_search`
+          or `_suggest`
+        in: path
+        name: operation
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              format: application/json
+              type: object
+        description: body
+      responses:
+        '200':
+          description: search results found
+        '400':
+          description: bad request
+        '404':
+          description: not found
+      summary: Perform complex search queries over Auckland Museum Collections and
+        Cenotaph data
+      tags:
+      - search
+ 
+servers:
+- url: https://api.aucklandmuseum.com
+tags:
+- description: media - images and documents
+  name: media
+- description: information about subjects
+  name: subject
+- description: search for interesting data
+  name: search
+

@@ -1,0 +1,364 @@
+openapi: 3.0.0
+info:
+  version: '1.1'
+  title: Open Street Map (OSM)
+  description: "Nominatim (from the Latin, 'by name') is a tool to search OSM data by name and address and to generate synthetic addresses of OSM points (reverse geocoding)."
+servers: 
+  - url: https://nominatim.openstreetmap.org
+    description: Main service
+paths:
+  /lookup:
+    get:
+      description: '[Full description of the service:](https://nominatim.org/release-docs/develop/api/Lookup/) is available'
+      summary: OSM - Address lookup
+      operationId: lookupGet
+      parameters:
+        - name: osm_ids
+          in: query
+          required: true
+          schema:
+            type: string
+          description: 'osm_ids is mandatory'
+        - name: format
+          in: query
+          required: true
+          schema:
+            type: string
+            enum : 
+              - xml
+              - json
+              - jsonv2 
+              - geojson
+              - geocodejson
+            default: json
+          description: 'One of xml | json | jsonv2 | geojson| geocodejson'
+        - name: addressdetail
+          in: query
+          schema:
+            type: string
+            enum:
+              - '0'
+              - '1'
+          description: 'Include a breakdown of the address into elements'
+        - name: extratags
+          in: query
+          schema:
+            type: string
+            enum:
+              - '0'
+              - '1'
+          description: 'Include additional information in the result if available, e.g. wikipedia link, opening hours. (Default: 0))'
+        - name: namedetails
+          in: query
+          schema:
+            type: string
+            enum:
+              - '0'
+              - '1'
+          description: 'Include a list of alternative names in the results'
+      
+      responses:
+        '200':
+          description: 'Lookup Response'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResponse'
+      
+  /reverse:
+    get:
+      description: '[Full description of the service:](https://nominatim.org/release-docs/develop/api/Reverse/)'
+      summary: OSM - Reverse
+      operationId: ReverseGet
+      parameters:
+        - name: format
+          in: query
+          required: true
+          schema:
+            type: string
+            enum : 
+              - xml
+              - json
+              - jsonv2 
+              - geojson
+              - geocodejson
+            default: json
+          description: 'One of xml | json | jsonv2 | geojson| geocodejson'
+        - name: addressdetail
+          in: query
+          schema:
+            type: string
+            enum:
+              - '0'
+              - '1'
+          description: 'Include a breakdown of the address into elements. (Default: 0)'
+        - name: extratags
+          in: query
+          schema:
+            type: string
+            enum:
+              - '0'
+              - '1'
+          description: 'Include additional information in the result if available, e.g. wikipedia link, opening hours. (Default: 0))'
+        - name: namedetails
+          in: query
+          schema:
+            type: string
+            enum:
+              - '0'
+              - '1'
+          description: 'Include a list of alternative names in the results'
+        
+        - name: lat
+          in: query
+          required: true
+          schema:
+            type: number
+            format: double
+            description: ''
+        - name: lon
+          in: query
+          required: true
+          schema:
+            type: number
+            format: double
+          description: ''
+        - name: polygon_threshold
+          in: query
+          schema:
+            type: number
+          description: 'Return a simplified version of the output geometry'  
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReverseResponse'
+  /search:
+    get:
+      description: '[Full documentation](https://nominatim.org/release-docs/develop/api/Search/) is available'
+      summary: OSM - Search
+      operationId: searchGet
+      parameters:
+        - name: format
+          in: query
+          required: true
+          schema:
+            type: string
+            enum : 
+              - xml
+              - json
+              - jsonv2 
+              - geojson
+              - geocodejson
+            default: json
+          description: 'One of xml | json | jsonv2 | geojson| geocodejson'
+        - name: q
+          in: query
+          required: true
+          schema:
+            type: string
+          description: 'free form address to query'
+        - name: street
+          in: query
+          schema:
+            type: string
+          description: 'Address Street'
+          
+        - name: city
+          in: query
+          schema:
+            type: string
+          description: 'Address City'
+          
+        - name: state
+          in: query
+          schema:
+            type: string
+          description: 'Address State'
+        - name: country
+          in: query
+          schema:
+            type: string
+          description: 'Address Country'
+        - name: postalcode
+          in: query
+          schema:
+            type: string
+          description: 'Address Postal Code'
+        - name: addressdetail
+          in: query
+          schema:
+            type: string
+            enum:
+              - '0'
+              - '1'
+          description: 'Include a breakdown of the address into elements. (Default: 0)'
+        - name: extratags
+          in: query
+          schema:
+            type: string
+            enum:
+              - '0'
+              - '1'
+          description: 'Include additional information in the result if available'
+        - name: namedetails
+          in: query
+          schema:
+            type: string
+            enum:
+              - '0'
+              - '1'
+          description: 'Include a list of alternative names in the results.'
+       
+        - name: countrycodes
+          in: query
+          schema:
+            type: string
+          description: ' <countrycode> must be the ISO 3166-1alpha2 code, use comma for more countries'
+        - name: exclude_place_ids
+          in: query
+          schema:
+            type: string
+          description: 'use a comma separated list of the place_ids you want to skip'
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            maximum: 50
+          description: 'Limit the number of returned results. (Default: 10, Maximum: 50)'
+        - name: viewbox
+          in: query
+          schema:
+            type: string
+          description: 'iewbox=<x1>,<y1>,<x2>,<y2>. Use commas to separate the values.e'
+        - name: bounded
+          in: query
+          schema:
+            type: string
+            enum:
+              - '0'
+              - '1'
+          description: 'When a viewbox parameter is given, restrict the result to items contained within that viewbox. 1 is true'
+        - name: polygon_geojson
+          in: query
+          schema:
+            type: string
+            enum:
+              - "0"
+              - "1"
+          description: 'Defaults to 0. Output geometry of results as a GeoJSON'
+        - name: polygon_kml
+          in: query
+          schema:
+            type: string
+            enum:
+              - "0"
+              - "1"
+          description: 'Defaults to 0. Output geometry of results as a kml'
+        - name: polygon_svg
+          in: query
+          schema:
+            type: string
+            enum:
+              - "0"
+              - "1"
+          description: 'Defaults to 0. Output geometry of results as a SVG'
+        - name: polygon_text
+          in: query
+          schema:
+            type: string
+            enum:
+              - "0"
+              - "1"
+          description: 'Defaults to 0. Output geometry of results as a text'  
+        - name: polygon_threshold
+          in: query
+          schema:
+            type: number
+          description: 'Return a simplified version of the output geometry'  
+      responses:
+        '200':
+          description: "Search Response"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResponse'
+        
+components:
+  schemas:
+    ReverseResponse:
+      type: object
+      properties:
+        place_id:
+          type: integer
+        licence:
+          type: string
+        osm_type:
+          type: string
+        osm_id:
+          type: integer
+        lat:
+          type: string
+        lon:
+          type: string
+        display_name:
+          type: string
+        boundingbox:
+          type: array
+          items:
+            type: string
+        address:
+          type: object
+          properties:
+            house_number:
+              type: string
+            road:
+              type: string
+            suburb:
+              type: string
+            city:
+              type: string
+            county:
+              type: string
+            ISO3166-2-lvl6:
+              type: string
+            state:
+              type: string
+            ISO3166-2-lvl4:
+              type: string
+            postcode:
+              type: string
+            country:
+              type: string
+            country_code:
+              type: string
+              
+    SearchResponse:
+      type: array
+      items:
+        type: object
+        properties:
+          place_id:
+            type: integer
+          licence:
+            type: string
+          osm_type:
+            type: string
+          osm_id:
+            type: integer
+          boundingbox:
+            type: array
+            items:
+              type: string
+          lon:
+            type: string
+          display_name:
+            type: string
+          class:
+            type: string
+          type:
+            type: string
+          importance:
+            type: number

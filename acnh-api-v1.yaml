@@ -1,0 +1,1864 @@
+components:
+  schemas:
+    inline_response_200:
+      properties:
+        alt-catch-phrase:
+          description: Alternate catch phrases, when available.
+          items:
+            type: string
+          type: array
+        availability:
+          $ref: '#/components/schemas/inline_response_200_availability'
+        catch-phrase:
+          description: Phrase (or often pun) when the fish is caught.
+          type: string
+        file-name:
+          description: Name of the image files.
+          type: string
+        icon_uri:
+          description: URI for icon
+          type: string
+        id:
+          description: Number of the fish.
+          type: integer
+        image_uri:
+          description: URI for image
+          type: string
+        museum-phrase:
+          description: Description from Blathers.
+          type: string
+        name:
+          $ref: '#/components/schemas/inline_response_200_name'
+        price:
+          description: Selling price.
+          type: number
+        price-cj:
+          description: Selling price from C.J.
+          type: number
+        shadow:
+          description: Size and/or shape of the shadow.
+          type: string
+      required:
+      - availability
+      - catch-phrase
+      - file-name
+      - icon_uri
+      - id
+      - image_uri
+      - museum-phrase
+      - name
+      - price
+      - price-cj
+      - shadow
+      type: object
+    inline_response_200_1:
+      properties:
+        availability:
+          $ref: '#/components/schemas/inline_response_200_1_availability'
+        catch-phrase:
+          description: Catch phrase of the sea creature
+          type: string
+        file-name:
+          description: Name of the image files.
+          type: string
+        icon_uri:
+          description: URI for icon
+          type: string
+        id:
+          description: Number of the sea creature (as found in the critterpedia).
+          type: integer
+        image_uri:
+          description: URI for image
+          type: string
+        museum-phrase:
+          description: Facts from Blathers
+          type: string
+        name:
+          $ref: '#/components/schemas/inline_response_200_1_name'
+        price:
+          description: Selling price.
+          type: number
+        shadow:
+          description: Size of the shadow.
+          type: string
+        speed:
+          description: Speed of the sea creature
+          type: string
+      required:
+      - availability
+      - catch-phrase
+      - file-name
+      - icon_uri
+      - id
+      - image_uri
+      - museum-phrase
+      - name
+      - price
+      - shadow
+      - speed
+      type: object
+    inline_response_200_1_availability:
+      description: When to find the sea creature.
+      properties:
+        isAllDay:
+          description: Is the sea creature available at any hour?
+          type: boolean
+        isAllYear:
+          description: Is the sea creature available at any day?
+          type: boolean
+        month-array-northern:
+          description: Array containing the month when the critter is available in
+            the Northern Hemisphere.
+          items:
+            type: number
+          type: array
+        month-array-southern:
+          description: Array containing the month when the critter is available in
+            the Southern Hemisphere.
+          items:
+            type: number
+          type: array
+        month-northern:
+          description: Month for the Northern hemisphere, empty if isAllYear is true.
+          type: string
+        month-southern:
+          description: Month for the Southern hemisphere, empty if isAllYear is true.
+          type: string
+        time:
+          description: Time of availability, empty is isAllDay is true.
+          type: string
+        time-array:
+          description: Array containing the hours when the critter is available during
+            the day (24h format).
+          items:
+            type: number
+          type: array
+      required:
+      - isAllDay
+      - isAllYear
+      - location
+      - rarity
+      type: object
+    inline_response_200_1_name:
+      description: Name of the sea creature in different languages.
+      properties:
+        name-CNzh:
+          description: Simplified Chinese
+          type: string
+        name-EUde:
+          description: German
+          type: string
+        name-EUen:
+          description: Non US English
+          type: string
+        name-EUes:
+          description: Spanish
+          type: string
+        name-EUfr:
+          description: French
+          type: string
+        name-EUit:
+          description: Italian
+          type: string
+        name-EUnl:
+          description: Dutch
+          type: string
+        name-EUru:
+          description: Russian
+          type: string
+        name-JPja:
+          description: Japanese
+          type: string
+        name-KRko:
+          description: Korean
+          type: string
+        name-TWzh:
+          description: Traditional Chinese
+          type: string
+        name-USen:
+          description: English
+          type: string
+        name-USes:
+          description: Latin American Spanish
+          type: string
+        name-USfr:
+          description: Canadian French
+          type: string
+      required:
+      - name-CNzh
+      - name-EUde
+      - name-EUen
+      - name-EUes
+      - name-EUfr
+      - name-EUit
+      - name-EUnl
+      - name-EUru
+      - name-JPja
+      - name-KRko
+      - name-TWzh
+      - name-USen
+      - name-USes
+      - name-USfr
+      type: object
+    inline_response_200_2:
+      properties:
+        alt-catch-phrase:
+          description: Alternate catch phrases, when available.
+          items:
+            type: string
+          type: array
+        availability:
+          $ref: '#/components/schemas/inline_response_200_2_availability'
+        catch-phrase:
+          description: Phrase (or often pun) when the bug is caught.
+          type: string
+        file-name:
+          type: string
+        icon_uri:
+          description: URI for icon
+          type: string
+        id:
+          type: number
+        image_uri:
+          description: URI for image
+          type: string
+        museum-phrase:
+          description: Description from Blathers.
+          type: string
+        name:
+          $ref: '#/components/schemas/inline_response_200_2_name'
+        price:
+          description: Selling price.
+          type: string
+        price-flick:
+          description: Selling price from Flick.
+          type: string
+      required:
+      - availability
+      - catch-phrase
+      - file-name
+      - icon_uri
+      - id
+      - image_uri
+      - museum-phrase
+      - name
+      - price
+      - price-flick
+      type: object
+    inline_response_200_2_availability:
+      description: When and where to find the bug.
+      properties:
+        isAllDay:
+          description: Is the bug available at any hour?
+          type: boolean
+        isAllYear:
+          description: Is the bug available at any day?
+          type: boolean
+        location:
+          description: Location of the bug.
+          type: string
+        month-array-northern:
+          description: Array containing the month when the critter is available in
+            the Northern Hemisphere.
+          items:
+            type: number
+          type: array
+        month-array-southern:
+          description: Array containing the month when the critter is available in
+            the Southern Hemisphere.
+          items:
+            type: number
+          type: array
+        month-northern:
+          description: Month for the Northern hemisphere, empty if isAllYear is true.
+          type: string
+        month-southern:
+          description: Month for the Southern hemisphere, empty if isAllYear is true.
+          type: string
+        rarity:
+          description: Rarity of the bug.
+          type: string
+        time:
+          description: Time of availability, empty is isAllDay is true.
+          type: string
+        time-array:
+          description: Array containing the hours when the critter is available during
+            the day (24h format).
+          items:
+            type: number
+          type: array
+      required:
+      - isAllDay
+      - isAllYear
+      - location
+      - rarity
+      type: object
+    inline_response_200_2_name:
+      description: Name of the bug in different languages.
+      properties:
+        name-CNzh:
+          description: Simplified Chinese
+          type: string
+        name-EUde:
+          description: German
+          type: string
+        name-EUen:
+          description: Non US English
+          type: string
+        name-EUes:
+          description: Spanish
+          type: string
+        name-EUfr:
+          description: French
+          type: string
+        name-EUit:
+          description: Italian
+          type: string
+        name-EUnl:
+          description: Dutch
+          type: string
+        name-EUru:
+          description: Russian
+          type: string
+        name-JPja:
+          description: Japanese
+          type: string
+        name-KRko:
+          description: Korean
+          type: string
+        name-TWzh:
+          description: Traditional Chinese
+          type: string
+        name-USen:
+          description: English
+          type: string
+        name-USes:
+          description: Latin American Spanish
+          type: string
+        name-USfr:
+          description: Canadian French
+          type: string
+      required:
+      - name-CNzh
+      - name-EUde
+      - name-EUen
+      - name-EUes
+      - name-EUfr
+      - name-EUit
+      - name-EUnl
+      - name-EUru
+      - name-JPja
+      - name-KRko
+      - name-TWzh
+      - name-USen
+      - name-USes
+      - name-USfr
+      type: object
+    inline_response_200_3:
+      properties:
+        file-name:
+          description: Name of the image files.
+          type: string
+        image_uri:
+          description: URI for icon
+          type: string
+        museum-phrase:
+          description: Description from Blathers.
+          type: string
+        name:
+          $ref: '#/components/schemas/inline_response_200_3_name'
+        price:
+          description: Selling price.
+          type: number
+      required:
+      - file-name
+      - image_uri
+      - museum-phrase
+      - name
+      - price
+      type: object
+    inline_response_200_3_name:
+      description: Name of the fossil in different languages.
+      properties:
+        name-CNzh:
+          description: Simplified Chinese
+          type: string
+        name-EUde:
+          description: German
+          type: string
+        name-EUen:
+          description: Non American English
+          type: string
+        name-EUes:
+          description: Spanish
+          type: string
+        name-EUfr:
+          description: French
+          type: string
+        name-EUit:
+          description: Italian
+          type: string
+        name-EUnl:
+          description: Dutch
+          type: string
+        name-EUru:
+          description: Russian
+          type: string
+        name-JPja:
+          description: Japanese
+          type: string
+        name-KRko:
+          description: Korean
+          type: string
+        name-TWzh:
+          description: Traditional Chinese
+          type: string
+        name-USen:
+          description: English
+          type: string
+        name-USes:
+          description: Latin American Spanish
+          type: string
+        name-USfr:
+          description: Canadian French
+          type: string
+      required:
+      - name-CNzh
+      - name-EUde
+      - name-EUen
+      - name-EUes
+      - name-EUfr
+      - name-EUit
+      - name-EUnl
+      - name-EUru
+      - name-JPja
+      - name-KRko
+      - name-TWzh
+      - name-USen
+      - name-USes
+      - name-USfr
+      type: object
+    inline_response_200_4:
+      properties:
+        birthday:
+          description: Birthday of the villager in Day/Month format.
+          type: string
+        birthday-string:
+          description: String of the birthday (Day/Month format).
+          type: string
+        catch-phrase:
+          description: The catch phrase of a villager.
+          type: string
+        file-name:
+          description: Name of the image files.
+          type: string
+        gender:
+          description: Gender of the villager, either "Male" or "Female".
+          type: string
+        icon_uri:
+          description: URI for icon
+          type: string
+        id:
+          description: ID of the villager.
+          type: number
+        image_uri:
+          description: URI for image
+          type: string
+        name:
+          $ref: '#/components/schemas/inline_response_200_4_name'
+        personality:
+          description: The personality of the villager.
+          type: string
+        species:
+          description: Species of the villager.
+          type: string
+      required:
+      - birthday
+      - birthday-string
+      - catch-phrase
+      - file-name
+      - gender
+      - icon_uri
+      - id
+      - image_uri
+      - name
+      - personality
+      - species
+      type: object
+    inline_response_200_4_name:
+      description: Name of the villager in different languages.
+      properties:
+        name-CNzh:
+          description: Simplified Chinese
+          type: string
+        name-EUde:
+          description: German
+          type: string
+        name-EUen:
+          description: Non American English
+          type: string
+        name-EUes:
+          description: Spanish
+          type: string
+        name-EUfr:
+          description: French
+          type: string
+        name-EUit:
+          description: Italian
+          type: string
+        name-EUnl:
+          description: Dutch
+          type: string
+        name-EUru:
+          description: Russian
+          type: string
+        name-JPja:
+          description: Japanese
+          type: string
+        name-KRko:
+          description: Korean
+          type: string
+        name-TWzh:
+          description: Traditional Chinese
+          type: string
+        name-USen:
+          description: English
+          type: string
+        name-USes:
+          description: Latin American Spanish
+          type: string
+        name-USfr:
+          description: Canadian French
+          type: string
+      required:
+      - name-CNzh
+      - name-EUde
+      - name-EUen
+      - name-EUes
+      - name-EUfr
+      - name-EUit
+      - name-EUnl
+      - name-EUru
+      - name-JPja
+      - name-KRko
+      - name-TWzh
+      - name-USen
+      - name-USes
+      - name-USfr
+      type: object
+    inline_response_200_5:
+      properties:
+        buy-price:
+          description: Price at which the song is sold, is null if the song can't
+            be purchased
+          nullable: true
+          type: number
+        file-name:
+          description: String to access the MP3 and the song cover files.
+          type: string
+        id:
+          description: ID of the song.
+          type: boolean
+        image_uri:
+          description: URI for image
+          type: string
+        isOrderable:
+          description: Can the song be ordered from the catalogue?
+          type: boolean
+        music_uri:
+          description: URI for music
+          type: string
+        name:
+          $ref: '#/components/schemas/inline_response_200_5_name'
+        sell-price:
+          description: Selling price.
+          type: number
+      required:
+      - buy-price
+      - file-name
+      - id
+      - image_uri
+      - isOrderable
+      - music_uri
+      - name
+      - sell-price
+      type: object
+    inline_response_200_5_name:
+      description: Translations of the song.
+      properties:
+        name-CNzh:
+          description: Simplified Chinese
+          type: string
+        name-EUde:
+          description: German
+          type: string
+        name-EUen:
+          description: Non American English
+          type: string
+        name-EUes:
+          description: Spanish
+          type: string
+        name-EUfr:
+          description: French
+          type: string
+        name-EUit:
+          description: Italian
+          type: string
+        name-EUnl:
+          description: Dutch
+          type: string
+        name-EUru:
+          description: Russian
+          type: string
+        name-JPja:
+          description: Japanese
+          type: string
+        name-KRko:
+          description: Korean
+          type: string
+        name-TWzh:
+          description: Traditional Chinese
+          type: string
+        name-USen:
+          description: English
+          type: string
+        name-USes:
+          description: Latin American Spanish
+          type: string
+        name-USfr:
+          description: Canadian French
+          type: string
+      required:
+      - name-CNzh
+      - name-EUde
+      - name-EUen
+      - name-EUes
+      - name-EUfr
+      - name-EUit
+      - name-EUnl
+      - name-EUru
+      - name-JPja
+      - name-KRko
+      - name-TWzh
+      - name-USen
+      - name-USes
+      - name-USfr
+      type: object
+    inline_response_200_6:
+      properties:
+        buy-price:
+          description: Price at which Redd sells the art
+          type: number
+        file-name:
+          type: string
+        hasFake:
+          description: Can the art be fake.
+          type: boolean
+        id:
+          type: number
+        image_uri:
+          description: URI for image
+          type: string
+        museum-desc:
+          description: Description inside the museum
+          type: string
+        name:
+          $ref: '#/components/schemas/inline_response_200_6_name'
+        sell-price:
+          description: Price it which the art will sell (if genuine)
+          type: number
+      required:
+      - buy-price
+      - file-name
+      - hasFake
+      - id
+      - image_uri
+      - museum-desc
+      - name
+      - sell-price
+      type: object
+    inline_response_200_6_name:
+      description: Name of the art in different languages.
+      properties:
+        name-cn:
+          description: Simplified Chinese
+          type: string
+        name-de:
+          description: German
+          type: string
+        name-en:
+          description: English
+          type: string
+        name-eneu:
+          description: Non American English
+          type: string
+        name-fr:
+          description: French
+          type: string
+        name-frus:
+          description: Canadian French
+          type: string
+        name-it:
+          description: Italian
+          type: string
+        name-jp:
+          description: Japanese
+          type: string
+        name-kr:
+          description: Korean
+          type: string
+        name-nl:
+          description: Dutch
+          type: string
+        name-ru:
+          description: Russian
+          type: string
+        name-sp:
+          description: Spanish
+          type: string
+        name-spus:
+          description: Latin American Spanish
+          type: string
+        name-tw:
+          description: Traditional Chinese
+          type: string
+      required:
+      - name-cn
+      - name-de
+      - name-en
+      - name-eneu
+      - name-fr
+      - name-frus
+      - name-it
+      - name-jp
+      - name-kr
+      - name-nl
+      - name-ru
+      - name-sp
+      - name-spus
+      - name-tw
+      type: object
+    inline_response_200_7:
+      properties:
+        file-name:
+          description: File name of the song
+          type: string
+        hour:
+          description: Hour in 24h format at which the song plays
+          type: number
+        id:
+          description: ID of the song.
+          type: string
+        music_uri:
+          description: URI for music
+          type: string
+        weather:
+          description: Weather
+          type: string
+      required:
+      - file-name
+      - hour
+      - id
+      - music_uri
+      - weather
+      type: object
+    inline_response_200_8:
+      description: A variant object
+      properties:
+        body-title:
+          description: Type of body variant
+          nullable: true
+          type: string
+        buy-price:
+          description: Price at which the item is purchased
+          nullable: true
+          type: number
+        canCustomizeBody:
+          description: Can you customize the body?
+          type: boolean
+        canCustomizePattern:
+          description: Can you customize the pattern?
+          type: boolean
+        color-1:
+          description: Primary color
+          type: string
+        color-2:
+          description: Secondary color
+          type: string
+        file-name:
+          description: Name of the file for the image endpoint
+          type: string
+        hha-concept-1:
+          description: First HHA theme.
+          nullable: true
+          type: string
+        hha-concept-2:
+          description: First HHA theme.
+          nullable: true
+          type: string
+        hha-series:
+          description: Second HHA theme.
+          nullable: true
+          type: string
+        hha-set:
+          description: HHA set the item is in
+          nullable: true
+          type: string
+        image_uri:
+          description: URI for image
+          type: string
+        internal-id:
+          description: Internal ID of the objects (in the game)
+          type: number
+        isCatalog:
+          description: Can the item be ordered from the catalog?
+          type: boolean
+        isDIY:
+          description: Can the item be crafted?
+          type: boolean
+        isInteractive:
+          description: Can you interact with the item?
+          type: boolean
+        isOutdoor:
+          description: Can the item be placed outdoors?
+          type: boolean
+        kit-cost:
+          description: Number of kit required to customize, null if can't be customized
+          nullable: true
+          type: number
+        lighting-type:
+          description: Type of lighting, null if not a light source
+          nullable: true
+          type: string
+        miles-price:
+          description: Number of miles to purchase the item at the Nook Stop
+          nullable: true
+          type: number
+        name:
+          $ref: '#/components/schemas/v1housewarehousewareID_name'
+        pattern:
+          description: Name of the pattern variant
+          nullable: true
+          type: string
+        pattern-title:
+          description: Type of the pattern variant
+          nullable: true
+          type: string
+        sell-price:
+          description: Price at which the item is sold
+          nullable: true
+          type: number
+        size:
+          description: Size of the item
+          type: string
+        source:
+          description: Where to get the item from, separated by a ";" if there are
+            multiple sources.
+          type: string
+        source-detail:
+          description: Details on said sources
+          type: string
+        speaker-type:
+          description: Type of speaker, null if not a speaker
+          nullable: true
+          type: string
+        tag:
+          description: Tag associated with the object.
+          type: string
+        variant:
+          description: Name of the variant, null if the furniture only has one.
+          nullable: true
+          type: string
+        variant-id:
+          description: ID of the variant, null if the item doesnt have variants.
+          nullable: true
+          type: string
+        version:
+          description: Version of the game the item was introduced in.
+          type: string
+      required:
+      - body-title
+      - buy-price
+      - canCustomizeBody
+      - canCustomizePattern
+      - color-1
+      - color-2
+      - file-name
+      - hha-concept-1
+      - hha-concept-2
+      - hha-series
+      - hha-set
+      - image_uri
+      - internal-id
+      - isCatalog
+      - isInteractive
+      - isOutdoor
+      - kit-cost
+      - lighting-type
+      - miles-price
+      - name
+      - pattern
+      - pattern-title
+      - sell-price
+      - size
+      - source
+      - source-detail
+      - speaker-type
+      - tag
+      - variant
+      - variant-id
+      - version
+      type: object
+    inline_response_200_availability:
+      description: When and where to find the fish.
+      properties:
+        isAllDay:
+          description: Is the fish available at any hour?
+          type: boolean
+        isAllYear:
+          description: Is the fish available at any day?
+          type: boolean
+        location:
+          description: Location of the fish.
+          type: string
+        month-array-northern:
+          description: Array containing the month when the critter is available in
+            the Northern Hemisphere.
+          items:
+            type: number
+          type: array
+        month-array-southern:
+          description: Array containing the month when the critter is available in
+            the Southern Hemisphere.
+          items:
+            type: number
+          type: array
+        month-northern:
+          description: Month for the Northern hemisphere, empty if isAllYear is true.
+          type: string
+        month-southern:
+          description: Month for the Southern hemisphere, empty if isAllYear is true.
+          type: string
+        rarity:
+          description: Rarity of the fish.
+          type: string
+        time:
+          description: Time of availability, empty is isAllDay is true.
+          type: string
+        time-array:
+          description: Array containing the hours when the critter is available during
+            the day (24h format).
+          items:
+            type: number
+          type: array
+      required:
+      - isAllDay
+      - isAllYear
+      - location
+      - rarity
+      type: object
+    inline_response_200_name:
+      description: Name of the fish in different languages.
+      properties:
+        name-CNzh:
+          description: Simplified Chinese
+          type: string
+        name-EUde:
+          description: German
+          type: string
+        name-EUen:
+          description: Non US English
+          type: string
+        name-EUes:
+          description: Spanish
+          type: string
+        name-EUfr:
+          description: French
+          type: string
+        name-EUit:
+          description: Italian
+          type: string
+        name-EUnl:
+          description: Dutch
+          type: string
+        name-EUru:
+          description: Russian
+          type: string
+        name-JPja:
+          description: Japanese
+          type: string
+        name-KRko:
+          description: Korean
+          type: string
+        name-TWzh:
+          description: Traditional Chinese
+          type: string
+        name-USen:
+          description: English
+          type: string
+        name-USes:
+          description: Latin American Spanish
+          type: string
+        name-USfr:
+          description: Canadian French
+          type: string
+      required:
+      - name-CNzh
+      - name-EUde
+      - name-EUen
+      - name-EUes
+      - name-EUfr
+      - name-EUit
+      - name-EUnl
+      - name-EUru
+      - name-JPja
+      - name-KRko
+      - name-TWzh
+      - name-USen
+      - name-USes
+      - name-USfr
+      type: object
+    v1housewarehousewareID_name:
+      description: Translations
+      properties:
+        name-CNzh:
+          description: Simplified Chinese
+          type: string
+        name-EUde:
+          description: German
+          type: string
+        name-EUen:
+          description: English
+          type: string
+        name-EUes:
+          description: Spanish
+          type: string
+        name-EUfr:
+          description: French
+          type: string
+        name-EUit:
+          description: Italian
+          type: string
+        name-EUnl:
+          description: Dutch
+          type: string
+        name-EUru:
+          description: Russian
+          type: string
+        name-JPja:
+          description: Japanese
+          type: string
+        name-KRko:
+          description: Korean
+          type: string
+        name-TWzh:
+          description: Traditional Chinese
+          type: string
+        name-USen:
+          description: American English
+          type: string
+        name-USes:
+          description: Latin American Spanish
+          type: string
+        name-USfr:
+          description: Canadian French
+          type: string
+      required:
+      - name-CNzh
+      - name-EUde
+      - name-EUen
+      - name-EUes
+      - name-EUfr
+      - name-EUit
+      - name-EUnl
+      - name-EUru
+      - name-JPja
+      - name-KRko
+      - name-TWzh
+      - name-USen
+      - name-USes
+      - name-USfr
+      type: object
+  securitySchemes: {}
+info:
+  description: 'A free Animal Crossing: New Horizons API for critters, furniture,
+    villagers and more!'
+  title: ACNH API
+  version: v1
+openapi: 3.0.0
+paths:
+  /v1/art/:
+    get:
+      description: Get all art data .
+      operationId: getV1Art
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/inline_response_200_6'
+                type: array
+          description: OK
+      summary: All Art
+      tags:
+      - Art
+  /v1/art/{artID}:
+    get:
+      description: Get art data .
+      operationId: getV1ArtArtid
+      parameters:
+      - explode: false
+        in: path
+        name: artID
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                /v1/art/1:
+                  value:
+                    buy-price: 4980
+                    file-name: academic_painting
+                    hasFake: true
+                    id: 1
+                    image_uri: https://acnhapi.com/v1/images/art/academic_painting
+                    museum-desc: This drawing is based on the "ideal" human-body ratio,
+                      as stated in "De architectura." "De architectura" was a treatise
+                      by Vitruvius, an architect from the early 1st century BCE.
+                    name:
+                      name-CNzh: "\u5B66\u672F\u6027\u7684\u540D\u753B"
+                      name-EUde: "Wissenschaftsgem\xE4lde"
+                      name-EUen: academic painting
+                      name-EUes: "cuadro anat\xF3mico"
+                      name-EUfr: "toile acad\xE9mique"
+                      name-EUit: quadro accademico
+                      name-EUnl: academische schilderij
+                      name-EUru: "\u0430\u043A\u0430\u0434\u0435\u043C\u0438\u0447\u0435\u0441\u043A\u0430\u044F
+                        \u043A\u0430\u0440\u0442\u0438\u043D\u0430"
+                      name-JPja: "\u30A2\u30AB\u30C7\u30DF\u30C3\u30AF\u306A\u3081\u3044\u304C"
+                      name-KRko: "\uC544\uCE74\uB370\uBBF9\uD55C \uBA85\uD654"
+                      name-TWzh: "\u5B78\u8853\u6027\u7684\u540D\u756B"
+                      name-USen: academic painting
+                      name-USes: "cuadro anat\xF3mico"
+                      name-USfr: "toile acad\xE9mique"
+                    sell-price: 1245
+              schema:
+                $ref: '#/components/schemas/inline_response_200_6'
+          description: OK
+        '404':
+          description: Not Found
+      summary: Art
+      tags:
+      - Art
+ 
+  
+  /v1/bugs/:
+    get:
+      description: Get all bugs data 
+      operationId: getV1Bugs
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/inline_response_200_2'
+                type: array
+          description: OK
+      summary: All Bugs
+      tags:
+      - Bugs
+  /v1/bugs/{bugID}:
+    get:
+      description: Get bugs data .
+      operationId: getV1BugsBugid
+      parameters:
+      - description: Either the file-name of a bug or it's ID.
+        explode: false
+        in: path
+        name: bugID
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                /v1/bugs/1:
+                  value:
+                    availability:
+                      isAllDay: false
+                      isAllYear: false
+                      location: Flying
+                      month-array-northern:
+                      - 9
+                      - 10
+                      - 11
+                      - 12
+                      - 1
+                      - 2
+                      - 3
+                      - 4
+                      - 5
+                      - 6
+                      month-array-southern:
+                      - 3
+                      - 4
+                      - 5
+                      - 6
+                      - 7
+                      - 8
+                      - 9
+                      - 10
+                      - 11
+                      - 12
+                      month-northern: 9-6
+                      month-southern: 3-12
+                      rarity: Common
+                      time: 4am - 7pm
+                      time-array:
+                      - 4
+                      - 5
+                      - 6
+                      - 7
+                      - 8
+                      - 9
+                      - 10
+                      - 11
+                      - 12
+                      - 13
+                      - 14
+                      - 15
+                      - 16
+                      - 17
+                      - 18
+                    catch-phrase: I caught a common butterfly! They often flutter
+                      by!
+                    file-name: common_butterfly
+                    icon_uri: https://acnhapi.com/v1/icons/bugs/1
+                    id: 1
+                    image_uri: https://acnhapi.com/v1/images/bugs/1
+                    museum-phrase: The common butterfly would have you believe it
+                      is but a beautiful friend flitting prettily about the flowers.
+                      Bah, I say! They may seem innocent things with their pretty
+                      white wings, but they hide a dark side! The common butterfly
+                      caterpillar is called a cabbage worm, you see, and it's a most
+                      voracious pest. The ravenous beasts chew through cabbage, broccoli,
+                      kale and the like with a devastating gusto. And my feathers!
+                      Their green coloring is truly GROSS! A hoo-rrific hue, I say.
+                    name:
+                      name-CNzh: "\u767D\u7C89\u8776"
+                      name-EUde: "Kohlwei\xDFling"
+                      name-EUen: common butterfly
+                      name-EUes: "mariposa com\xFAn"
+                      name-EUfr: "pi\xE9ride de la rave"
+                      name-EUit: farfalla comune
+                      name-EUnl: koolwitje
+                      name-EUru: "\u0431\u0435\u043B\u044F\u043D\u043A\u0430"
+                      name-JPja: "\u30E2\u30F3\u30B7\u30ED\u30C1\u30E7\u30A6"
+                      name-KRko: "\uBC30\uCD94\uD770\uB098\uBE44"
+                      name-TWzh: "\u767D\u7C89\u8776"
+                      name-USen: common butterfly
+                      name-USes: "mariposa com\xFAn"
+                      name-USfr: "pi\xE9ride de la rave"
+                    price: 160
+                    price-flick: 240
+              schema:
+                $ref: '#/components/schemas/inline_response_200_2'
+          description: OK
+        '404':
+          description: Not Found
+      summary: Bugs
+      tags:
+      - Bugs
+  /v1/fish/:
+    get:
+      description: Get fish data 
+      operationId: getV1Fish
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/inline_response_200'
+                type: array
+          description: OK
+      summary: All Fish
+      tags:
+      - Fish
+  /v1/fish/{fishID}:
+    get:
+      description: Get fish data .
+      operationId: getV1FishFishid
+      parameters:
+      - description: Either the file-name of a fish or it's ID.
+        explode: false
+        in: path
+        name: fishID
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                /v1/fish/1:
+                  value:
+                    availability:
+                      isAllDay: true
+                      isAllYear: false
+                      location: River
+                      month-array-northern:
+                      - 11
+                      - 12
+                      - 1
+                      - 2
+                      - 3
+                      month-array-southern:
+                      - 5
+                      - 6
+                      - 7
+                      - 8
+                      - 9
+                      month-northern: 11-3
+                      month-southern: 5-9
+                      rarity: Common
+                      time: ''
+                      time-array:
+                      - 0
+                      - 1
+                      - 2
+                      - 3
+                      - 4
+                      - 5
+                      - 6
+                      - 7
+                      - 8
+                      - 9
+                      - 10
+                      - 11
+                      - 12
+                      - 13
+                      - 14
+                      - 15
+                      - 16
+                      - 17
+                      - 18
+                      - 19
+                      - 20
+                      - 21
+                      - 22
+                      - 23
+                    catch-phrase: I caught a bitterling! It's mad at me, but only
+                      a little.
+                    file-name: bitterling
+                    icon_uri: https://acnhapi.com/v1/icons/fish/1
+                    id: 1
+                    image_uri: https://acnhapi.com/v1/images/fish/1
+                    museum-phrase: "Bitterlings hide their eggs inside large bivalves\u2014like
+                      clams\u2014where the young can stay safe until grown. The bitterling
+                      isnt being sneaky. No, their young help keep the bivalve healthy
+                      by eating invading parasites! Its a wonderful bit of evolutionary
+                      deal making, don't you think? Each one keeping the other safe...
+                      Though eating parasites does not sound like a happy childhood...
+                      Is that why the fish is so bitter?"
+                    name:
+                      name-CNzh: "\u7EA2\u76EE\u9CAB"
+                      name-EUde: Bitterling
+                      name-EUen: bitterling
+                      name-EUes: amarguillo
+                      name-EUfr: "bouvi\xE8re"
+                      name-EUit: rodeo
+                      name-EUnl: bittervoorn
+                      name-EUru: "\u0433\u043E\u0440\u0447\u0430\u043A"
+                      name-JPja: "\u30BF\u30CA\u30B4"
+                      name-KRko: "\uB0A9\uC904\uAC1C"
+                      name-TWzh: "\u7D05\u76EE\u9BFD"
+                      name-USen: bitterling
+                      name-USes: amarguillo
+                      name-USfr: "bouvi\xE8re"
+                    price: 900
+                    price-cj: 1350
+                    shadow: Smallest (1)
+              schema:
+                $ref: '#/components/schemas/inline_response_200'
+          description: OK
+        '404':
+          description: Not Found
+      summary: Fish
+      tags:
+      - Fish
+ 
+  
+  /v1/icons/art/{artID}:
+    get:
+      description: "Get art icons . \n\nThe {artID} parameter can be
+        found using the /art/ endpoint."
+      operationId: getV1IconsArtArtid
+      parameters:
+      - explode: false
+        in: path
+        name: artID
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: Not Found
+      summary: Your GET endpoint
+      tags:
+      - Icons
+  /v1/icons/bugs/{bugID}:
+    get:
+      description: "Get bugs icons . \n\nThe {bugID} parameter can be
+        found using the /v1/bugs/ endpoint."
+      operationId: getV1IconsBugsBugid
+      parameters:
+      - description: Either the file-name of a bug or it's ID.
+        explode: false
+        in: path
+        name: bugID
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: Not Found
+      summary: Bugs icons
+      tags:
+      - Icons
+  /v1/icons/fish/{fishID}:
+    get:
+      description: "Get fish icons . \n\nThe {fishID} parameter can be
+        found using the /v1/fish/ endpoint."
+      operationId: getV1IconsFishFishid
+      parameters:
+      - description: Either the file-name of a fish or it's ID.
+        explode: false
+        in: path
+        name: fishID
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: Not Found
+      summary: Fish icons
+      tags:
+      - Icons
+  /v1/icons/villagers/{villagerID}:
+    get:
+      description: "Get villager icons . \n\nThe {villagerID} parameter
+        can be found using the /v1/villagers/ endpoint."
+      operationId: getV1IconsVillagersVillagerid
+      parameters:
+      - description: Either the file-name of a villager or it's ID.
+        explode: false
+        in: path
+        name: villagerID
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: Not Found
+      summary: Villager icons
+      tags:
+      - Icons
+  /v1/images/bugs/{bugID}:
+    get:
+      description: "Get bugs images . \n\nThe {bugID} parameter can be
+        found using the /v1/bugs/ endpoint."
+      operationId: getV1ImagesBugsBugid
+      parameters:
+      - description: Either the file-name of a bug or it's ID.
+        explode: false
+        in: path
+        name: bugID
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: Not Found
+      summary: Bugs images
+      tags:
+      - Images
+  /v1/images/fish/{fishID}:
+    get:
+      description: "Get fish images . \n\nThe {fishID} parameter can
+        be found using the /v1/fish/ endpoint."
+      operationId: getV1ImagesFishFishid
+      parameters:
+      - description: Either the file-name of a fish or it's ID.
+        explode: false
+        in: path
+        name: fishID
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: Not Found
+      summary: Fish images
+      tags:
+      - Images
+  /v1/images/fossils/{fossilName}:
+    get:
+      description: "Get fossil images . \n\nThe {fossilName} parameter
+        can be found using the /v1/fossils/ endpoint."
+      operationId: getV1ImagesFossilsFossilname
+      parameters:
+      - description: The file-name of a fossil.
+        explode: false
+        in: path
+        name: fossilName
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: Not Found
+      summary: Fossils images
+      tags:
+      - Images
+ 
+  
+  /v1/images/villagers/{villagerID}:
+    get:
+      description: "Get villager images . \n\nThe {villagerID} parameter
+        can be found using the /v1/villagers/ endpoint."
+      operationId: getV1ImagesVillagersVillagerid
+      parameters:
+      - description: Either the file-name of a villager or it's ID.
+        explode: false
+        in: path
+        name: villagerID
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: Not Found
+      summary: Villager images
+      tags:
+      - Images
+  
+  /v1/sea/:
+    get:
+      description: Get all sea creatures data 
+      operationId: getV1Sea
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/inline_response_200_1'
+                type: array
+          description: OK
+      summary: All Sea Creatures
+      tags:
+      - Sea Creatures
+  /v1/sea/{seaID}:
+    get:
+      description: Get sea creature data 
+      operationId: getV1SeaSeaid
+      parameters:
+      - description: Either the file-name of a sea creature or it's ID.
+        explode: false
+        in: path
+        name: seaID
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                /v1/sea/1:
+                  value:
+                    availability:
+                      isAllDay: true
+                      isAllYear: false
+                      month-array-northern:
+                      - 10
+                      - 11
+                      - 12
+                      - 1
+                      - 2
+                      - 3
+                      - 4
+                      - 5
+                      - 6
+                      - 7
+                      month-array-southern:
+                      - 4
+                      - 5
+                      - 6
+                      - 7
+                      - 8
+                      - 9
+                      - 10
+                      - 11
+                      - 12
+                      - 1
+                      month-northern: 10-7
+                      month-southern: 4-1
+                      time: ''
+                      time-array:
+                      - 0
+                      - 1
+                      - 2
+                      - 3
+                      - 4
+                      - 5
+                      - 6
+                      - 7
+                      - 8
+                      - 9
+                      - 10
+                      - 11
+                      - 12
+                      - 13
+                      - 14
+                      - 15
+                      - 16
+                      - 17
+                      - 18
+                      - 19
+                      - 20
+                      - 21
+                      - 22
+                      - 23
+                    catch-phrase: I got some seaweed! I couldn't kelp myself.
+                    file-name: seaweed
+                    icon_uri: https://acnhapi.com/v1/icons/sea/1
+                    id: 1
+                    image_uri: https://acnhapi.com/v1/images/sea/1
+                    museum-phrase: Let it be known that seaweed is a misnomer of the
+                      highest order! That is, it is not a noxious weed so much as
+                      it is a marine algae most beneficial to life on land and sea.
+                      Seaweed, you see, provides essential habitat and food for all
+                      manner of marine creatures. And it creates a great deal of the
+                      oxygen we land lovers love to breath too, hoo! And yet, I cant
+                      help but shudder when the slimy stuff touches my toes during
+                      a swim. Hoot! The horror!
+                    name:
+                      name-CNzh: "\u88D9\u5E26\u83DC"
+                      name-EUde: Wakame-Alge
+                      name-EUen: seaweed
+                      name-EUes: alga wakame
+                      name-EUfr: wakame
+                      name-EUit: alga wakame
+                      name-EUnl: zeewier
+                      name-EUru: "\u043C\u043E\u0440\u0441\u043A\u0438\u0435 \u0432\u043E\u0434\u043E\u0440\u043E\u0441\u043B\u0438"
+                      name-JPja: "\u30EF\u30AB\u30E1"
+                      name-KRko: "\uBBF8\uC5ED"
+                      name-TWzh: "\u88D9\u5E36\u83DC"
+                      name-USen: seaweed
+                      name-USes: alga wakame
+                      name-USfr: "wakam\xE9"
+                    price: 600
+                    shadow: Large
+                    speed: Stationary
+              schema:
+                $ref: '#/components/schemas/inline_response_200_1'
+          description: OK
+        '404':
+          description: Not Found
+      summary: Sea Creatures
+      tags:
+      - Sea Creatures
+  /v1/songs/:
+    get:
+      description: Get All K.K. songs data .
+      operationId: getV1Songs
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/inline_response_200_5'
+                type: array
+          description: OK
+      summary: All Songs
+      tags:
+      - Songs
+  /v1/songs/{songID}:
+    get:
+      description: Get K.K. songs data .
+      operationId: getV1SongsSongid
+      parameters:
+      - explode: false
+        in: path
+        name: songID
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                /v1/songs/1:
+                  value:
+                    buy-price: 3200
+                    file-name: mjk_Keiji
+                    id: 1
+                    image_uri: https://acnhapi.com/v1/images/songs/1
+                    isOrderable: true
+                    music_uri: https://acnhapi.com/v1/music/1
+                    name:
+                      name-CNzh: "K.K.\u5211\u8B66"
+                      name-EUde: Agent K.K.
+                      name-EUen: Agent K.K.
+                      name-EUes: Agente Totakeke
+                      name-EUfr: "Agent K\xE9k\xE9"
+                      name-EUit: Agente K.K.
+                      name-EUnl: Agent K.K.
+                      name-EUru: "\u0410\u0433\u0435\u043D\u0442 \u041A. \u041A."
+                      name-JPja: "\u3051\u3051\u3051\u3044\u3058"
+                      name-KRko: "K.K.\uD615\uC0AC"
+                      name-TWzh: "K.K.\u5211\u8B66"
+                      name-USen: Agent K.K.
+                      name-USes: Agente Totakeke
+                      name-USfr: "Agent K\xE9k\xE9"
+                    sell-price: 800
+              schema:
+                $ref: '#/components/schemas/inline_response_200_5'
+          description: OK
+        '404':
+          description: Not Found
+      summary: Songs
+      tags:
+      - Songs
+  /v1/villagers/:
+    get:
+      description: Get all villagers data 
+      operationId: getV1Villagers
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/inline_response_200_4'
+                type: array
+          description: OK
+      summary: All Villagers
+      tags:
+      - Villagers
+  /v1/villagers/{villagerID}:
+    get:
+      description: Get villager data 
+      operationId: getV1VillagersVillagerid
+      parameters:
+      - description: Either the file-name of a villager or it's ID.
+        explode: false
+        in: path
+        name: villagerID
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                /v1/villagers/1:
+                  value:
+                    birthday: 9/3
+                    birthday-string: March 9th
+                    catch-phrase: ah-CHOO
+                    file-name: ant00
+                    gender: Male
+                    icon_uri: https://acnhapi.com/v1/icons/villagers/1
+                    id: 1
+                    image_uri: https://acnhapi.com/v1/images/villagers/1
+                    name:
+                      name-CNzh: "\u9633\u660E"
+                      name-EUde: Theo
+                      name-EUen: Cyrano
+                      name-EUes: Cirano
+                      name-EUfr: Cyrano
+                      name-EUit: Cirano
+                      name-EUnl: Cyrano
+                      name-EUru: "\u0421\u0438\u0440\u0430\u043D\u043E"
+                      name-JPja: "\u3055\u304F\u3089\u3058\u307E"
+                      name-KRko: "\uC0AC\uC9C0\uB9C8"
+                      name-TWzh: "\u967D\u660E"
+                      name-USen: Cyrano
+                      name-USes: Cirano
+                      name-USfr: Cyrano
+                    personality: Cranky
+                    species: Anteater
+              schema:
+                $ref: '#/components/schemas/inline_response_200_4'
+          description: OK
+        '404':
+          description: Not Found
+      summary: Villagers
+      tags:
+      - Villagers
+  /v1/wallmounted/{wallmountedID}:
+    get:
+      operationId: getV1WallmountedWallmountedid
+      parameters:
+      - explode: false
+        in: path
+        name: wallmountedID
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: Not Found
+      summary: Wallmounted
+      tags:
+      - Items
+servers:
+- url: http://acnhapi.com
+- url: https://acnhapi.com
