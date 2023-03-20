@@ -48,7 +48,7 @@ paths:
     get:
       summary: Get Count
       operationId: count
-      description: 'to perform a count on a data request'
+      description: 'get count'
       parameters:
         - in: query
           name: format
@@ -62,13 +62,13 @@ paths:
             default: geojson
         - in: query
           name: endtime
-          description: End time, defaults to now.
+          description: End time, default now.
           schema:
             type: string
             format: date-time
         - in: query
           name: starttime
-          description: Start time, defaults to now - 30 days.
+          description: Start time, defaults; now - 30 days.
           schema:
             type: string
             format: date-time
@@ -99,7 +99,7 @@ paths:
             maximum: 90
             minimum: -90
             type: number
-        - description: 'Limit to events with a longitude smaller than maximum.'
+        - description: 'maximum longitude'
           in: query
           name: maxlongitude
           schema:
@@ -140,21 +140,11 @@ paths:
           name: contributor
           schema:
             type: string
-        - description: 'Select a specific event by ID'
+        - description: 'Select a specific event'
           in: query
           name: eventid
           schema:
             type: string
-        - description: 'include all magnitudes'
-          in : query
-          name: includeallmagnitudes
-          schema:
-            type: boolean
-        - description: 'include all origins'
-          in: query
-          name: includeallorigins
-          schema:
-            type: boolean
   
         - description: 'limit events'
           in: query
@@ -260,13 +250,13 @@ paths:
             default: geojson
         - in: query
           name: endtime
-          description: End time, defaults to now.
+          description: End time, default now.
           schema:
             type: string
             format: date-time
         - in: query
           name: starttime
-          description: Start time, defaults to now - 30 days.
+          description: Start time, defaults; now - 30 days.
           schema:
             type: string
             format: date-time
@@ -297,7 +287,7 @@ paths:
             maximum: 90
             minimum: -90
             type: number
-        - description: 'Limit to events with a longitude smaller than maximum.'
+        - description: 'maximum longitude'
           in: query
           name: maxlongitude
           schema:
@@ -338,21 +328,11 @@ paths:
           name: contributor
           schema:
             type: string
-        - description: 'Select a specific event by ID'
+        - description: 'Select a specific event'
           in: query
           name: eventid
           schema:
             type: string
-        - description: 'include all magnitudes'
-          in : query
-          name: includeallmagnitudes
-          schema:
-            type: boolean
-        - description: 'include all origins'
-          in: query
-          name: includeallorigins
-          schema:
-            type: boolean
   
         - description: 'limit events'
           in: query

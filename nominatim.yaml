@@ -2,14 +2,14 @@ openapi: 3.0.0
 info:
   version: '1.1'
   title: Open Street Map (OSM)
-  description: "Nominatim (from the Latin, 'by name') is a tool to search OSM data by name and address and to generate synthetic addresses of OSM points (reverse geocoding)."
+  description: "Nominatim  is a tool to search OSM data by name and address and to generate synthetic addresses of OSM points (reverse geocoding)."
 servers: 
   - url: https://nominatim.openstreetmap.org
     description: Main service
 paths:
   /lookup:
     get:
-      description: '[Full description of the service:](https://nominatim.org/release-docs/develop/api/Lookup/) is available'
+      description: '[Full description:](https://nominatim.org/release-docs/develop/api/Lookup/) is available'
       summary: OSM - Address lookup
       operationId: lookupGet
       parameters:
@@ -67,7 +67,7 @@ paths:
       
   /reverse:
     get:
-      description: '[Full description of the service:](https://nominatim.org/release-docs/develop/api/Reverse/)'
+      description: '[Full description :](https://nominatim.org/release-docs/develop/api/Reverse/)'
       summary: OSM - Reverse
       operationId: ReverseGet
       parameters:
@@ -99,7 +99,7 @@ paths:
             enum:
               - '0'
               - '1'
-          description: 'Include additional information in the result if available, e.g. wikipedia link, opening hours. (Default: 0))'
+          description: 'Include additional information in the result if available. (Default: 0))'
         - name: namedetails
           in: query
           schema:
@@ -137,7 +137,7 @@ paths:
                 $ref: '#/components/schemas/ReverseResponse'
   /search:
     get:
-      description: '[Full documentation](https://nominatim.org/release-docs/develop/api/Search/) is available'
+      description: '[Full documentation](https://nominatim.org/release-docs/develop/api/Search/) '
       summary: OSM - Search
       operationId: searchGet
       parameters:
@@ -194,7 +194,7 @@ paths:
             enum:
               - '0'
               - '1'
-          description: 'Include a breakdown of the address into elements. (Default: 0)'
+          description: 'Include a breakdown of the address into elements)'
         - name: extratags
           in: query
           schema:
@@ -240,7 +240,7 @@ paths:
             enum:
               - '0'
               - '1'
-          description: 'When a viewbox parameter is given, restrict the result to items contained within that viewbox. 1 is true'
+          description: 'When a viewbox parameter is given, restrict the result to items contained within that viewbox.'
         - name: polygon_geojson
           in: query
           schema:
@@ -264,7 +264,7 @@ paths:
             enum:
               - "0"
               - "1"
-          description: 'Defaults to 0. Output geometry of results as a SVG'
+          description: ' Output geometry of results as a SVG'
         - name: polygon_text
           in: query
           schema:
