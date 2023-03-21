@@ -14,345 +14,6 @@ info:
 servers:
   - url: https://api.artic.edu/api/v1
 paths:
-  /agent-roles:
-    get:
-      operationId: getAgentRoles
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/AgentRole'
-                type: array
-          description: Successful operation
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: error
-      summary: >-
-        A list of all agent-roles sorted by last updated date in descending
-        order.
-      tags:
-        - agent-roles
-        - collections
-  /agent-roles/{id}:
-    get:
-      operationId: getAgentRolesId
-      parameters:
-        - example: 1
-          in: path
-          name: id
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/AgentRole'
-                type: array
-          description: Successful operation
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: error
-      summary: >-
-        A single agent-role by the given identifier. {id} is the identifier from
-        our collections management system.
-      tags:
-        - agent-roles
-        - collections
-  /agent-types:
-    get:
-      operationId: getAgentTypes
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/AgentType'
-                type: array
-          description: Successful operation
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: error
-      summary: >-
-        A list of all agent-types sorted by last updated date in descending
-        order.
-      tags:
-        - agent-types
-        - collections
-  /agent-types/{id}:
-    get:
-      operationId: getAgentTypesId
-      parameters:
-        - example: 1
-          in: path
-          name: id
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/AgentType'
-                type: array
-          description: Successful operation
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: error
-      summary: >-
-        A single agent-type by the given identifier. {id} is the identifier from
-        our collections management system.
-      tags:
-        - agent-types
-        - collections
-  /agents:
-    get:
-      operationId: getAgents
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/Agent'
-                type: array
-          description: Successful operation
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: error
-      summary: A list of all agents sorted by last updated date in descending order.
-      tags:
-        - agents
-        - collections
-  /agents/search:
-    get:
-      operationId: getAgentsSearch
-      parameters:
-        - description: Your search query
-          example: art
-          in: query
-          name: q
-          schema:
-            type: string
-        - description: >-
-            For complex queries, you can pass Elasticsearch domain syntax
-            queries here
-          in: query
-          name: query
-          schema:
-            type: string
-        - description: Used in conjunction with `query`
-          in: query
-          name: sort
-          schema:
-            type: string
-        - description: Starting point of results. Pagination via Elasticsearch conventions
-          in: query
-          name: from
-          schema:
-            type: string
-        - description: >-
-            Number of results to return. Pagination via Elasticsearch
-            conventions
-          example: 1
-          in: query
-          name: size
-          schema:
-            type: string
-        - description: >-
-            A comma-separated list of 'count' aggregation facets to include in
-            the results.
-          in: query
-          name: facets
-          schema:
-            type: string
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/SearchResult'
-                type: array
-          description: Successful operation
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: error
-      summary: 'Search agents data in the aggregator. '
-      tags:
-        - agents
-        - collections
-        - search
-  /agents/{id}:
-    get:
-      operationId: getAgentsId
-      parameters:
-        - example: 1
-          in: path
-          name: id
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/Agent'
-                type: array
-          description: Successful operation
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: error
-      summary: >-
-        A single agent by the given identifier. {id} is the identifier from our
-        collections management system.
-      tags:
-        - agents
-        - collections
-  /articles:
-    get:
-      operationId: getArticles
-      parameters: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/Article'
-                type: array
-          description: Successful operation
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: error
-      summary: A list of all articles sorted by last updated date in descending order.
-      tags:
-        - articles
-        - web
-  /articles/search:
-    get:
-      operationId: getArticlesSearch
-      parameters:
-        - description: Your search query
-          example: art
-          in: query
-          name: q
-          schema:
-            type: string
-        - description: >-
-            For complex queries, you can pass Elasticsearch domain syntax
-            queries here
-          in: query
-          name: query
-          schema:
-            type: string
-        - description: Used in conjunction with `query`
-          in: query
-          name: sort
-          schema:
-            type: string
-        - description: Starting point of results. Pagination via Elasticsearch conventions
-          in: query
-          name: from
-          schema:
-            type: string
-        - description: >-
-            Number of results to return. Pagination via Elasticsearch
-            conventions
-          example: 1
-          in: query
-          name: size
-          schema:
-            type: string
-        - description: >-
-            A comma-separated list of 'count' aggregation facets to include in
-            the results.
-          in: query
-          name: facets
-          schema:
-            type: string
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/SearchResult'
-                type: array
-          description: Successful operation
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: error
-      summary: 'Search articles data in the aggregator. '
-      tags:
-        - articles
-        - web
-        - search
-  /articles/{id}:
-    get:
-      operationId: getArticlesId
-      parameters:
-        - example: 1
-          in: path
-          name: id
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/Article'
-                type: array
-          description: Successful operation
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: error
-      summary: A single article by the given identifier.
-      tags:
-        - articles
-        - web
   /artists:
     get:
       operationId: getArtists
@@ -402,179 +63,11 @@ paths:
                 $ref: '#/components/schemas/Error'
           description: error
       summary: >-
-        A single artist by the given identifier. {id} is the identifier from our
-        collections management system.
+        Fetch a single record
       tags:
         - agents
         - collections
-  /artwork-date-qualifiers:
-    get:
-      operationId: getArtworkDateQualifiers
-      parameters: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/ArtworkDateQualifier'
-                type: array
-          description: Successful operation
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: error
-      summary: >-
-        A list of all artwork-date-qualifiers sorted by last updated date in
-        descending order.
-      tags:
-        - artwork-date-qualifiers
-        - collections
-  /artwork-date-qualifiers/{id}:
-    get:
-      operationId: getArtworkDateQualifiersId
-      parameters:
-        - example: 1
-          in: path
-          name: id
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/ArtworkDateQualifier'
-                type: array
-          description: Successful operation
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: error
-      summary: >-
-        A single artwork-date-qualifier by the given identifier. {id} is the
-        identifier from our collections management system.
-      tags:
-        - artwork-date-qualifiers
-        - collections
-  /artwork-place-qualifiers:
-    get:
-      operationId: getArtworkPlaceQualifiers
-      parameters: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/ArtworkPlaceQualifier'
-                type: array
-          description: Successful operation
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: error
-      summary: >-
-        A list of all artwork-place-qualifiers sorted by last updated date in
-        descending order.
-      tags:
-        - artwork-place-qualifiers
-        - collections
-  /artwork-place-qualifiers/{id}:
-    get:
-      operationId: getArtworkPlaceQualifiersId
-      parameters:
-        - example: 1
-          in: path
-          name: id
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/ArtworkPlaceQualifier'
-                type: array
-          description: Successful operation
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: error
-      summary: >-
-        A single artwork-place-qualifier by the given identifier. {id} is the
-        identifier from our collections management system.
-      tags:
-        - artwork-place-qualifiers
-        - collections
-  /artwork-types:
-    get:
-      operationId: getArtworkTypes
-      parameters: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/ArtworkType'
-                type: array
-          description: Successful operation
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: error
-      summary: >-
-        A list of all artwork-types sorted by last updated date in descending
-        order.
-      tags:
-        - artwork-types
-        - collections
-  /artwork-types/{id}:
-    get:
-      operationId: getArtworkTypesId
-      parameters:
-        - example: 1
-          in: path
-          name: id
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/ArtworkType'
-                type: array
-          description: Successful operation
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: error
-      summary: >-
-        A single artwork-type by the given identifier. {id} is the identifier
-        from our collections management system.
-      tags:
-        - artwork-types
-        - collections
+  
   /artworks:
     get:
       operationId: getArtworks
@@ -585,7 +78,7 @@ paths:
           name: ids
           schema:
             type: string
-        - description: The number of resources to return per page
+        - description: limit
           example: 1
           in: query
           name: limit
@@ -629,7 +122,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: error
-      summary: A list of all artworks sorted by last updated date in descending order.
+      summary: artworks sorted by last updated date in descending order.
       tags:
         - artworks
         - collections
@@ -644,8 +137,7 @@ paths:
           schema:
             type: string
         - description: >-
-            For complex queries, you can pass Elasticsearch domain syntax
-            queries here
+            complex queries
           in: query
           name: query
           schema:
@@ -655,22 +147,18 @@ paths:
           name: sort
           schema:
             type: string
-        - description: Starting point of results. Pagination via Elasticsearch conventions
+        - description: from
           in: query
           name: from
           schema:
             type: string
-        - description: >-
-            Number of results to return. Pagination via Elasticsearch
-            conventions
+        - description:  size
           example: 1
           in: query
           name: size
           schema:
             type: string
-        - description: >-
-            A comma-separated list of 'count' aggregation facets to include in
-            the results.
+        - description: facets
           in: query
           name: facets
           schema:
@@ -691,8 +179,7 @@ paths:
                 $ref: '#/components/schemas/Error'
           description: error
       summary: >-
-        Search artworks data in the aggregator. Artworks in the groups of
-        essentials are boosted so they'll show up higher in results.
+        Search artworks data in the aggregator.
       tags:
         - artworks
         - collections
@@ -723,8 +210,7 @@ paths:
                 $ref: '#/components/schemas/Error'
           description: error
       summary: >-
-        A single artwork by the given identifier. {id} is the identifier from
-        our collections management system.
+        Fetch a single record
       tags:
         - artworks
         - collections
@@ -765,8 +251,7 @@ paths:
           schema:
             type: string
         - description: >-
-            For complex queries, you can pass Elasticsearch domain syntax
-            queries here
+            complex queries
           in: query
           name: query
           schema:
@@ -776,22 +261,18 @@ paths:
           name: sort
           schema:
             type: string
-        - description: Starting point of results. Pagination via Elasticsearch conventions
+        - description: from
           in: query
           name: from
           schema:
             type: string
-        - description: >-
-            Number of results to return. Pagination via Elasticsearch
-            conventions
+        - description:  size
           example: 1
           in: query
           name: size
           schema:
             type: string
-        - description: >-
-            A comma-separated list of 'count' aggregation facets to include in
-            the results.
+        - description: facets
           in: query
           name: facets
           schema:
@@ -841,7 +322,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: error
-      summary: A single digital-catalog by the given identifier.
+      summary: Fetch a single record
       tags:
         - digital-catalogs
         - web
@@ -882,8 +363,7 @@ paths:
           schema:
             type: string
         - description: >-
-            For complex queries, you can pass Elasticsearch domain syntax
-            queries here
+            complex queries
           in: query
           name: query
           schema:
@@ -893,22 +373,18 @@ paths:
           name: sort
           schema:
             type: string
-        - description: Starting point of results. Pagination via Elasticsearch conventions
+        - description: from
           in: query
           name: from
           schema:
             type: string
-        - description: >-
-            Number of results to return. Pagination via Elasticsearch
-            conventions
+        - description:  size
           example: 1
           in: query
           name: size
           schema:
             type: string
-        - description: >-
-            A comma-separated list of 'count' aggregation facets to include in
-            the results.
+        - description: facets
           in: query
           name: facets
           schema:
@@ -959,34 +435,11 @@ paths:
                 $ref: '#/components/schemas/Error'
           description: error
       summary: >-
-        A single exhibition by the given identifier. {id} is the identifier from
-        our collections management system.
+        Fetch a single record
       tags:
         - exhibitions
         - collections
-  /galleries:
-    get:
-      operationId: getGalleries
-      parameters: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/Gallery'
-                type: array
-          description: Successful operation
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: error
-      summary: A list of all galleries sorted by last updated date in descending order.
-      tags:
-        - galleries
-        - collections
+  
   /galleries/search:
     get:
       operationId: getGalleriesSearch
@@ -998,8 +451,7 @@ paths:
           schema:
             type: string
         - description: >-
-            For complex queries, you can pass Elasticsearch domain syntax
-            queries here
+            complex queries
           in: query
           name: query
           schema:
@@ -1009,22 +461,18 @@ paths:
           name: sort
           schema:
             type: string
-        - description: Starting point of results. Pagination via Elasticsearch conventions
+        - description: from
           in: query
           name: from
           schema:
             type: string
-        - description: >-
-            Number of results to return. Pagination via Elasticsearch
-            conventions
+        - description:  size
           example: 1
           in: query
           name: size
           schema:
             type: string
-        - description: >-
-            A comma-separated list of 'count' aggregation facets to include in
-            the results.
+        - description: facets
           in: query
           name: facets
           schema:
@@ -1075,8 +523,7 @@ paths:
                 $ref: '#/components/schemas/Error'
           description: error
       summary: >-
-        A single gallery by the given identifier. {id} is the identifier from
-        our collections management system.
+        Fetch a single record
       tags:
         - galleries
         - collections
@@ -1117,8 +564,7 @@ paths:
           schema:
             type: string
         - description: >-
-            For complex queries, you can pass Elasticsearch domain syntax
-            queries here
+            complex queries
           in: query
           name: query
           schema:
@@ -1128,22 +574,18 @@ paths:
           name: sort
           schema:
             type: string
-        - description: Starting point of results. Pagination via Elasticsearch conventions
+        - description: from
           in: query
           name: from
           schema:
             type: string
-        - description: >-
-            Number of results to return. Pagination via Elasticsearch
-            conventions
+        - description:  size
           example: 1
           in: query
           name: size
           schema:
             type: string
-        - description: >-
-            A comma-separated list of 'count' aggregation facets to include in
-            the results.
+        - description: facets
           in: query
           name: facets
           schema:
@@ -1193,33 +635,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: error
-      summary: A single highlight by the given identifier.
+      summary: Fetch a single record
       tags:
         - highlights
         - web
-  /images:
-    get:
-      operationId: getImages
-      parameters: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/Image'
-                type: array
-          description: Successful operation
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: error
-      summary: A list of all images sorted by last updated date in descending order.
-      tags:
-        - images
-        - collections
+  
   /images/search:
     get:
       operationId: getImagesSearch
@@ -1230,9 +650,7 @@ paths:
           name: q
           schema:
             type: string
-        - description: >-
-            For complex queries, you can pass Elasticsearch domain syntax
-            queries here
+        - description:  complex queries
           in: query
           name: query
           schema:
@@ -1242,22 +660,18 @@ paths:
           name: sort
           schema:
             type: string
-        - description: Starting point of results. Pagination via Elasticsearch conventions
+        - description: from
           in: query
           name: from
           schema:
             type: string
-        - description: >-
-            Number of results to return. Pagination via Elasticsearch
-            conventions
+        - description: size
           example: 1
           in: query
           name: size
           schema:
             type: string
-        - description: >-
-            A comma-separated list of 'count' aggregation facets to include in
-            the results.
+        - description: facets
           in: query
           name: facets
           schema:
@@ -1308,150 +722,12 @@ paths:
                 $ref: '#/components/schemas/Error'
           description: error
       summary: >-
-        A single image by the given identifier. {id} is the identifier from our
-        collections management system.
+        Fetch a single record.
       tags:
         - images
         - collections
-  /mobile-sounds:
-    get:
-      operationId: getMobileSounds
-      parameters: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/Sound'
-                type: array
-          description: Successful operation
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: error
-      summary: >-
-        A list of all mobile-sounds sorted by last updated date in descending
-        order.
-      tags:
-        - mobile-sounds
-        - mobile
-  /mobile-sounds/search:
-    get:
-      operationId: getMobileSoundsSearch
-      parameters:
-        - description: Your search query
-          example: art
-          in: query
-          name: q
-          schema:
-            type: string
-        - description: >-
-            For complex queries, you can pass Elasticsearch domain syntax
-            queries here
-          in: query
-          name: query
-          schema:
-            type: string
-        - description: Used in conjunction with `query`
-          in: query
-          name: sort
-          schema:
-            type: string
-        - description: Starting point of results. Pagination via Elasticsearch conventions
-          in: query
-          name: from
-          schema:
-            type: string
-        - description: >-
-            Number of results to return. Pagination via Elasticsearch
-            conventions
-          example: 1
-          in: query
-          name: size
-          schema:
-            type: string
-        - description: >-
-            A comma-separated list of 'count' aggregation facets to include in
-            the results.
-          in: query
-          name: facets
-          schema:
-            type: string
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/SearchResult'
-                type: array
-          description: Successful operation
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: error
-      summary: 'Search mobile-sounds data in the aggregator. '
-      tags:
-        - mobile-sounds
-        - mobile
-        - search
-  /mobile-sounds/{id}:
-    get:
-      operationId: getMobileSoundsId
-      parameters:
-        - example: 1
-          in: path
-          name: id
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/Sound'
-                type: array
-          description: Successful operation
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: error
-      summary: A single mobile-sound by the given identifier.
-      tags:
-        - mobile-sounds
-        - mobile
-  /places:
-    get:
-      operationId: getPlaces
-      parameters: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/Place'
-                type: array
-          description: Successful operation
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: error
-      summary: A list of all places sorted by last updated date in descending order.
-      tags:
-        - places
-        - collections
+  
+  
   /places/search:
     get:
       operationId: getPlacesSearch
@@ -1462,34 +738,28 @@ paths:
           name: q
           schema:
             type: string
-        - description: >-
-            For complex queries, you can pass Elasticsearch domain syntax
-            queries here
+        - description: complex queries
           in: query
           name: query
           schema:
             type: string
-        - description: Used in conjunction with `query`
+        - description: sort field
           in: query
           name: sort
           schema:
             type: string
-        - description: Starting point of results. Pagination via Elasticsearch conventions
+        - description: from
           in: query
           name: from
           schema:
             type: string
-        - description: >-
-            Number of results to return. Pagination via Elasticsearch
-            conventions
+        - description: size
           example: 1
           in: query
           name: size
           schema:
             type: string
-        - description: >-
-            A comma-separated list of 'count' aggregation facets to include in
-            the results.
+        - description: facets
           in: query
           name: facets
           schema:
@@ -1540,357 +810,13 @@ paths:
                 $ref: '#/components/schemas/Error'
           description: error
       summary: >-
-        A single place by the given identifier. {id} is the identifier from our
-        collections management system.
+       Fetch a single record
       tags:
         - places
         - collections
-  /press-releases:
-    get:
-      operationId: getPressReleases
-      parameters: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/PressRelease'
-                type: array
-          description: Successful operation
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: error
-      summary: >-
-        A list of all press-releases sorted by last updated date in descending
-        order.
-      tags:
-        - press-releases
-        - web
-  /press-releases/search:
-    get:
-      operationId: getPressReleasesSearch
-      parameters:
-        - description: Your search query
-          example: art
-          in: query
-          name: q
-          schema:
-            type: string
-        - description: >-
-            For complex queries, you can pass Elasticsearch domain syntax
-            queries here
-          in: query
-          name: query
-          schema:
-            type: string
-        - description: Used in conjunction with `query`
-          in: query
-          name: sort
-          schema:
-            type: string
-        - description: Starting point of results. Pagination via Elasticsearch conventions
-          in: query
-          name: from
-          schema:
-            type: string
-        - description: >-
-            Number of results to return. Pagination via Elasticsearch
-            conventions
-          example: 1
-          in: query
-          name: size
-          schema:
-            type: string
-        - description: >-
-            A comma-separated list of 'count' aggregation facets to include in
-            the results.
-          in: query
-          name: facets
-          schema:
-            type: string
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/SearchResult'
-                type: array
-          description: Successful operation
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: error
-      summary: 'Search press-releases data in the aggregator. '
-      tags:
-        - press-releases
-        - web
-        - search
-  /press-releases/{id}:
-    get:
-      operationId: getPressReleasesId
-      parameters:
-        - example: 1
-          in: path
-          name: id
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/PressRelease'
-                type: array
-          description: Successful operation
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: error
-      summary: A single press-release by the given identifier.
-      tags:
-        - press-releases
-        - web
-  /printed-catalogs:
-    get:
-      operationId: getPrintedCatalogs
-      parameters: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/PrintedCatalog'
-                type: array
-          description: Successful operation
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: error
-      summary: >-
-        A list of all printed-catalogs sorted by last updated date in descending
-        order.
-      tags:
-        - printed-catalogs
-        - web
-  /printed-catalogs/search:
-    get:
-      operationId: getPrintedCatalogsSearch
-      parameters:
-        - description: Your search query
-          example: art
-          in: query
-          name: q
-          schema:
-            type: string
-        - description: >-
-            For complex queries, you can pass Elasticsearch domain syntax
-            queries here
-          in: query
-          name: query
-          schema:
-            type: string
-        - description: Used in conjunction with `query`
-          in: query
-          name: sort
-          schema:
-            type: string
-        - description: Starting point of results. Pagination via Elasticsearch conventions
-          in: query
-          name: from
-          schema:
-            type: string
-        - description: >-
-            Number of results to return. Pagination via Elasticsearch
-            conventions
-          example: 1
-          in: query
-          name: size
-          schema:
-            type: string
-        - description: >-
-            A comma-separated list of 'count' aggregation facets to include in
-            the results.
-          in: query
-          name: facets
-          schema:
-            type: string
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/SearchResult'
-                type: array
-          description: Successful operation
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: error
-      summary: 'Search printed-catalogs data in the aggregator. '
-      tags:
-        - printed-catalogs
-        - web
-        - search
-  /printed-catalogs/{id}:
-    get:
-      operationId: getPrintedCatalogsId
-      parameters:
-        - example: 1
-          in: path
-          name: id
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/PrintedCatalog'
-                type: array
-          description: Successful operation
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: error
-      summary: A single printed-catalog by the given identifier.
-      tags:
-        - printed-catalogs
-        - web
-  /products:
-    get:
-      operationId: getProducts
-      parameters: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/Product'
-                type: array
-          description: Successful operation
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: error
-      summary: A list of all products sorted by last updated date in descending order.
-      tags:
-        - products
-        - shop
-  /products/search:
-    get:
-      operationId: getProductsSearch
-      parameters:
-        - description: Your search query
-          example: art
-          in: query
-          name: q
-          schema:
-            type: string
-        - description: >-
-            For complex queries, you can pass Elasticsearch domain syntax
-            queries here
-          in: query
-          name: query
-          schema:
-            type: string
-        - description: Used in conjunction with `query`
-          in: query
-          name: sort
-          schema:
-            type: string
-        - description: Starting point of results. Pagination via Elasticsearch conventions
-          in: query
-          name: from
-          schema:
-            type: string
-        - description: >-
-            Number of results to return. Pagination via Elasticsearch
-            conventions
-          example: 1
-          in: query
-          name: size
-          schema:
-            type: string
-        - description: >-
-            A comma-separated list of 'count' aggregation facets to include in
-            the results.
-          in: query
-          name: facets
-          schema:
-            type: string
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/SearchResult'
-                type: array
-          description: Successful operation
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: error
-      summary: 'Search products data in the aggregator. '
-      tags:
-        - products
-        - shop
-        - search
-  /products/{id}:
-    get:
-      operationId: getProductsId
-      parameters:
-        - example: 1
-          in: path
-          name: id
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/Product'
-                type: array
-          description: Successful operation
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: error
-      summary: A single product by the given identifier.
-      tags:
-        - products
-        - shop
+  
+  
+  
   /publications:
     get:
       operationId: getPublications
@@ -1916,410 +842,8 @@ paths:
       tags:
         - publications
         - dsc
-  /publications/search:
-    get:
-      operationId: getPublicationsSearch
-      parameters:
-        - description: Your search query
-          example: art
-          in: query
-          name: q
-          schema:
-            type: string
-        - description: >-
-            For complex queries, you can pass Elasticsearch domain syntax
-            queries here
-          in: query
-          name: query
-          schema:
-            type: string
-        - description: Used in conjunction with `query`
-          in: query
-          name: sort
-          schema:
-            type: string
-        - description: Starting point of results. Pagination via Elasticsearch conventions
-          in: query
-          name: from
-          schema:
-            type: string
-        - description: >-
-            Number of results to return. Pagination via Elasticsearch
-            conventions
-          example: 1
-          in: query
-          name: size
-          schema:
-            type: string
-        - description: >-
-            A comma-separated list of 'count' aggregation facets to include in
-            the results.
-          in: query
-          name: facets
-          schema:
-            type: string
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/SearchResult'
-                type: array
-          description: Successful operation
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: error
-      summary: 'Search publications data in the aggregator. '
-      tags:
-        - publications
-        - dsc
-        - search
-  /publications/{id}:
-    get:
-      operationId: getPublicationsId
-      parameters:
-        - example: 1
-          in: path
-          name: id
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/Publication'
-                type: array
-          description: Successful operation
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: error
-      summary: A single publication by the given identifier.
-      tags:
-        - publications
-        - dsc
-  /sections:
-    get:
-      operationId: getSections
-      parameters: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/Section'
-                type: array
-          description: Successful operation
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: error
-      summary: A list of all sections sorted by last updated date in descending order.
-      tags:
-        - sections
-        - dsc
-  /sections/search:
-    get:
-      operationId: getSectionsSearch
-      parameters:
-        - description: Your search query
-          example: art
-          in: query
-          name: q
-          schema:
-            type: string
-        - description: >-
-            For complex queries, you can pass Elasticsearch domain syntax
-            queries here
-          in: query
-          name: query
-          schema:
-            type: string
-        - description: Used in conjunction with `query`
-          in: query
-          name: sort
-          schema:
-            type: string
-        - description: Starting point of results. Pagination via Elasticsearch conventions
-          in: query
-          name: from
-          schema:
-            type: string
-        - description: >-
-            Number of results to return. Pagination via Elasticsearch
-            conventions
-          example: 1
-          in: query
-          name: size
-          schema:
-            type: string
-        - description: >-
-            A comma-separated list of 'count' aggregation facets to include in
-            the results.
-          in: query
-          name: facets
-          schema:
-            type: string
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/SearchResult'
-                type: array
-          description: Successful operation
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: error
-      summary: 'Search sections data in the aggregator. '
-      tags:
-        - sections
-        - dsc
-        - search
-  /sections/{id}:
-    get:
-      operationId: getSectionsId
-      parameters:
-        - example: 1
-          in: path
-          name: id
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/Section'
-                type: array
-          description: Successful operation
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: error
-      summary: A single section by the given identifier.
-      tags:
-        - sections
-        - dsc
-  /sites:
-    get:
-      operationId: getSites
-      parameters: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/Site'
-                type: array
-          description: Successful operation
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: error
-      summary: A list of all sites sorted by last updated date in descending order.
-      tags:
-        - sites
-        - ''
-  /sites/search:
-    get:
-      operationId: getSitesSearch
-      parameters:
-        - description: Your search query
-          example: art
-          in: query
-          name: q
-          schema:
-            type: string
-        - description: >-
-            For complex queries, you can pass Elasticsearch domain syntax
-            queries here
-          in: query
-          name: query
-          schema:
-            type: string
-        - description: Used in conjunction with `query`
-          in: query
-          name: sort
-          schema:
-            type: string
-        - description: Starting point of results. Pagination via Elasticsearch conventions
-          in: query
-          name: from
-          schema:
-            type: string
-        - description: >-
-            Number of results to return. Pagination via Elasticsearch
-            conventions
-          example: 1
-          in: query
-          name: size
-          schema:
-            type: string
-        - description: >-
-            A comma-separated list of 'count' aggregation facets to include in
-            the results.
-          in: query
-          name: facets
-          schema:
-            type: string
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/SearchResult'
-                type: array
-          description: Successful operation
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: error
-      summary: 'Search sites data in the aggregator. '
-      tags:
-        - sites
-        - ''
-        - search
-  /sites/{id}:
-    get:
-      operationId: getSitesId
-      parameters:
-        - example: 1
-          in: path
-          name: id
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/Site'
-                type: array
-          description: Successful operation
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: error
-      summary: A single site by the given identifier.
-      tags:
-        - sites
-        - ''
-  /sounds:
-    get:
-      operationId: getSounds
-      parameters: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/Sound'
-                type: array
-          description: Successful operation
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: error
-      summary: A list of all sounds sorted by last updated date in descending order.
-      tags:
-        - sounds
-        - collections
-  /sounds/search:
-    get:
-      operationId: getSoundsSearch
-      parameters:
-        - description: Your search query
-          example: art
-          in: query
-          name: q
-          schema:
-            type: string
-        - description: >-
-            For complex queries, you can pass Elasticsearch domain syntax
-            queries here
-          in: query
-          name: query
-          schema:
-            type: string
-        - description: Used in conjunction with `query`
-          in: query
-          name: sort
-          schema:
-            type: string
-        - description: Starting point of results. Pagination via Elasticsearch conventions
-          in: query
-          name: from
-          schema:
-            type: string
-        - description: >-
-            Number of results to return. Pagination via Elasticsearch
-            conventions
-          example: 1
-          in: query
-          name: size
-          schema:
-            type: string
-        - description: >-
-            A comma-separated list of 'count' aggregation facets to include in
-            the results.
-          in: query
-          name: facets
-          schema:
-            type: string
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/SearchResult'
-                type: array
-          description: Successful operation
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: error
-      summary: 'Search sounds data in the aggregator. '
-      tags:
-        - sounds
-        - collections
-        - search
+
+
   /sounds/{id}:
     get:
       operationId: getSoundsId
@@ -2345,98 +869,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: error
-      summary: >-
-        A single sound by the given identifier. {id} is the identifier from our
-        collections management system.
+      summary: Fetch a single record
       tags:
         - sounds
         - collections
   
-  /texts:
-    get:
-      operationId: getTexts
-      parameters: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/Text'
-                type: array
-          description: Successful operation
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: error
-      summary: A list of all texts sorted by last updated date in descending order.
-      tags:
-        - texts
-        - collections
-  /texts/search:
-    get:
-      operationId: getTextsSearch
-      parameters:
-        - description: Your search query
-          example: art
-          in: query
-          name: q
-          schema:
-            type: string
-        - description: >-
-            For complex queries, you can pass Elasticsearch domain syntax
-            queries here
-          in: query
-          name: query
-          schema:
-            type: string
-        - description: Used in conjunction with `query`
-          in: query
-          name: sort
-          schema:
-            type: string
-        - description: Starting point of results. Pagination via Elasticsearch conventions
-          in: query
-          name: from
-          schema:
-            type: string
-        - description: >-
-            Number of results to return. Pagination via Elasticsearch
-            conventions
-          example: 1
-          in: query
-          name: size
-          schema:
-            type: string
-        - description: >-
-            A comma-separated list of 'count' aggregation facets to include in
-            the results.
-          in: query
-          name: facets
-          schema:
-            type: string
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/SearchResult'
-                type: array
-          description: Successful operation
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: error
-      summary: 'Search texts data in the aggregator. '
-      tags:
-        - texts
-        - collections
-        - search
+  
+  
   /texts/{id}:
     get:
       operationId: getTextsId
@@ -2463,34 +902,11 @@ paths:
                 $ref: '#/components/schemas/Error'
           description: error
       summary: >-
-        A single text by the given identifier. {id} is the identifier from our
-        collections management system.
+        Fetch a single record.
       tags:
         - texts
         - collections
-  /tours:
-    get:
-      operationId: getTours
-      parameters: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/Tour'
-                type: array
-          description: Successful operation
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: error
-      summary: A list of all tours sorted by last updated date in descending order.
-      tags:
-        - tours
-        - mobile
+  
   /tours/search:
     get:
       operationId: getToursSearch
@@ -2502,8 +918,7 @@ paths:
           schema:
             type: string
         - description: >-
-            For complex queries, you can pass Elasticsearch domain syntax
-            queries here
+            complex queries
           in: query
           name: query
           schema:
@@ -2513,22 +928,18 @@ paths:
           name: sort
           schema:
             type: string
-        - description: Starting point of results. Pagination via Elasticsearch conventions
+        - description: from
           in: query
           name: from
           schema:
             type: string
-        - description: >-
-            Number of results to return. Pagination via Elasticsearch
-            conventions
+        - description:  size
           example: 1
           in: query
           name: size
           schema:
             type: string
-        - description: >-
-            A comma-separated list of 'count' aggregation facets to include in
-            the results.
+        - description: facets
           in: query
           name: facets
           schema:
@@ -2578,33 +989,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: error
-      summary: A single tour by the given identifier.
+      summary: Fetch a single record
       tags:
         - tours
         - mobile
-  /videos:
-    get:
-      operationId: getVideos
-      parameters: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/Video'
-                type: array
-          description: Successful operation
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: error
-      summary: A list of all videos sorted by last updated date in descending order.
-      tags:
-        - videos
-        - collections
+  
   /videos/search:
     get:
       operationId: getVideosSearch
@@ -2616,8 +1005,7 @@ paths:
           schema:
             type: string
         - description: >-
-            For complex queries, you can pass Elasticsearch domain syntax
-            queries here
+            complex queries
           in: query
           name: query
           schema:
@@ -2627,22 +1015,18 @@ paths:
           name: sort
           schema:
             type: string
-        - description: Starting point of results. Pagination via Elasticsearch conventions
+        - description: from
           in: query
           name: from
           schema:
             type: string
-        - description: >-
-            Number of results to return. Pagination via Elasticsearch
-            conventions
+        - description:  size
           example: 1
           in: query
           name: size
           schema:
             type: string
-        - description: >-
-            A comma-separated list of 'count' aggregation facets to include in
-            the results.
+        - description: facets
           in: query
           name: facets
           schema:
@@ -2693,15 +1077,14 @@ paths:
                 $ref: '#/components/schemas/Error'
           description: error
       summary: >-
-        A single video by the given identifier. {id} is the identifier from our
-        collections management system.
+       Fetch a single record
       tags:
         - videos
         - collections
 components:
   parameters:
     artworkInclude:
-      description: A comma-separated list of subresource to embed in the returned resources
+      description: A comma-separated list of subresource to embed 
       in: query
       name: include
       schema:
@@ -2712,9 +1095,7 @@ components:
           - sites
         type: string
     facets:
-      description: >-
-        A comma-separated list of 'count' aggregation facets to include in the
-        results.
+      description: facets
       in: query
       name: facets
       schema:
@@ -2726,7 +1107,7 @@ components:
       schema:
         type: string
     from:
-      description: Starting point of results. Pagination via Elasticsearch conventions
+      description: from
       in: query
       name: from
       schema:
@@ -2746,14 +1127,14 @@ components:
       schema:
         type: string
     limit:
-      description: The number of resources to return per page
+      description: limit
       example: 1
       in: query
       name: limit
       schema:
         type: integer
     page:
-      description: The page of resources to retrieve
+      description: page
       example: 1
       in: query
       name: page
@@ -2767,15 +1148,13 @@ components:
       schema:
         type: string
     query:
-      description: >-
-        For complex queries, you can pass Elasticsearch domain syntax queries
-        here
+      description: complex  queries
       in: query
       name: query
       schema:
         type: string
     size:
-      description: Number of results to return. Pagination via Elasticsearch conventions
+      description: size
       example: 1
       in: query
       name: size
@@ -2829,83 +1208,7 @@ components:
         updated_at:
           description: Date and time the record was updated in the aggregator database
       type: object
-    AgentRole:
-      properties:
-        api_link:
-          description: REST API link for this resource
-        api_model:
-          description: REST API resource type or endpoint
-        id:
-          description: Unique identifier of this resource. Taken from the source system.
-        source_updated_at:
-          description: Date and time the resource was updated in the source system
-        suggest_autocomplete_all:
-          description: >-
-            Internal field to power the `/autosuggest` endpoint. Do not use
-            directly.
-        suggest_autocomplete_boosted:
-          description: >-
-            Internal field to power the `/autocomplete` endpoint. Do not use
-            directly.
-        timestamp:
-          description: Date and time the record was updated in the aggregator search index
-        title:
-          description: The name of this resource
-        updated_at:
-          description: Date and time the record was updated in the aggregator database
-      type: object
-    AgentType:
-      properties:
-        api_link:
-          description: REST API link for this resource
-        api_model:
-          description: REST API resource type or endpoint
-        id:
-          description: Unique identifier of this resource. Taken from the source system.
-        source_updated_at:
-          description: Date and time the resource was updated in the source system
-        suggest_autocomplete_all:
-          description: >-
-            Internal field to power the `/autosuggest` endpoint. Do not use
-            directly.
-        suggest_autocomplete_boosted:
-          description: >-
-            Internal field to power the `/autocomplete` endpoint. Do not use
-            directly.
-        timestamp:
-          description: Date and time the record was updated in the aggregator search index
-        title:
-          description: The name of this resource
-        updated_at:
-          description: Date and time the record was updated in the aggregator database
-      type: object
-    Article:
-      properties:
-        api_link:
-          description: REST API link for this resource
-        api_model:
-          description: REST API resource type or endpoint
-        copy:
-          description: The text of the article
-        id:
-          description: Unique identifier of this resource. Taken from the source system.
-        source_updated_at:
-          description: Date and time the resource was updated in the source system
-        suggest_autocomplete_all:
-          description: >-
-            Internal field to power the `/autosuggest` endpoint. Do not use
-            directly.
-        suggest_autocomplete_boosted:
-          description: >-
-            Internal field to power the `/autocomplete` endpoint. Do not use
-            directly.
-        timestamp:
-          description: Date and time the record was updated in the aggregator search index
-        title:
-          description: The name of this resource
-        updated_at:
-          description: Date and time the record was updated in the aggregator database
-      type: object
+   
     Artwork:
       properties:
         alt_artist_ids:
@@ -3184,116 +1487,7 @@ components:
         video_ids:
           description: Unique identifiers of the videos about this work
       type: object
-    ArtworkDateQualifier:
-      properties:
-        api_link:
-          description: REST API link for this resource
-        api_model:
-          description: REST API resource type or endpoint
-        id:
-          description: Unique identifier of this resource. Taken from the source system.
-        source_updated_at:
-          description: Date and time the resource was updated in the source system
-        suggest_autocomplete_all:
-          description: >-
-            Internal field to power the `/autosuggest` endpoint. Do not use
-            directly.
-        suggest_autocomplete_boosted:
-          description: >-
-            Internal field to power the `/autocomplete` endpoint. Do not use
-            directly.
-        timestamp:
-          description: Date and time the record was updated in the aggregator search index
-        title:
-          description: The name of this resource
-        updated_at:
-          description: Date and time the record was updated in the aggregator database
-      type: object
-    ArtworkPlaceQualifier:
-      properties:
-        api_link:
-          description: REST API link for this resource
-        api_model:
-          description: REST API resource type or endpoint
-        id:
-          description: Unique identifier of this resource. Taken from the source system.
-        source_updated_at:
-          description: Date and time the resource was updated in the source system
-        suggest_autocomplete_all:
-          description: >-
-            Internal field to power the `/autosuggest` endpoint. Do not use
-            directly.
-        suggest_autocomplete_boosted:
-          description: >-
-            Internal field to power the `/autocomplete` endpoint. Do not use
-            directly.
-        timestamp:
-          description: Date and time the record was updated in the aggregator search index
-        title:
-          description: The name of this resource
-        updated_at:
-          description: Date and time the record was updated in the aggregator database
-      type: object
-    ArtworkType:
-      properties:
-        aat_id:
-          description: >-
-            Identifier of reconciled (most similar) term in the Getty's Art and
-            Architecture Thesaurus (AAT)
-        api_link:
-          description: REST API link for this resource
-        api_model:
-          description: REST API resource type or endpoint
-        id:
-          description: Unique identifier of this resource. Taken from the source system.
-        source_updated_at:
-          description: Date and time the resource was updated in the source system
-        suggest_autocomplete_all:
-          description: >-
-            Internal field to power the `/autosuggest` endpoint. Do not use
-            directly.
-        suggest_autocomplete_boosted:
-          description: >-
-            Internal field to power the `/autocomplete` endpoint. Do not use
-            directly.
-        timestamp:
-          description: Date and time the record was updated in the aggregator search index
-        title:
-          description: The name of this resource
-        updated_at:
-          description: Date and time the record was updated in the aggregator database
-      type: object
-    CategoryTerm:
-      properties:
-        aat_id:
-          description: >-
-            Identifier of reconciled (most similar) term in the Getty's Art and
-            Architecture Thesaurus (AAT)
-        api_link:
-          description: REST API link for this resource
-        api_model:
-          description: REST API resource type or endpoint
-        id:
-          description: Unique identifier of this resource. Taken from the source system.
-        parent_id:
-          description: Unique identifier of this category's parent
-        source_updated_at:
-          description: Date and time the resource was updated in the source system
-        subtype:
-          description: >-
-            Takes one of the following values: classification, material,
-            technique, style, subject, department, theme
-        suggest_autocomplete_all:
-          description: >-
-            Internal field to power the `/autosuggest` endpoint. Do not use
-            directly.
-        timestamp:
-          description: Date and time the record was updated in the aggregator search index
-        title:
-          description: The name of this resource
-        updated_at:
-          description: Date and time the record was updated in the aggregator database
-      type: object
+   
     DigitalCatalog:
       properties:
         api_link:
@@ -3323,68 +1517,8 @@ components:
         web_url:
           description: The URL to this page on our website
       type: object
-    DigitalPublicationSection:
-      properties:
-        api_link:
-          description: REST API link for this resource
-        api_model:
-          description: REST API resource type or endpoint
-        author_display:
-          description: A display-friendly text of the authors of this section
-        copy:
-          description: The text of the section
-        digital_publication_id:
-          description: Unique identifier of the digital publication this section belongs to
-        id:
-          description: Unique identifier of this resource. Taken from the source system.
-        source_updated_at:
-          description: Date and time the resource was updated in the source system
-        suggest_autocomplete_all:
-          description: >-
-            Internal field to power the `/autosuggest` endpoint. Do not use
-            directly.
-        suggest_autocomplete_boosted:
-          description: >-
-            Internal field to power the `/autocomplete` endpoint. Do not use
-            directly.
-        timestamp:
-          description: Date and time the record was updated in the aggregator search index
-        title:
-          description: The name of this resource
-        updated_at:
-          description: Date and time the record was updated in the aggregator database
-        web_url:
-          description: The URL to this section on our website
-      type: object
-    EducatorResource:
-      properties:
-        api_link:
-          description: REST API link for this resource
-        api_model:
-          description: REST API resource type or endpoint
-        copy:
-          description: The text of the page
-        id:
-          description: Unique identifier of this resource. Taken from the source system.
-        source_updated_at:
-          description: Date and time the resource was updated in the source system
-        suggest_autocomplete_all:
-          description: >-
-            Internal field to power the `/autosuggest` endpoint. Do not use
-            directly.
-        suggest_autocomplete_boosted:
-          description: >-
-            Internal field to power the `/autocomplete` endpoint. Do not use
-            directly.
-        timestamp:
-          description: Date and time the record was updated in the aggregator search index
-        title:
-          description: The name of this resource
-        updated_at:
-          description: Date and time the record was updated in the aggregator database
-        web_url:
-          description: The URL to this page on our website
-      type: object
+   
+    
     Error:
       properties:
         detail:
@@ -3397,201 +1531,7 @@ components:
         - status
         - error
         - detail
-    Event:
-      properties:
-        alt_audience_ids:
-          description: Unique identifiers indicating the alternate audiences for this event
-        alt_event_type_ids:
-          description: Unique identifiers indicating the alternate types of this event
-        api_link:
-          description: REST API link for this resource
-        api_model:
-          description: REST API resource type or endpoint
-        audience_id:
-          description: Unique identifier indicating the preferred audience for this event
-        buy_button_caption:
-          description: Additional text below the ticket/registration button
-        buy_button_text:
-          description: The text used on the ticket/registration button
-        date_display:
-          description: A readable display of the event dates
-        description:
-          description: All copytext of the event
-        door_time:
-          description: The time the doors open for this event
-        end_date:
-          description: The date the event ends
-        end_time:
-          description: The time the event ends
-        entrance:
-          description: Which entrance to use for this event
-        event_host_id:
-          description: >-
-            Unique identifier of the host (cf. event programs) that is
-            presenting this event
-        event_host_title:
-          description: >-
-            Unique identifier of the host (cf. event programs) that is
-            presenting this event
-        event_type_id:
-          description: Unique identifier indicating the preferred type of this event
-        header_description:
-          description: Brief description of the event displayed below the title
-        hero_caption:
-          description: Text displayed with the hero image on the event
-        id:
-          description: Unique identifier of this resource. Taken from the source system.
-        image_url:
-          description: The URL of an image representing this page
-        is_admission_required:
-          description: Whether admission to the museum is required to attend this event
-        is_after_hours:
-          description: Whether the event is to be held after the museum closes
-        is_free:
-          description: Whether the event is free
-        is_member_exclusive:
-          description: Whether the event is exclusive to members of the museum
-        is_private:
-          description: Whether the event is private
-        is_registration_required:
-          description: Whether registration is required to attend the event
-        is_sold_out:
-          description: Whether the event is sold out
-        is_ticketed:
-          description: Whether a ticket is required to attend the event
-        is_virtual_event:
-          description: Whether the event is being held virtually
-        join_url:
-          description: URL to the membership signup page via this event
-        layout_type:
-          description: Number indicating the type of layout this event page uses
-        list_description:
-          description: One-sentence description of the event displayed in listings
-        location:
-          description: Where the event takes place
-        program_ids:
-          description: Unique identifiers indicating the programs this event is a part of
-        program_titles:
-          description: Titles of the programs this event is a part of
-        rsvp_link:
-          description: The URL to the sales site for this event
-        search_tags:
-          description: Editor-specified list of tags to aid in internal search
-        short_description:
-          description: Brief description of the event
-        slug:
-          description: A string used in the URL for this event
-        source_updated_at:
-          description: Date and time the resource was updated in the source system
-        start_date:
-          description: The date the event begins
-        start_time:
-          description: The time the event starts
-        suggest_autocomplete_all:
-          description: >-
-            Internal field to power the `/autosuggest` endpoint. Do not use
-            directly.
-        suggest_autocomplete_boosted:
-          description: >-
-            Internal field to power the `/autocomplete` endpoint. Do not use
-            directly.
-        survey_url:
-          description: URL to the survey associated with this event
-        ticketed_event_id:
-          description: >-
-            Unique identifier of the event in the ticketing system this website
-            event is tied to
-        timestamp:
-          description: Date and time the record was updated in the aggregator search index
-        title:
-          description: The name of this resource
-        title_display:
-          description: The name of this event formatted with HTML (optional)
-        updated_at:
-          description: Date and time the record was updated in the aggregator database
-        virtual_event_passcode:
-          description: Passcode to access the virtual event
-        virtual_event_url:
-          description: URL to the virtual event
-      type: object
-    EventOccurrence:
-      properties:
-        api_link:
-          description: REST API link for this resource
-        api_model:
-          description: REST API resource type or endpoint
-        button_caption:
-          description: Additional text below the ticket/registration button
-        button_text:
-          description: The text used on the ticket/registration button
-        button_url:
-          description: The URL to the sales site or an RSVP link for this event
-        description:
-          description: Description of the event
-        end_at:
-          description: The date the event occurrence ends
-        event_id:
-          description: Identifier of the master event of which this is an occurrence
-        id:
-          description: Unique identifier of this resource. Taken from the source system.
-        image_url:
-          description: The URL of an image representing this page
-        is_private:
-          description: >-
-            Whether the event is private. Private events should be omitted from
-            listings.
-        location:
-          description: Where the event takes place
-        short_description:
-          description: Brief description of the event
-        source_updated_at:
-          description: Date and time the resource was updated in the source system
-        start_at:
-          description: The date the event occurrence begins
-        suggest_autocomplete_all:
-          description: >-
-            Internal field to power the `/autosuggest` endpoint. Do not use
-            directly.
-        suggest_autocomplete_boosted:
-          description: >-
-            Internal field to power the `/autocomplete` endpoint. Do not use
-            directly.
-        timestamp:
-          description: Date and time the record was updated in the aggregator search index
-        title:
-          description: The name of this resource
-        updated_at:
-          description: Date and time the record was updated in the aggregator database
-      type: object
-    EventProgram:
-      properties:
-        api_link:
-          description: REST API link for this resource
-        api_model:
-          description: REST API resource type or endpoint
-        id:
-          description: Unique identifier of this resource. Taken from the source system.
-        is_affiliate_group:
-          description: Whether this program represents an affiliate group
-        is_event_host:
-          description: Whether this program represents an event host
-        source_updated_at:
-          description: Date and time the resource was updated in the source system
-        suggest_autocomplete_all:
-          description: >-
-            Internal field to power the `/autosuggest` endpoint. Do not use
-            directly.
-        suggest_autocomplete_boosted:
-          description: >-
-            Internal field to power the `/autocomplete` endpoint. Do not use
-            directly.
-        timestamp:
-          description: Date and time the record was updated in the aggregator search index
-        title:
-          description: The name of this resource
-        updated_at:
-          description: Date and time the record was updated in the aggregator database
-      type: object
+   
     Exhibition:
       properties:
         aic_end_at:
@@ -3700,37 +1640,7 @@ components:
         updated_at:
           description: Date and time the record was updated in the aggregator database
       type: object
-    GenericPage:
-      properties:
-        api_link:
-          description: REST API link for this resource
-        api_model:
-          description: REST API resource type or endpoint
-        copy:
-          description: The text of the page
-        id:
-          description: Unique identifier of this resource. Taken from the source system.
-        search_tags:
-          description: Editor-specified list of tags to aid in internal search
-        source_updated_at:
-          description: Date and time the resource was updated in the source system
-        suggest_autocomplete_all:
-          description: >-
-            Internal field to power the `/autosuggest` endpoint. Do not use
-            directly.
-        suggest_autocomplete_boosted:
-          description: >-
-            Internal field to power the `/autocomplete` endpoint. Do not use
-            directly.
-        timestamp:
-          description: Date and time the record was updated in the aggregator search index
-        title:
-          description: The name of this resource
-        updated_at:
-          description: Date and time the record was updated in the aggregator database
-        web_url:
-          description: The URL to this page on our website
-      type: object
+    
     Highlight:
       properties:
         api_link:
@@ -3866,123 +1776,9 @@ components:
         updated_at:
           description: Date and time the record was updated in the aggregator database
       type: object
-    PressRelease:
-      properties:
-        api_link:
-          description: REST API link for this resource
-        api_model:
-          description: REST API resource type or endpoint
-        copy:
-          description: The text of the page
-        id:
-          description: Unique identifier of this resource. Taken from the source system.
-        source_updated_at:
-          description: Date and time the resource was updated in the source system
-        suggest_autocomplete_all:
-          description: >-
-            Internal field to power the `/autosuggest` endpoint. Do not use
-            directly.
-        suggest_autocomplete_boosted:
-          description: >-
-            Internal field to power the `/autocomplete` endpoint. Do not use
-            directly.
-        timestamp:
-          description: Date and time the record was updated in the aggregator search index
-        title:
-          description: The name of this resource
-        updated_at:
-          description: Date and time the record was updated in the aggregator database
-        web_url:
-          description: The URL to this page on our website
-      type: object
-    PrintedCatalog:
-      properties:
-        api_link:
-          description: REST API link for this resource
-        api_model:
-          description: REST API resource type or endpoint
-        copy:
-          description: The text of the page
-        id:
-          description: Unique identifier of this resource. Taken from the source system.
-        source_updated_at:
-          description: Date and time the resource was updated in the source system
-        suggest_autocomplete_all:
-          description: >-
-            Internal field to power the `/autosuggest` endpoint. Do not use
-            directly.
-        suggest_autocomplete_boosted:
-          description: >-
-            Internal field to power the `/autocomplete` endpoint. Do not use
-            directly.
-        timestamp:
-          description: Date and time the record was updated in the aggregator search index
-        title:
-          description: The name of this resource
-        updated_at:
-          description: Date and time the record was updated in the aggregator database
-        web_url:
-          description: The URL to this page on our website
-      type: object
-    Product:
-      properties:
-        api_link:
-          description: REST API link for this resource
-        api_model:
-          description: REST API resource type or endpoint
-        artist_ids:
-          description: Unique identifiers of the artists associated with this product
-        artwork_ids:
-          description: Unique identifiers of the artworks associated with this product
-        description:
-          description: Explanation of what this product is
-        exhibition_ids:
-          description: Unique identifiers of the exhibitions associated with this product
-        external_sku:
-          description: >-
-            Numeric product identification code of a machine-readable barcode,
-            when the customer sku differs from our internal one
-        id:
-          description: Unique identifier of this resource. Taken from the source system.
-        image_url:
-          description: URL of an image for this product
-        max_compare_at_price:
-          description: >-
-            Number indicating how much the most expensive variant of a product
-            cost before a sale
-        max_current_price:
-          description: >-
-            Number indicating how much the most expensive variant of a product
-            costs right now
-        min_compare_at_price:
-          description: >-
-            Number indicating how much the least expensive variant of a product
-            cost before a sale
-        min_current_price:
-          description: >-
-            Number indicating how much the least expensive variant of a product
-            costs right now
-        price_display:
-          description: Explanation of what this product is
-        source_updated_at:
-          description: Date and time the resource was updated in the source system
-        suggest_autocomplete_all:
-          description: >-
-            Internal field to power the `/autosuggest` endpoint. Do not use
-            directly.
-        suggest_autocomplete_boosted:
-          description: >-
-            Internal field to power the `/autocomplete` endpoint. Do not use
-            directly.
-        timestamp:
-          description: Date and time the record was updated in the aggregator search index
-        title:
-          description: The name of this resource
-        updated_at:
-          description: Date and time the record was updated in the aggregator database
-        web_url:
-          description: URL of this product in the shop
-      type: object
+    
+    
+   
     Publication:
       properties:
         api_link:
@@ -4033,86 +1829,7 @@ components:
         title:
           description: The name of this resource
       type: object
-    Section:
-      properties:
-        accession:
-          description: An accession number parsed from the title or tombstone
-        api_link:
-          description: REST API link for this resource
-        api_model:
-          description: REST API resource type or endpoint
-        artwork_id:
-          description: >-
-            Unique identifier of the artwork with which this section is
-            associated
-        content:
-          description: Content of this section in plaintext
-        generic_page_id:
-          description: >-
-            Unique identifier of the page on the website that represents the
-            publication this section belongs to
-        id:
-          description: Unique identifier of this resource. Taken from the source system.
-        publication_id:
-          description: Unique identifier of the publication this section belongs to
-        publication_title:
-          description: Name of the publication this section belongs to
-        source_updated_at:
-          description: Date and time the resource was updated in the source system
-        suggest_autocomplete_all:
-          description: >-
-            Internal field to power the `/autosuggest` endpoint. Do not use
-            directly.
-        suggest_autocomplete_boosted:
-          description: >-
-            Internal field to power the `/autocomplete` endpoint. Do not use
-            directly.
-        timestamp:
-          description: Date and time the record was updated in the aggregator search index
-        title:
-          description: The name of this resource
-        updated_at:
-          description: Date and time the record was updated in the aggregator database
-        web_url:
-          description: URL to the section
-      type: object
-    Site:
-      properties:
-        api_link:
-          description: REST API link for this resource
-        api_model:
-          description: REST API resource type or endpoint
-        artwork_ids:
-          description: Unique identifiers of the artworks this site is associated with
-        artwork_titles:
-          description: Names of the artworks this site is associated with
-        description:
-          description: Explanation of what this site is
-        exhibition_ids:
-          description: Unique identifier of the exhibitions this site is associated with
-        exhibition_titles:
-          description: Names of the exhibitions this site is associated with
-        id:
-          description: Unique identifier of this resource. Taken from the source system.
-        source_updated_at:
-          description: Date and time the resource was updated in the source system
-        suggest_autocomplete_all:
-          description: >-
-            Internal field to power the `/autosuggest` endpoint. Do not use
-            directly.
-        suggest_autocomplete_boosted:
-          description: >-
-            Internal field to power the `/autocomplete` endpoint. Do not use
-            directly.
-        timestamp:
-          description: Date and time the record was updated in the aggregator search index
-        title:
-          description: The name of this resource
-        updated_at:
-          description: Date and time the record was updated in the aggregator database
-        web_url:
-          description: URL to this site
-      type: object
+   
     Sound:
       properties:
         api_link:
@@ -4144,33 +1861,7 @@ components:
         web_url:
           description: URL to the audio file
       type: object
-    StaticPage:
-      properties:
-        api_link:
-          description: REST API link for this resource
-        api_model:
-          description: REST API resource type or endpoint
-        id:
-          description: Unique identifier of this resource. Taken from the source system.
-        source_updated_at:
-          description: Date and time the resource was updated in the source system
-        suggest_autocomplete_all:
-          description: >-
-            Internal field to power the `/autosuggest` endpoint. Do not use
-            directly.
-        suggest_autocomplete_boosted:
-          description: >-
-            Internal field to power the `/autocomplete` endpoint. Do not use
-            directly.
-        timestamp:
-          description: Date and time the record was updated in the aggregator search index
-        title:
-          description: The name of this resource
-        updated_at:
-          description: Date and time the record was updated in the aggregator database
-        web_url:
-          description: The URL to this page on our website
-      type: object
+  
     Text:
       properties:
         alt_text:
