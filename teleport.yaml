@@ -1,0 +1,1833 @@
+openapi: 3.0.0
+info:
+  title: Teleport
+  version: 1.0.0-oas3
+paths:
+  /cities/:
+    get:
+      operationId: searchCities
+      parameters:
+        - description: search term
+          in: query
+          name: search
+          required: true
+          schema:
+            type: string
+        - description: limit (max 25)
+          in: query
+          name: limit
+          required: false
+          schema:
+            type: integer
+        - description: Relationship paths to embed
+          in: query
+          name: embed
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: Successful response
+          x-teleport-mime-type: application/vnd.teleport.v1+json
+          content:
+            application/vnd.teleport.v1+json:
+              schema:
+                $ref: '#/components/schemas/CitySearchResults'
+      summary: Find cities by name
+      tags:
+        - cities
+  /cities/{city_id}/:
+    get:
+      operationId: getCityByID
+      parameters:
+        - description: The city ID
+          in: path
+          name: city_id
+          required: true
+          schema:
+            type: string
+        - description: Relationship paths to embed
+          in: query
+          name: embed
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: Successful response
+          x-teleport-mime-type: application/vnd.teleport.v1+json
+          content:
+            application/vnd.teleport.v1+json:
+              schema:
+                $ref: '#/components/schemas/City'
+        '400':
+          description: Invalid city ID supplied
+          x-teleport-mime-type: application/vnd.teleport.v1+json
+        '404':
+          description: City ID not found
+          x-teleport-mime-type: application/vnd.teleport.v1+json
+      summary: Get city information
+      tags:
+        - cities
+  /continents/:
+    get:
+      operationId: listContinents
+      parameters:
+        - description: Relationship paths to embed
+          in: query
+          name: embed
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: Successful response
+          x-teleport-mime-type: application/vnd.teleport.v1+json
+          content:
+            application/vnd.teleport.v1+json:
+              schema:
+                $ref: '#/components/schemas/ContinentList'
+      summary: List all continents
+      tags:
+        - continents
+  /continents/{continent_id}/:
+    get:
+      operationId: getContinentByID
+      parameters:
+        - description: The continent ID
+          in: path
+          name: continent_id
+          required: true
+          schema:
+            type: string
+        - description: Relationship paths to embed in the response
+          in: query
+          name: embed
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: Successful response
+          x-teleport-mime-type: application/vnd.teleport.v1+json
+          content:
+            application/vnd.teleport.v1+json:
+              schema:
+                $ref: '#/components/schemas/Continent'
+        '400':
+          description: Invalid continent ID supplied
+          x-teleport-mime-type: application/vnd.teleport.v1+json
+        '404':
+          description: Continent ID not found
+          x-teleport-mime-type: application/vnd.teleport.v1+json
+      summary: Get continent information
+      tags:
+        - continents
+  /continents/{continent_id}/countries/:
+    get:
+      operationId: listContinentCountries
+      parameters:
+        - description: The continent ID
+          in: path
+          name: continent_id
+          required: true
+          schema:
+            type: string
+        - description: Relationship paths to embed
+          in: query
+          name: embed
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: Successful response
+          x-teleport-mime-type: application/vnd.teleport.v1+json
+          content:
+            application/vnd.teleport.v1+json:
+              schema:
+                $ref: '#/components/schemas/ContinentCountryList'
+        '400':
+          description: Invalid continent ID supplied
+          x-teleport-mime-type: application/vnd.teleport.v1+json
+        '404':
+          description: Continent ID not found
+          x-teleport-mime-type: application/vnd.teleport.v1+json
+      summary: Get continent country list
+      tags:
+        - continents
+        - countries
+  /continents/{continent_id}/urban_areas/:
+    get:
+      operationId: listContinentUrbanAreas
+      parameters:
+        - description: The continent ID
+          in: path
+          name: continent_id
+          required: true
+          schema:
+            type: string
+        - description: Relationship paths to embed
+          in: query
+          name: embed
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: Successful response
+          x-teleport-mime-type: application/vnd.teleport.v1+json
+          content:
+            application/vnd.teleport.v1+json:
+              schema:
+                $ref: '#/components/schemas/ContinentUrbanAreaList'
+        '400':
+          description: Invalid continent ID supplied
+          x-teleport-mime-type: application/vnd.teleport.v1+json
+        '404':
+          description: Continent ID not found
+          x-teleport-mime-type: application/vnd.teleport.v1+json
+      summary: Get continent urban area list
+      tags:
+        - continents
+        - urban_areas
+  /countries/:
+    get:
+      operationId: listCountries
+      parameters:
+        - description: Relationship paths to embed in the response
+          in: query
+          name: embed
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: Successful response
+          x-teleport-mime-type: application/vnd.teleport.v1+json
+          content:
+            application/vnd.teleport.v1+json:
+              schema:
+                $ref: '#/components/schemas/CountryList'
+      summary: List all countries
+      tags:
+        - countries
+  /countries/{country_id}/:
+    get:
+      operationId: getCountryByID
+      parameters:
+        - description: >-
+            The country ID, consisting of ID scheme and ID, separated by colon
+            (e.g. iso_alpha2:US)
+          in: path
+          name: country_id
+          required: true
+          schema:
+            type: string
+        - description: Relationship paths to embed in the response
+          in: query
+          name: embed
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: Successful response
+          x-teleport-mime-type: application/vnd.teleport.v1+json
+          content:
+            application/vnd.teleport.v1+json:
+              schema:
+                $ref: '#/components/schemas/Country'
+        '400':
+          description: Invalid country ID supplied
+          x-teleport-mime-type: application/vnd.teleport.v1+json
+        '404':
+          description: Country ID not found
+          x-teleport-mime-type: application/vnd.teleport.v1+json
+      summary: Get country information
+      tags:
+        - countries
+  /countries/{country_id}/admin1_divisions/:
+    get:
+      operationId: listAdmin1Divisions
+      parameters:
+        - description: The country ID
+          in: path
+          name: country_id
+          required: true
+          schema:
+            type: string
+        - description: Relationship paths to embed
+          in: query
+          name: embed
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: Successful response
+          x-teleport-mime-type: application/vnd.teleport.v1+json
+          content:
+            application/vnd.teleport.v1+json:
+              schema:
+                $ref: '#/components/schemas/CountryList'
+        '400':
+          description: Invalid country ID supplied
+          x-teleport-mime-type: application/vnd.teleport.v1+json
+        '404':
+          description: Country ID not found
+          x-teleport-mime-type: application/vnd.teleport.v1+json
+      summary: List all first-level administrative divisions for a country
+      tags:
+        - countries
+  /countries/{country_id}/admin1_divisions/{admin1_id}/:
+    get:
+      operationId: getAdmin1DivisionByID
+      parameters:
+        - description: The country ID
+          in: path
+          name: country_id
+          required: true
+          schema:
+            type: string
+        - description: >-
+            The administrative division ID, consisting of ID scheme and ID,
+            separated by colon (e.g. geonames:CA)
+          in: path
+          name: admin1_id
+          required: true
+          schema:
+            type: string
+        - description: Relationship paths to embed in the response
+          in: query
+          name: embed
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: Successful response
+          x-teleport-mime-type: application/vnd.teleport.v1+json
+          content:
+            application/vnd.teleport.v1+json:
+              schema:
+                $ref: '#/components/schemas/Admin1Division'
+        '400':
+          description: Invalid country or administrative division ID supplied
+          x-teleport-mime-type: application/vnd.teleport.v1+json
+        '404':
+          description: Country or administrative division ID not found
+          x-teleport-mime-type: application/vnd.teleport.v1+json
+      summary: Get  first-level administrative division information
+      tags:
+        - countries
+  /countries/{country_id}/admin1_divisions/{admin1_id}/cities/:
+    get:
+      operationId: listAdmin1DivisionCities
+      parameters:
+        - description: The country ID
+          in: path
+          name: country_id
+          required: true
+          schema:
+            type: string
+        - description: The administrative division ID
+          in: path
+          name: admin1_id
+          required: true
+          schema:
+            type: string
+        - in: query
+          description: Relationship paths to embed
+          name: embed
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: Successful response
+          x-teleport-mime-type: application/vnd.teleport.v1+json
+          content:
+            application/vnd.teleport.v1+json:
+              schema:
+                $ref: '#/components/schemas/Admin1DivisionCityList'
+        '400':
+          description: Invalid country or administrative division ID supplied
+          x-teleport-mime-type: application/vnd.teleport.v1+json
+        '404':
+          description: Country or administrative division ID not found
+          x-teleport-mime-type: application/vnd.teleport.v1+json
+      summary: List cities for a first-level administrative division
+      tags:
+        - countries
+  /countries/{country_id}/salaries/:
+    get:
+      operationId: getCountrySalaries
+      parameters:
+        - description: The country ID
+          in: path
+          name: country_id
+          required: true
+          schema:
+            type: string
+        - in: query
+          description: Relationship paths to embed
+          name: embed
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: Successful response
+          x-teleport-mime-type: application/vnd.teleport.v1+json
+          content:
+            application/vnd.teleport.v1+json:
+              schema:
+                $ref: '#/components/schemas/CountrySalaries'
+        '400':
+          description: Invalid country ID supplied
+          x-teleport-mime-type: application/vnd.teleport.v1+json
+        '404':
+          description: Country ID not found
+          x-teleport-mime-type: application/vnd.teleport.v1+json
+      summary: Get 25th, 50th, 75th percentile for country salaries
+      tags:
+        - countries
+  /ipaddresses/{address}/:
+    get:
+      operationId: getIPAddress
+      parameters:
+        - description: IPv4 address
+          in: path
+          name: address
+          required: true
+          schema:
+            type: string
+        - description: Relationship paths to embed
+          in: query
+          name: embed
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: Successful response
+          x-teleport-mime-type: application/vnd.teleport.v1+json
+          content:
+            application/vnd.teleport.v1+json:
+              schema:
+                $ref: '#/components/schemas/IPAddress'
+        '400':
+          description: Invalid IP address supplied
+          x-teleport-mime-type: application/vnd.teleport.v1+json
+      summary: Looks up location based on IP address
+      tags:
+        - ipaddress
+  /locations/{coordinates}/:
+    get:
+      operationId: getLocation
+      parameters:
+        - description: Latitude  and longitude separated by comma
+          in: path
+          name: coordinates
+          required: true
+          schema:
+            type: string
+        - description: Relationship paths to embed
+          in: query
+          name: embed
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: Successful response
+          x-teleport-mime-type: application/vnd.teleport.v1+json
+          content:
+            application/vnd.teleport.v1+json:
+              schema:
+                $ref: '#/components/schemas/Location'
+        '400':
+          description: Invalid coordinates supplied
+          x-teleport-mime-type: application/vnd.teleport.v1+json
+      summary: Gets geographical features at a location.
+      tags:
+        - locations
+  /timezones/:
+    get:
+      operationId: listTimezones
+      parameters:
+        - description: Relationship paths to embed
+          in: query
+          name: embed
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: Successful response
+          x-teleport-mime-type: application/vnd.teleport.v1+json
+          content:
+            application/vnd.teleport.v1+json:
+              schema:
+                $ref: '#/components/schemas/TimezoneList'
+      summary: List all timezones
+      tags:
+        - timezones
+  /timezones/{tz_id}/:
+    get:
+      operationId: getTimezoneByID
+      parameters:
+        - description: >-
+            The timezone ID, consisting of ID scheme and ID, separated by colon
+            (e.g. iana:America/Los_Angeles).
+          in: path
+          name: tz_id
+          required: true
+          schema:
+            type: string
+        - description: Relationship paths to embed
+          in: query
+          name: embed
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/vnd.teleport.v1+json:
+              schema:
+                $ref: '#/components/schemas/Timezone'
+        '400':
+          description: Invalid timezone ID supplied
+          x-teleport-mime-type: application/vnd.teleport.v1+json
+        '404':
+          description: Timezone ID not found
+          x-teleport-mime-type: application/vnd.teleport.v1+json
+      summary: Get timezone information
+      tags:
+        - timezones
+  /timezones/{tz_id}/offsets/:
+    get:
+      operationId: getTimezoneByIDOffset
+      parameters:
+        - description: |
+            The timezone ID, consisting of ID scheme and ID.
+          in: path
+          name: tz_id
+          required: true
+          schema:
+            type: string
+        - description: Date/time as of what time the timezone offsets should be provided
+          in: query
+          name: date
+          required: true
+          schema:
+            type: string
+        - description: Relationship paths to embed
+          in: query
+          name: embed
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: Successful response
+          x-teleport-mime-type: application/vnd.teleport.v1+json
+          content:
+            application/vnd.teleport.v1+json:
+              schema:
+                $ref: '#/components/schemas/Timezone'
+        '400':
+          description: Invalid timezone ID or date supplied
+          x-teleport-mime-type: application/vnd.teleport.v1+json
+        '404':
+          description: Timezone ID not found
+          x-teleport-mime-type: application/vnd.teleport.v1+json
+      summary: Get timezone information
+      tags:
+        - timezones
+  /urban_areas/:
+    get:
+      operationId: listUrbanAreas
+      parameters:
+        - description: Relationship paths to embed
+          in: query
+          name: embed
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: Successful response
+          x-teleport-mime-type: application/vnd.teleport.v1+json
+          content:
+            application/vnd.teleport.v1+json:
+              schema:
+                $ref: '#/components/schemas/UrbanAreaList'
+      summary: List all Teleport Urban Areas
+      tags:
+        - urban_areas
+  /urban_areas/{ua_id}/:
+    get:
+      operationId: getUrbanAreaByID
+      parameters:
+        - description: >-
+            The urban area ID, consisting of ID scheme and ID, separated by
+            colon (e.g. teleport:9q8yy)
+          in: path
+          name: ua_id
+          required: true
+          schema:
+            type: string
+        - description: Relationship paths to embed
+          in: query
+          name: embed
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: Successful response
+          x-teleport-mime-type: application/vnd.teleport.v1+json
+          content:
+            application/vnd.teleport.v1+json:
+              schema:
+                $ref: '#/components/schemas/UrbanArea'
+        '400':
+          description: Invalid urban area ID supplied
+          x-teleport-mime-type: application/vnd.teleport.v1+json
+        '404':
+          description: Urban Area ID not found
+          x-teleport-mime-type: application/vnd.teleport.v1+json
+      summary: Get urban area information
+      tags:
+        - urban_areas
+  /urban_areas/{ua_id}/cities/:
+    get:
+      operationId: listUrbanAreaCities
+      parameters:
+        - description: The urban area ID
+          in: path
+          name: ua_id
+          required: true
+          schema:
+            type: string
+        - description: Relationship paths to embed
+          in: query
+          name: embed
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: Successful response
+          x-teleport-mime-type: application/vnd.teleport.v1+json
+          content:
+            application/vnd.teleport.v1+json:
+              schema:
+                $ref: '#/components/schemas/UrbanAreaCityList'
+        '400':
+          description: Invalid urban area ID supplied
+          x-teleport-mime-type: application/vnd.teleport.v1+json
+        '404':
+          description: Urban Area ID not found
+          x-teleport-mime-type: application/vnd.teleport.v1+json
+      summary: Get urban area cities list
+      tags:
+        - urban_areas
+  /urban_areas/{ua_id}/details/:
+    get:
+      operationId: getUrbanAreaDetails
+      parameters:
+        - description: The urban area ID
+          in: path
+          name: ua_id
+          required: true
+          schema:
+            type: string
+        - description: Relationship paths to embed
+          in: query
+          name: embed
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: Successful response
+          x-teleport-mime-type: application/vnd.teleport.v1+json
+          content:
+            application/vnd.teleport.v1+json:
+              schema:
+                $ref: '#/components/schemas/UrbanAreaDetails'
+        '400':
+          description: Invalid urban area ID supplied
+          x-teleport-mime-type: application/vnd.teleport.v1+json
+        '404':
+          description: Urban Area ID not found
+          x-teleport-mime-type: application/vnd.teleport.v1+json
+      summary: Get urban area detailed data
+      tags:
+        - urban_areas
+  /urban_areas/{ua_id}/images/:
+    get:
+      operationId: getUrbanAreaImages
+      parameters:
+        - description: The urban area ID
+          in: path
+          name: ua_id
+          required: true
+          schema:
+            type: string
+        - description: Relationship paths to embed in the response
+          in: query
+          name: embed
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: Successful response
+          x-teleport-mime-type: application/vnd.teleport.v1+json
+          content:
+            application/vnd.teleport.v1+json:
+              schema:
+                $ref: '#/components/schemas/UrbanAreaImages'
+        '400':
+          description: Invalid urban area ID supplied
+          x-teleport-mime-type: application/vnd.teleport.v1+json
+        '404':
+          description: Urban Area ID not found
+          x-teleport-mime-type: application/vnd.teleport.v1+json
+      summary: Get urban area images
+      tags:
+        - urban_areas
+  /urban_areas/{ua_id}/salaries/:
+    get:
+      operationId: getUrbanAreaSalaries
+      parameters:
+        - description: The urban area ID
+          in: path
+          name: ua_id
+          required: true
+          schema:
+            type: string
+        - description: Relationship paths to embed
+          in: query
+          name: embed
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: Successful response
+          x-teleport-mime-type: application/vnd.teleport.v1+json
+          content:
+            application/vnd.teleport.v1+json:
+              schema:
+                $ref: '#/components/schemas/UrbanAreaSalaries'
+        '400':
+          description: Invalid urban area ID supplied
+          x-teleport-mime-type: application/vnd.teleport.v1+json
+        '404':
+          description: Urban Area ID not found
+          x-teleport-mime-type: application/vnd.teleport.v1+json
+      summary: Get 25th, 50th, 75th percentile for urban area salaries
+      tags:
+        - urban_areas
+  /urban_areas/{ua_id}/scores/:
+    get:
+      operationId: getUrbanAreaScores
+      parameters:
+        - description: The urban area ID
+          in: path
+          name: ua_id
+          required: true
+          schema:
+            type: string
+        - description: Relationship paths to embed in the response
+          in: query
+          name: embed
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: Successful response
+          x-teleport-mime-type: application/vnd.teleport.v1+json
+          content:
+            application/vnd.teleport.v1+json:
+              schema:
+                $ref: '#/components/schemas/UrbanAreaScores'
+        '400':
+          description: Invalid urban area ID supplied
+          x-teleport-mime-type: application/vnd.teleport.v1+json
+        '404':
+          description: Urban Area ID not found
+          x-teleport-mime-type: application/vnd.teleport.v1+json
+      summary: Get urban area scores
+      tags:
+        - urban_areas
+tags:
+  - description: Cities and other populated areas
+    externalDocs:
+      description: Find out more
+      url: https://developers.teleport.org/api/
+    name: cities
+  - description: World countries
+    externalDocs:
+      description: Find out more
+      url: https://developers.teleport.org/api/
+    name: countries
+  - description: Teleport Flock
+    externalDocs:
+      description: Find out more
+      url: https://developers.teleport.org/api/
+    name: flock
+  - description: IP Address
+    externalDocs:
+      description: Find out more
+      url: https://developers.teleport.org/api/
+    name: ipaddress
+  - description: Everything around a geographic coordinate
+    externalDocs:
+      description: Find out more
+      url: https://developers.teleport.org/api/
+    name: locations
+  - description: Root
+    externalDocs:
+      description: Find out more
+      url: https://developers.teleport.org/api/
+    name: root
+  - description: Timezones
+    externalDocs:
+      description: Find out more
+      url: https://developers.teleport.org/api/
+    name: timezones
+  - description: Teleport Urban Areas (aka Teleport Startup Cities)
+    externalDocs:
+      description: Find out more
+      url: https://developers.teleport.org/api/
+    name: urban_areas
+servers:
+  - url: https://api.teleport.org/api
+components:
+  schemas:
+    Admin1Division:
+      description: The detailed information about an administrative division
+      properties:
+        geoname_id:
+          $ref: '#/components/schemas/GeonameID'
+        geonames_admin1_code:
+          description: The GeoNames.org admin1 code of the administrative division
+          type: string
+          x-teleport-example: CA
+        name:
+          description: The name of the administrative division
+          type: string
+          x-teleport-example: California
+      required:
+        - geoname_id
+        - geonames_admin1_code
+        - name
+      type: object
+      x-teleport-resource:
+        embed-if-root:
+          - a1:country
+        relations:
+          a1:cities:
+            $ref: '#/components/schemas/Admin1DivisionCityList'
+          a1:country:
+            $ref: '#/components/schemas/Country'
+        url-example-parameters:
+          admin1_code: geonames:CA
+          country_id: iso_alpha2:US
+        url-format: /countries/{country_id}/admin1_divisions/{admin1_code}/
+    Admin1DivisionCityList:
+      description: The list of cities in an administrative division
+      properties:
+        count:
+          description: Number of cities
+          format: int32
+          type: integer
+          x-teleport-example: 25
+      required:
+        - count
+      type: object
+      x-teleport-resource:
+        relations:
+          city:admin1_division:
+            $ref: '#/components/schemas/Admin1Division'
+          city:items:
+            $ref: '#/components/schemas/City'
+        url-example-parameters:
+          admin1_code: geonames:CA
+          country_id: iso_alpha2:US
+        url-format: /countries/{country_id}/admin1_divisions/{admin1_code}/cities/
+    Admin1DivisionList:
+      description: The level 1 administrative divisions of a country
+      properties:
+        count:
+          description: Number of administrative divisions
+          format: int32
+          type: integer
+          x-teleport-example: 25
+      required:
+        - count
+      type: object
+      x-teleport-resource:
+        embed-if-root:
+          - a1:items
+        relations:
+          a1:country:
+            $ref: '#/components/schemas/Country'
+          a1:items:
+            $ref: '#/components/schemas/Admin1Division'
+        url-example-parameters:
+          country_id: iso_alpha2:US
+        url-format: /countries/{country_id}/admin1_divisions/
+    AlternateName:
+      description: An alternate name (e.g. alias, translation, IATA code, etc) for a city
+      properties:
+        name:
+          description: The alternate name
+          type: string
+      required:
+        - name
+      type: object
+    BoundingBox:
+      description: Coordinates of a geographic bounding box in various geocoding systems
+      properties:
+        latlon:
+          $ref: '#/components/schemas/LatLonBoundingBox'
+      required:
+        - latlon
+      type: object
+    City:
+      description: Detailed information about a city
+      properties:
+        full_name:
+          description: >-
+            The full name of the city, qualified with country and administrative
+            division (if present)
+          type: string
+          x-teleport-example: San Francisco, California, United States
+        geoname_id:
+          $ref: '#/components/schemas/GeonameID'
+        location:
+          $ref: '#/components/schemas/Coordinates'
+        name:
+          description: The name of the city
+          type: string
+          x-teleport-example: San Francisco
+        population:
+          $ref: '#/components/schemas/Population'
+      required:
+        - geoname_id
+        - name
+        - full_name
+        - location
+      type: object
+   
+    CitySearchResults:
+      description: The results of a city search
+      properties:
+        count:
+          description: Number of cities found
+          format: int32
+          type: integer
+          x-teleport-example: 25
+      required:
+        - count
+      type: object
+      x-teleport-resource:
+        embed-if-root:
+          - city:search-result/city:item
+          - city:search-result/city:item/city:urban-area
+          - city:search-result/city:item/city:admin1-division
+          - city:search-result/city:item/city:country
+          - city:search-result/city:item/city:timezone/tz:offsets-now
+        relations:
+          city:search-results:
+            $ref: '#/components/schemas/CitySearchResultsItem'
+        url-example-parameters:
+          search: San Francisco
+        url-format: /cities/{?search}
+    CitySearchResultsItem:
+      description: Individual search result of a city search
+      properties:
+        matching_alternate_names:
+          description: >-
+            List of alternate names that were used for matching the city to the
+            search criteria
+          items:
+            $ref: '#/components/schemas/AlternateName'
+          type: array
+        matching_full_name:
+          description: >-
+            The full name of the city that contains all terms in the search
+            parameter
+          type: string
+      required:
+        - matching_full_name
+        - matching_alternate_names
+      type: object
+      x-teleport-resource:
+        embedded-resource: true
+        relations:
+          city:item:
+            $ref: '#/components/schemas/City'
+    Continent:
+      description: The detailed information for a continent
+      properties:
+        geonames_code:
+          description: The GeoNames code for the continent
+          type: string
+          x-teleport-example: NA
+        name:
+          description: The name of the continent
+          type: string
+          x-teleport-example: North America
+      required:
+        - geonames_code
+        - name
+      type: object
+      x-teleport-resource:
+        relations:
+          continent:countries:
+            $ref: '#/components/schemas/ContinentCountryList'
+          continent:urban_areas:
+            $ref: '#/components/schemas/ContinentUrbanAreaList'
+        url-example-parameters:
+          continent_id: geonames:NA
+        url-format: /continents/{continent_id}/
+    ContinentCountryList:
+      description: The list of countries on a continent
+      properties:
+        count:
+          description: Number of countries
+          format: int32
+          type: integer
+          x-teleport-example: 25
+      required:
+        - count
+      type: object
+      x-teleport-resource:
+        relations:
+          country:items:
+            $ref: '#/components/schemas/Country'
+        url-example-parameters:
+          continent_id: geonames:NA
+        url-format: /continents/{continent_id}/countries/
+    ContinentList:
+      description: List of continents
+      properties:
+        count:
+          description: Number of continents
+          format: int32
+          type: integer
+          x-teleport-example: 7
+      required:
+        - count
+      type: object
+      x-teleport-resource:
+        embed-if-root:
+          - continent:items
+        relations:
+          continent:items:
+            $ref: '#/components/schemas/Continent'
+        url-format: /continents/
+    ContinentUrbanAreaList:
+      description: The list of urban areas on a continent
+      properties:
+        count:
+          description: Number of urban areas
+          format: int32
+          type: integer
+          x-teleport-example: 25
+      required:
+        - count
+      type: object
+      x-teleport-resource:
+        relations:
+          ua:items:
+            $ref: '#/components/schemas/UrbanArea'
+        url-example-parameters:
+          continent_id: geonames:NA
+        url-format: /continents/{continent_id}/urban_areas/
+    Coordinates:
+      description: Coordinates of a geographic point in various geocoding systems
+      properties:
+        geohash:
+          $ref: '#/components/schemas/GeoHash'
+        latlon:
+          $ref: '#/components/schemas/LatLon'
+      required:
+        - latlon
+        - geohash
+      type: object
+    Country:
+      description: The detailed information for a country
+      properties:
+        currency_code:
+          $ref: '#/components/schemas/CurrencyCode'
+        geoname_id:
+          $ref: '#/components/schemas/GeonameID'
+        iso_alpha2:
+          $ref: '#/components/schemas/ISOAlpha2Code'
+        iso_alpha3:
+          $ref: '#/components/schemas/ISOAlpha3Code'
+        name:
+          description: The name of the country
+          type: string
+          x-teleport-example: United States
+        population:
+          $ref: '#/components/schemas/Population'
+      required:
+        - iso_alpha2
+        - iso_alpha3
+        - name
+        - population
+      type: object
+      x-teleport-resource:
+        relations:
+          country:admin1_divisions:
+            $ref: '#/components/schemas/Admin1DivisionList'
+          country:continent:
+            $ref: '#/components/schemas/Continent'
+          country:salaries:
+            $ref: '#/components/schemas/CountrySalaries'
+        url-example-parameters:
+          country_id: iso_alpha2:US
+        url-format: /countries/{country_id}/
+    CountryJob:
+      description: Job ID and name
+      properties:
+        id:
+          description: Job unique identifier
+          type: string
+          x-teleport-example: ACCOUNT-MANAGER
+        name:
+          description: Job title
+          type: string
+          x-teleport-example: Account Manager
+      required:
+        - id
+        - title
+      type: object
+    CountryJobSalary:
+      description: Salary information for a particular job in a country
+      properties:
+        job:
+          $ref: '#/components/schemas/CountryJob'
+        salary_percentiles:
+          $ref: '#/components/schemas/CountryJobSalaryPercentiles'
+      required:
+        - job
+        - salary_percentiles
+      type: object
+    CountryJobSalaryPercentiles:
+      description: Salary 25th, 50th and 75th percentiles for a job and country combination
+      properties:
+        percentile_25:
+          description: Salary in the 25th percentile in US dollars
+          format: float32
+          type: number
+          x-teleport-example: 24331.233598350085
+        percentile_50:
+          description: Mean salary (50th percentile) in US dollars
+          format: float32
+          type: number
+          x-teleport-example: 30477.666696608503
+        percentile_75:
+          description: Salary in the 75th percentile in US dollars
+          format: float32
+          type: number
+          x-teleport-example: 38176.78061882351
+      required:
+        - percentile_25
+        - percentile_50
+        - percentile_75
+      type: object
+    CountryList:
+      description: List of countries
+      properties:
+        count:
+          description: Number of countries
+          format: int32
+          type: integer
+          x-teleport-example: 200
+      required:
+        - count
+      type: object
+      x-teleport-resource:
+        embed-if-root:
+          - country:items
+        relations:
+          country:items:
+            $ref: '#/components/schemas/Country'
+        url-format: /countries/
+    CountrySalaries:
+      description: Teleport City salaries for a country
+      properties:
+        salaries:
+          description: All salaries for a country
+          items:
+            $ref: '#/components/schemas/CountryJobSalary'
+          type: array
+      required:
+        - salaries
+      type: object
+      x-teleport-resource:
+        url-example-parameters:
+          country_id: iso_alpha2:US
+        url-format: /countries/{country_id}/salaries/
+    CssColor:
+      pattern: ^#[0-9A-F]{6}$
+      properties: {}
+      type: string
+      x-teleport-example: '#0051C1'
+    CurrencyCode:
+      description: ISO 4217 currency code
+      pattern: ^[A-Z]{3}$
+      properties: {}
+      type: string
+      x-teleport-example: USD
+   
+    
+    
+   
+    
+    GeoHash:
+      description: Coordinates in the GeoHash alpha-numeric geocoding system
+      pattern: ^[a-z0-9]+$
+      properties: {}
+      type: string
+      x-teleport-example: 9q8yyk8yuv2
+    GeonameID:
+      format: int32
+      properties: {}
+      type: integer
+      x-teleport-example: 5391959
+    HTMLFormattedText:
+      description: >-
+        Text with limited HTML formatting (e.g. bold tags) - should not be
+        HTML-encoded. Guaranteed to be safe not to include unsafe tags.
+      properties: {}
+      type: string
+    IANATimezoneName:
+      description: IANA/Olson/tzdata timezone name (e.g. America/New_York)
+      properties: {}
+      type: string
+      x-teleport-example: America/Los_Angeles
+    IPAddress:
+      description: An IP address with annotated location information
+      properties:
+        address:
+          description: IP address in quad-dotted form
+          type: string
+      required:
+        - address
+      type: object
+      x-teleport-resource:
+        relations:
+          ip:city:
+            $ref: '#/components/schemas/City'
+        url-example-parameters:
+          address: 8.8.8.8
+        url-format: /ipaddresses/{address}/
+    ISOAlpha2Code:
+      pattern: ^[A-Z]{2}$
+      properties: {}
+      type: string
+      x-teleport-example: US
+    ISOAlpha3Code:
+      pattern: ^[A-Z]{3}$
+      properties: {}
+      type: string
+      x-teleport-example: USA
+    LatLon:
+      description: A location on Earth identified by the latitude-longitude coordinate pair
+      properties:
+        latitude:
+          $ref: '#/components/schemas/Latitude'
+        longitude:
+          $ref: '#/components/schemas/Longitude'
+      required:
+        - latitude
+        - longitude
+      type: object
+    LatLonBoundingBox:
+      description: Bounding box identified by two latitude-longitude coordinate pairs
+      properties:
+        east:
+          $ref: '#/components/schemas/Longitude'
+        north:
+          $ref: '#/components/schemas/Latitude'
+        south:
+          $ref: '#/components/schemas/Latitude'
+        west:
+          $ref: '#/components/schemas/Longitude'
+      required:
+        - south
+        - north
+        - west
+        - east
+      type: object
+    Latitude:
+      description: Number of degrees latitude (positive for North, negative for South)
+      format: double
+      maximum: 90
+      minimum: -90
+      properties: {}
+      type: number
+      x-teleport-example: 37.7792768
+    Location:
+      description: A point-location identified by geographical coordinates
+      properties:
+        coordinates:
+          $ref: '#/components/schemas/Coordinates'
+      required:
+        - coordinates
+      type: object
+      x-teleport-resource:
+        embed-if-root:
+          - location:nearest-cities/location:nearest-city
+          - location:nearest-cities/location:nearest-city/city:urban-area
+          - location:nearest-cities/location:nearest-city/city:admin1-division
+          - location:nearest-cities/location:nearest-city/city:country
+          - >-
+            location:nearest-cities/location:nearest-city/city:timezone/tz:offsets-now
+          - location:nearest-urban-areas/location:nearest-urban-area
+        relations:
+          location:nearest-cities:
+            $ref: '#/components/schemas/NearestCity'
+          location:nearest-urban-areas:
+            $ref: '#/components/schemas/NearestUrbanArea'
+        url-example-parameters:
+          location: 37.77493,-122.41942
+        url-format: /locations/{location}/
+    Longitude:
+      description: Number of degrees longitude  (positive for East, negative for West)
+      format: double
+      maximum: 180
+      minimum: -180
+      properties: {}
+      type: number
+      x-teleport-example: -122.4192704
+    NearestCity:
+      description: Nearest city to a location
+      properties:
+        distance_km:
+          description: Distance in kilometers from the location to the center of the city
+          format: float32
+          type: number
+          x-teleport-example: 1.1
+      required:
+        - distance_km
+      type: object
+      x-teleport-resource:
+        embedded-resource: true
+        relations:
+          location:nearest-city:
+            $ref: '#/components/schemas/City'
+    NearestUrbanArea:
+      description: Nearest urban area to a location
+      properties:
+        distance_km:
+          description: >-
+            Distance in kilometers from the location to the border of the urban
+            area
+          format: float32
+          type: number
+          x-teleport-example: 1.1
+      required:
+        - distance_km
+      type: object
+      x-teleport-resource:
+        embedded-resource: true
+        relations:
+          location:nearest-urban-area:
+            $ref: '#/components/schemas/UrbanArea'
+    Photo:
+      description: A description of a photo
+      properties:
+        attribution:
+          $ref: '#/components/schemas/PhotoAttribution'
+        image:
+          description: Image URLs by resolution
+          type: object
+      required:
+        - image
+      type: object
+    PhotoAttribution:
+      description: The author, source and license for a photo
+      properties:
+        license:
+          description: The name of the license
+          type: string
+        photographer:
+          description: The full name of the photographer
+          type: string
+        site:
+          description: The name of the site where this photo was included from
+          type: string
+        source:
+          $ref: '#/components/schemas/URL'
+      type: object
+    Population:
+      format: int64
+      properties: {}
+      type: integer
+      x-teleport-example: 805235
+ 
+    TZOffsetMinutes:
+      description: Offset of the timezone from UTC in minutes
+      format: int32
+      properties: {}
+      type: integer
+      x-teleport-example: -480
+    TZTransitionTime:
+      description: >-
+        Date and time when a region transitions from one offset to another (e.g.
+        to daylight-saving time)
+      format: date-time
+      properties: {}
+      type: string
+      x-teleport-example: '2015-03-08T10:00:00.000Z'
+    Timezone:
+      description: Detailed information of a timezone
+      properties:
+        iana_name:
+          $ref: '#/components/schemas/IANATimezoneName'
+      required:
+        - iana_name
+      type: object
+      x-teleport-resource:
+        embed-if-root:
+          - tz:offsets-now
+        relations:
+          tz:offsets:
+            $ref: '#/components/schemas/TimezoneOffsets'
+          tz:offsets-now:
+            $ref: '#/components/schemas/TimezoneOffsets'
+        url-example-parameters:
+          tz_id: iana:America/Los_Angeles
+        url-format: /timezones/{tz_id}/
+    TimezoneList:
+      description: List of timezones
+      properties:
+        count:
+          description: Number of timezones
+          format: int32
+          type: integer
+          x-teleport-example: 580
+      required:
+        - count
+      type: object
+      x-teleport-resource:
+        embed-if-root:
+          - tz:items
+        relations:
+          tz:items:
+            $ref: '#/components/schemas/Timezone'
+        url-format: /timezones/
+    TimezoneOffsets:
+      description: The time offsets of a timezone as of a specified time
+      properties:
+        base_offset_min:
+          $ref: '#/components/schemas/TZOffsetMinutes'
+        dst_offset_min:
+          $ref: '#/components/schemas/TZOffsetMinutes'
+        end_time:
+          $ref: '#/components/schemas/TZTransitionTime'
+        short_name:
+          description: The 3 or 4-letter short name of the timezone
+          type: string
+          x-teleport-example: PDT
+        total_offset_min:
+          $ref: '#/components/schemas/TZOffsetMinutes'
+        transition_time:
+          $ref: '#/components/schemas/TZTransitionTime'
+      required:
+        - short_name
+        - base_offset_min
+        - dst_offset_min
+        - total_offset_min
+        - transition_time
+      type: object
+      x-teleport-resource:
+        embed-if-root:
+          - tz:timezone
+        relations:
+          tz:timezone:
+            $ref: '#/components/schemas/Timezone'
+        url-example-parameters:
+          date: '2015-08-19T00:00:00Z'
+          tz_id: iana:America/Los_Angeles
+        url-format: /timezones/{tz_id}/offsets/{?date}
+    URL:
+      properties: {}
+      type: string
+    
+    UrbanArea:
+      description: Teleport urban area (aka Teleport City)
+      properties:
+        bounding_box:
+          $ref: '#/components/schemas/BoundingBox'
+        continent:
+          description: The continent where the urban area is located
+          type: string
+          x-teleport-example: North America
+        full_name:
+          description: Full name of the urban area
+          type: string
+          x-teleport-example: San Francisco Bay Area, California
+        is_government_partner:
+          description: Whether the urban_area represents a government partner to Teleport
+          type: boolean
+        name:
+          description: Name of the urban area
+          type: string
+          x-teleport-example: San Francisco Bay Area
+        slug:
+          description: Teleport Urban Area slug
+          type: string
+          x-teleport-example: san-francisco-bay-area
+        teleport_city_url:
+          $ref: '#/components/schemas/URL'
+        ua_id:
+          $ref: '#/components/schemas/UrbanAreaID'
+      required:
+        - ua_id
+        - slug
+        - name
+        - full_name
+        - teleport_city_url
+        - is_government_partner
+        - bounding_box
+      type: object
+      x-teleport-resource:
+        embed-if-root:
+          - ua:primary-cities
+          - ua:admin1-divisions
+          - ua:countries
+        relations:
+          ua:admin1-divisions:
+            $ref: '#/components/schemas/Admin1Division'
+          ua:cities:
+            $ref: '#/components/schemas/UrbanAreaCityList'
+          ua:continent:
+            $ref: '#/components/schemas/Continent'
+          ua:countries:
+            $ref: '#/components/schemas/Country'
+          ua:details:
+            $ref: '#/components/schemas/UrbanAreaDetails'
+          ua:identifying-city:
+            $ref: '#/components/schemas/City'
+          ua:images:
+            $ref: '#/components/schemas/UrbanAreaImages'
+          ua:primary-cities:
+            $ref: '#/components/schemas/City'
+          ua:salaries:
+            $ref: '#/components/schemas/UrbanAreaSalaries'
+          ua:scores:
+            $ref: '#/components/schemas/UrbanAreaScores'
+        url-example-parameters:
+          ua_id: teleport:9q8yy
+        url-format: /urban_areas/{ua_id}/
+    UrbanAreaCityList:
+      description: The list of cities in an urban area
+      properties:
+        count:
+          description: Number of cities
+          format: int32
+          type: integer
+          x-teleport-example: 25
+      required:
+        - count
+      type: object
+      x-teleport-resource:
+        relations:
+          city:items:
+            $ref: '#/components/schemas/City'
+        url-example-parameters:
+          ua_id: teleport:9q8yy
+        url-format: /urban_areas/{ua_id}/cities/
+    UrbanAreaDetailCategory:
+      description: Category detailed data for an urban area
+      properties:
+        data:
+          description: Detailed data available for category
+          items:
+            $ref: '#/components/schemas/UrbanAreaDetailDataPoint'
+          type: array
+        id:
+          description: Fixed identifier for category
+          type: string
+          x-teleport-example: VENTURE-CAPITAL
+        label:
+          description: Label describing category
+          type: string
+          x-teleport-example: Venture Capital
+      required:
+        - id
+        - label
+        - data
+      type: object
+    UrbanAreaDetailDataPoint:
+      description: Teleport City detailed data points for an urban area
+      properties:
+        currency_dollar_value:
+          description: Currency value in US dollars for a data point.
+          format: float32
+          type: number
+          x-teleport-example: 49922.11
+        float_value:
+          description: Float value for a data point.
+          format: float32
+          type: number
+          x-teleport-example: 0.5365
+        id:
+          description: Fixed identifier for data point
+          type: string
+          x-teleport-example: FUNDERBEAM-VENTURE-CAPITAL-TELESCORE
+        int_value:
+          description: Integer value for a data point.
+          format: int32
+          type: number
+        label:
+          description: Label describing data point
+          type: string
+          x-teleport-example: Venture capital [Teleport score]
+        percent_value:
+          description: Percent value between 0.0 and 1.0 for a data point.
+          format: float32
+          type: number
+          x-teleport-example: 0.022109999999999998
+        string_value:
+          description: String value for a data point.
+          type: string
+          x-teleport-example: Warm Summer Continental Climate
+        type:
+          description: >-
+            Data type for value. The actual value is stored in field named as
+            type + '_value'.
+          type: string
+          x-teleport-example: float
+        url_value:
+          $ref: '#/components/schemas/URL'
+      required:
+        - id
+        - label
+        - type
+      type: object
+    UrbanAreaDetails:
+      description: Teleport City data categories for an urban area
+      properties:
+        categories:
+          description: All data categories for an urban area
+          items:
+            $ref: '#/components/schemas/UrbanAreaDetailCategory'
+          type: array
+      required:
+        - categories
+      type: object
+      x-teleport-resource:
+        url-example-parameters:
+          ua_id: teleport:9q8yy
+        url-format: /urban_areas/{ua_id}/details/
+    UrbanAreaID:
+      description: The Teleport urban area (a.k.a. Teleport City) ID
+      pattern: ^[a-z0-9]{5}$
+      properties: {}
+      type: string
+      x-teleport-example: 9q8yy
+    UrbanAreaImages:
+      description: Images (photos, icons, etc) for an urban area
+      properties:
+        photos:
+          description: List of photos
+          items:
+            $ref: '#/components/schemas/Photo'
+          type: array
+      type: object
+      x-teleport-resource:
+        url-example-parameters:
+          ua_id: teleport:9q8yy
+        url-format: /urban_areas/{ua_id}/images/
+    UrbanAreaJob:
+      description: Job ID and name
+      properties:
+        id:
+          description: Job unique identifier
+          type: string
+          x-teleport-example: ACCOUNT-MANAGER
+        name:
+          description: Job title
+          type: string
+          x-teleport-example: Account Manager
+      required:
+        - id
+        - title
+      type: object
+    UrbanAreaJobSalary:
+      description: Salary information for a particular job in an urban area
+      properties:
+        job:
+          $ref: '#/components/schemas/UrbanAreaJob'
+        salary_percentiles:
+          $ref: '#/components/schemas/UrbanAreaJobSalaryPercentiles'
+      required:
+        - job
+        - salary_percentiles
+      type: object
+    UrbanAreaJobSalaryPercentiles:
+      description: >-
+        Salary 25th, 50th and 75th percentiles for a job and urban area
+        combination
+      properties:
+        percentile_25:
+          description: Salary in the 25th percentile in US dollars
+          format: float32
+          type: number
+          x-teleport-example: 24331.233598350085
+        percentile_50:
+          description: Mean salary (50th percentile) in US dollars
+          format: float32
+          type: number
+          x-teleport-example: 30477.666696608503
+        percentile_75:
+          description: Salary in the 75th percentile in US dollars
+          format: float32
+          type: number
+          x-teleport-example: 38176.78061882351
+      required:
+        - percentile_25
+        - percentile_50
+        - percentile_75
+      type: object
+    UrbanAreaList:
+      description: The list of all urban areas
+      properties:
+        count:
+          description: Number of urban areas
+          format: int32
+          type: integer
+          x-teleport-example: 125
+      required:
+        - count
+      type: object
+      x-teleport-resource:
+        embed-if-root:
+          - ua:item
+        relations:
+          ua:item:
+            $ref: '#/components/schemas/UrbanArea'
+        url-format: /urban_areas/
+    UrbanAreaSalaries:
+      description: Teleport City salaries for an urban area
+      properties:
+        salaries:
+          description: All salaries for an urban area
+          items:
+            $ref: '#/components/schemas/UrbanAreaJobSalary'
+          type: array
+      required:
+        - salaries
+      type: object
+      x-teleport-resource:
+        url-example-parameters:
+          ua_id: teleport:9q8yy
+        url-format: /urban_areas/{ua_id}/salaries/
+    UrbanAreaScoreCategory:
+      description: The detailed category scores for an urban area
+      properties:
+        color:
+          $ref: '#/components/schemas/CssColor'
+        name:
+          description: The name of the score category
+          type: string
+          x-teleport-example: Housing
+        score_out_of_10:
+          description: The score for the category (out of 10)
+          format: float32
+          type: number
+          x-teleport-example: 9.1
+      required:
+        - name
+        - color
+        - score_out_of_10
+      type: object
+    UrbanAreaScores:
+      description: The Teleport City Scores for an urban area
+      properties:
+        categories:
+          description: The detailed category scores for the urban area
+          items:
+            $ref: '#/components/schemas/UrbanAreaScoreCategory'
+          type: array
+        summary:
+          $ref: '#/components/schemas/HTMLFormattedText'
+        teleport_city_score:
+          description: The aggregate Teleport City Score (out of 100)
+          format: float32
+          type: number
+          x-teleport-example: 58.923750000000005
+      required:
+        - teleport_city_score
+        - categories
+      type: object
+      x-teleport-resource:
+        url-example-parameters:
+          ua_id: teleport:9q8yy
+        url-format: /urban_areas/{ua_id}/scores/
