@@ -1,7 +1,7 @@
 openapi: 3.0.0
 servers:
   - description: USGS Earthquake
-    url: https://earthquake.usgs.gov/fdsnws/event/1/
+    url: https://earthquake.usgs.gov/fdsnws/event/1
 info:
   version: 1.0.0
   title: usgs-earthquake
