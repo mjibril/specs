@@ -1,0 +1,63 @@
+components: {}
+info:
+  description: A simple API that returns a random fact about cats
+  title: meow facts
+  version: 0.1.1
+openapi: 3.0.1
+paths:
+  /:
+    get:
+      description: Get random facts about cats
+      operationId: facts
+      parameters:
+      - description: The number of facts to return
+        example: '3'
+        explode: true
+        in: query
+        name: count
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The language to return the facts
+        example: eng
+        explode: true
+        in: query
+        name: lang
+        required: false
+        schema:
+          default: eng
+          enum:
+          - ces
+          - eng
+          - esp
+          - esp
+          - tl
+          - fra
+          - ger
+          - por
+          - rus
+          - ukr
+          - ud
+          - ces-cz
+          - eng-us
+          - esp-es
+          - esp-mx
+          - tl-fil
+          - fra-fr
+          - ger-de
+          - por-br
+          - rus-ru
+          - ukr-ua
+          - ud-urd
+          type: string
+        style: form
+      responses:
+        '200':
+          content:
+            application/json; charset=utf-8:
+              examples: {}
+              schema: {}
+          description: A list of facts about cats
+servers:
+- url: https://meowfacts.herokuapp.com

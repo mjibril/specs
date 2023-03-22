@@ -418,6 +418,7 @@ paths:
           - '1'
           - '0'
           type: string
+        example : '1'
       - description: two days ago
         in: query
         name: twoDaysAgo
@@ -428,6 +429,7 @@ paths:
           - '1'
           - '0'
           type: string
+        example : '0'
       responses:
         '200':
           content:
@@ -452,6 +454,7 @@ paths:
           - '1'
           - '0'
           type: string
+        example : '1'
       - description: two days ago
         in: query
         name: twoDaysAgo
@@ -462,6 +465,7 @@ paths:
           - '1'
           - '0'
           type: string
+        example : '0'
       - description: field to sort
         in: query
         name: sort
@@ -477,6 +481,7 @@ paths:
           - casesPerOneMillion
           - deathsPerOneMillion
           type: string
+        example: cases
       responses:
         '200':
           content:
@@ -497,6 +502,7 @@ paths:
         required: true
         schema:
           type: string
+        example: europe
       - description: a day ago
         in: query
         name: yesterday
@@ -507,6 +513,7 @@ paths:
           - '1'
           - '0'
           type: string
+        example: '0'
       - description: two days ago
         in: query
         name: twoDaysAgo
@@ -517,6 +524,7 @@ paths:
           - '1'
           - '0'
           type: string
+        example: '1'
       - description: fuzzy search
         in: query
         name: strict
@@ -550,6 +558,7 @@ paths:
           - '1'
           - '0'
           type: string
+        example : '1'
       - description: two days ago
         in: query
         name: twoDaysAgo
@@ -560,6 +569,7 @@ paths:
           - '1'
           - '0'
           type: string
+        example : '0'
       - description: Field to sort
         in: query
         name: sort
@@ -575,16 +585,7 @@ paths:
           - casesPerOneMillion
           - deathsPerOneMillion
           type: string
-      - description: allow nulls
-        in: query
-        name: allowNull
-        schema:
-          enum:
-          - 'true'
-          - 'false'
-          - '1'
-          - '0'
-          type: string
+
       responses:
         '200':
           content:
@@ -625,16 +626,6 @@ paths:
           - '1'
           - '0'
           type: string
-      - description: allow null
-        in: query
-        name: allowNull
-        schema:
-          enum:
-          - 'true'
-          - 'false'
-          - '1'
-          - '0'
-          type: string
       responses:
         '200':
           content:
@@ -655,6 +646,7 @@ paths:
         required: true
         schema:
           type: string
+        example : us
       - description: a day ago
         in: query
         name: yesterday

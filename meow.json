@@ -34,7 +34,8 @@
           "schema" : {
             "type" : "string",
             "default" : "eng",
-            "enum": ["eng","ger","ukr","rus","por","esp","cze","fil","urd"]
+             "enum": ["ces", "eng", "esp", "esp", "tl", "fra", "ger", "por", "rus", "ukr", "ud", "ces-cz", "eng-us", "esp-es", "esp-mx", "tl-fil", "fra-fr", "ger-de", "por-br", "rus-ru", "ukr-ua", "ud-urd"]	
+
           },
           "example" : "eng"
         } ],
@@ -54,3 +55,5 @@
   },
   "components" : { }
 }
+
+
