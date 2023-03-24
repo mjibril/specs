@@ -26,7 +26,7 @@ paths:
             type: number
             minimum: 0
             maximum: 1
-          description: The price of the activity
+          description: The price of the activity with 0 being free and 1 maximum price
           example: 0.0
         - in: query
           name: minprice
@@ -34,7 +34,7 @@ paths:
             type: number
             minimum: 0
             maximum: 1
-          description: The minimum price of the activity
+          description: The minimum price of the activity with 0 being free and 1 maximum price
           example: 0.0
         - in: query
           name: maxprice
@@ -42,7 +42,7 @@ paths:
             type: number
             minimum: 0
             maximum: 1
-          description: The maximum price of the activity
+          description: The maximum price of the activity with 0 being free and 1 maximum price
           example: 0.8
         - in: query
           name: accessibility
