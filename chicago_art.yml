@@ -799,13 +799,13 @@ components:
       schema:
         type: string
     limitParam:
-      description: "Page Size (default: 12)"
+      description: "Page Size"
       in: query
       name: limit
       schema:
         type: integer
     pageParam:
-      description: "Page to retrieve (1-based, default: 1)"
+      description: "Page to retrieve (1-based)"
       in: query
       name: page
       schema:
