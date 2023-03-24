@@ -792,7 +792,7 @@ components:
       schema:
         type: integer
     idsParam:
-      description: "A comma-separated list of resource ids to retrieve"
+      description: "A comma-separated list of ids to retrieve"
       example: "1,2,3"
       in: query
       name: ids
