@@ -5,7 +5,7 @@ externalDocs:
 info:
   contact:
     email: engineering@artic.edu
-  description: An API for an aggregator of Art Institute of Chicago public data.
+  description: An API for the Art Institute of Chicago public data.
   license:
     name: ''
   termsOfService: https://www.artic.edu/terms/terms-and-conditions
@@ -811,7 +811,7 @@ components:
       schema:
         type: integer
     qParam:
-      description: "Query string"
+      description: "Query"
       in: query
       name: q
       schema:
