@@ -1,0 +1,87 @@
+basePath: /api
+consumes:
+- application/json
+definitions: {}
+host: whiskyhunter.net
+info:
+  description: "Data from 27 whisky auctions.  Database contains past & present records from live auctions. All trading volumes and winning bids are stated in <strong>\xA3 (GBP)</strong>.
+    Regardless of the base currency of the auction. The volume calculation for auctions
+    or distilleries includes only the lots actually sold (excluding those that have
+    not reached the reserve price)"
+  termsOfService: /privacy-policy/
+  title: Whisky Hunter API
+  version: v1
+paths:
+  /auction_data/{slug}/:
+    get:
+      description: 'Get data for a specific auction using a slug. Slugs can be gotten from getAuctionsData endpoint'
+      operationId: getAuctionDataSlug
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - auction_data
+    parameters:
+    - in: path
+      name: slug
+      required: true
+      type: string
+  /auctions_data/:
+    get:
+      description: List all online auctions in aggregated data form including winning bids and lots count
+      operationId: getAuctionsData
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - auctions_data
+    parameters: []
+  /auctions_info:
+    get:
+      description: List all online auctions including buyer's fee, seller's fee and listing fee.
+      operationId: getAuctionsInfo
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - auctions_info
+    parameters: []
+  /distilleries_info/:
+    get:
+      description: List all distilleries including their country and rating
+      operationId: getDistilleriesInfo
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - distilleries_info
+    parameters: []
+  /distillery_data/{slug}/:
+    get:
+      description: 'Get auction data for a specific distillery'
+      operationId: getDistilleryDataSlug
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - distillery_data
+    parameters:
+    - in: path
+      name: slug
+      required: true
+      type: string
+produces:
+- application/json
+schemes:
+- https
+security:
+- Basic: []
+securityDefinitions:
+  Basic:
+    type: basic
+swagger: '2.0'
