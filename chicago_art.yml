@@ -774,13 +774,13 @@ paths:
 components:
   parameters:
     includeParam:
-      description: "A comma-separated list of subresource to embed in the returned resources"
+      description: "A comma-separated list of subresources to embed"
       in: query
       name: include
       schema:
         type: string
     fieldsParam:
-      description: "A comma-separated list of fields to return per resource"
+      description: "A comma-separated list of fields to return"
       in: query
       name: fields
       schema:
@@ -792,7 +792,7 @@ components:
       schema:
         type: integer
     idsParam:
-      description: "A comma-separated list of ids to retrieve"
+      description: "A comma-separated list of ids"
       example: "1,2,3"
       in: query
       name: ids
@@ -823,19 +823,19 @@ components:
       schema:
         type: string
     sortParam:
-      description: "Used in conjunction with `query`"
+      description: "Used with `query`"
       in: query
       name: sort
       schema:
         type: string
     fromParam:
-      description: "Starting point of results. Pagination via Elasticsearch conventions."
+      description: "Starting point of results."
       in: query
       name: from
       schema:
         type: integer
     sizeParam:
-      description: "Number of results to return. Pagination via Elasticsearch conventions."
+      description: "Number of results to return."
       in: query
       name: size
       schema:
