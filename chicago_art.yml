@@ -37,7 +37,7 @@ paths:
       summary: >-
         Fetch a single record
       tags:
-        - agents
+        - artists
         - collections
 
   /artworks/{id}:
@@ -367,7 +367,7 @@ paths:
           description: error
       summary: "A list of all artists sorted by most recent updated date."
       tags:
-        - agents
+        - artists
         - collections
   
   /artworks:
@@ -456,6 +456,34 @@ paths:
       summary: "List all exhibitions sorted by most recent updated date."
       tags:
         - exhibitions
+        - collections
+
+  /galleries:
+    get:
+      operationId: listGalleries
+      parameters:
+        - $ref: '#/components/parameters/idsParam'
+        - $ref: '#/components/parameters/limitParam'
+        - $ref: '#/components/parameters/pageParam'
+        - $ref: '#/components/parameters/fieldsParam'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Highlight'
+                type: array
+          description: Successful operation
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: error
+      summary: "List of all galleries sorted by most recent updated date."
+      tags:
+        - galleries
         - collections
 
   /highlights:
@@ -565,7 +593,7 @@ paths:
       summary: >-
         Search artworks data.
       tags:
-        - artworks
+        - artists
         - collections
         - search
 
