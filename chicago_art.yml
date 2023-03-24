@@ -513,9 +513,9 @@ paths:
       tags:
         - publications
 
-  /artworks/search:
+  /artists/search:
     get:
-      operationId: searchArtworks
+      operationId: searchArtists
       parameters:
         - description: "Query"
           in: query
@@ -547,6 +547,38 @@ paths:
           name: facets
           schema:
             type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/SearchResult'
+                type: array
+          description: Successful operation
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: error
+      summary: >-
+        Search artworks data.
+      tags:
+        - artworks
+        - collections
+        - search
+
+  /artworks/search:
+    get:
+      operationId: searchArtworks
+      parameters:
+        - $ref: '#/components/parameters/qParam'
+        - $ref: '#/components/parameters/queryParam'
+        - $ref: '#/components/parameters/sortParam'
+        - $ref: '#/components/parameters/fromParam'
+        - $ref: '#/components/parameters/sizeParam'
+        - $ref: '#/components/parameters/facetsParam'
       responses:
         '200':
           content:
