@@ -14,35 +14,6 @@ info:
 servers:
   - url: https://api.artic.edu/api/v1
 paths:
-  /artists:
-    get:
-      operationId: listArtists
-      parameters:
-        - $ref: '#/components/parameters/idsParam'
-        - $ref: '#/components/parameters/limitParam'
-        - $ref: '#/components/parameters/pageParam'
-        - $ref: '#/components/parameters/fieldsParam'
-        - $ref: '#/components/parameters/includeParam'
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/Agent'
-                type: array
-          description: Successful operation
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: error
-      summary: "A list of all artists sorted by most recent updated date."
-      tags:
-        - agents
-        - collections
-
   /artists/{id}:
     get:
       operationId: getArtistById
@@ -68,67 +39,6 @@ paths:
       tags:
         - agents
         - collections
-  
-  /artworks:
-    get:
-      operationId: listArtworks
-      parameters:
-        - $ref: '#/components/parameters/idsParam'
-        - $ref: '#/components/parameters/limitParam'
-        - $ref: '#/components/parameters/pageParam'
-        - $ref: '#/components/parameters/fieldsParam'
-        - $ref: '#/components/parameters/includeParam'
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/Artwork'
-                type: array
-          description: Successful operation
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: error
-      summary: artworks sorted by most recent updated date.
-      tags:
-        - artworks
-        - collections
-
-  /artworks/search:
-    get:
-      operationId: searchArtworks
-      parameters:
-        - $ref: '#/components/parameters/qParam'
-        - $ref: '#/components/parameters/queryParam'
-        - $ref: '#/components/parameters/sortParam'
-        - $ref: '#/components/parameters/fromParam'
-        - $ref: '#/components/parameters/sizeParam'
-        - $ref: '#/components/parameters/facetsParam'
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/SearchResult'
-                type: array
-          description: Successful operation
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: error
-      summary: >-
-        Search artworks data.
-      tags:
-        - artworks
-        - collections
-        - search
 
   /artworks/{id}:
     get:
@@ -155,67 +65,6 @@ paths:
       tags:
         - artworks
         - collections
-  
-  /digital-catalogs:
-    get:
-      operationId: listDigitalCatalogs
-      parameters:
-        - $ref: '#/components/parameters/idsParam'
-        - $ref: '#/components/parameters/limitParam'
-        - $ref: '#/components/parameters/pageParam'
-        - $ref: '#/components/parameters/fieldsParam'
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/DigitalCatalog'
-                type: array
-          description: Successful operation
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: error
-      summary: >-
-        A list of all digital-catalogs sorted by last updated date in descending
-        order.
-      tags:
-        - digital-catalogs
-        - web
-
-  /digital-catalogs/search:
-    get:
-      operationId: searchDigitalCatalogs
-      parameters:
-        - $ref: '#/components/parameters/qParam'
-        - $ref: '#/components/parameters/queryParam'
-        - $ref: '#/components/parameters/sortParam'
-        - $ref: '#/components/parameters/fromParam'
-        - $ref: '#/components/parameters/sizeParam'
-        - $ref: '#/components/parameters/facetsParam'
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/SearchResult'
-                type: array
-          description: Successful operation
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: error
-      summary: 'Search digital-catalogs data. '
-      tags:
-        - digital-catalogs
-        - web
-        - search
 
   /digital-catalogs/{id}:
     get:
@@ -241,66 +90,6 @@ paths:
       tags:
         - digital-catalogs
         - web
-  
-  /exhibitions:
-    get:
-      operationId: listExhibitions
-      parameters:
-        - $ref: '#/components/parameters/idsParam'
-        - $ref: '#/components/parameters/limitParam'
-        - $ref: '#/components/parameters/pageParam'
-        - $ref: '#/components/parameters/fieldsParam'
-        - $ref: '#/components/parameters/includeParam'
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/Exhibition'
-                type: array
-          description: Successful operation
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: error
-      summary: "List all exhibitions sorted by most recent updated date."
-      tags:
-        - exhibitions
-        - collections
-
-  /exhibitions/search:
-    get:
-      operationId: searchExhibitions
-      parameters:
-        - $ref: '#/components/parameters/qParam'
-        - $ref: '#/components/parameters/queryParam'
-        - $ref: '#/components/parameters/sortParam'
-        - $ref: '#/components/parameters/fromParam'
-        - $ref: '#/components/parameters/sizeParam'
-        - $ref: '#/components/parameters/facetsParam'
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/SearchResult'
-                type: array
-          description: Successful operation
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: error
-      summary: 'Search exhibitions data. '
-      tags:
-        - exhibitions
-        - collections
-        - search
 
   /exhibitions/{id}:
     get:
@@ -327,37 +116,6 @@ paths:
       tags:
         - exhibitions
         - collections
-  
-  /galleries/search:
-    get:
-      operationId: searchGalleries
-      parameters:
-        - $ref: '#/components/parameters/qParam'
-        - $ref: '#/components/parameters/queryParam'
-        - $ref: '#/components/parameters/sortParam'
-        - $ref: '#/components/parameters/fromParam'
-        - $ref: '#/components/parameters/sizeParam'
-        - $ref: '#/components/parameters/facetsParam'
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/SearchResult'
-                type: array
-          description: Successful operation
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: error
-      summary: 'Search galleries data. '
-      tags:
-        - galleries
-        - collections
-        - search
 
   /galleries/{id}:
     get:
@@ -383,65 +141,6 @@ paths:
       tags:
         - galleries
         - collections
-  
-  /highlights:
-    get:
-      operationId: listHighlights
-      parameters:
-        - $ref: '#/components/parameters/idsParam'
-        - $ref: '#/components/parameters/limitParam'
-        - $ref: '#/components/parameters/pageParam'
-        - $ref: '#/components/parameters/fieldsParam'
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/Highlight'
-                type: array
-          description: Successful operation
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: error
-      summary: "List of all highlights sorted by most recent updated date."
-      tags:
-        - highlights
-        - web
-
-  /highlights/search:
-    get:
-      operationId: searchHighlights
-      parameters:
-        - $ref: '#/components/parameters/qParam'
-        - $ref: '#/components/parameters/queryParam'
-        - $ref: '#/components/parameters/sortParam'
-        - $ref: '#/components/parameters/fromParam'
-        - $ref: '#/components/parameters/sizeParam'
-        - $ref: '#/components/parameters/facetsParam'
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/SearchResult'
-                type: array
-          description: Successful operation
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: error
-      summary: 'Search highlights data. '
-      tags:
-        - highlights
-        - web
-        - search
 
   /highlights/{id}:
     get:
@@ -467,37 +166,6 @@ paths:
       tags:
         - highlights
         - web
-  
-  /images/search:
-    get:
-      operationId: searchImages
-      parameters:
-        - $ref: '#/components/parameters/qParam'
-        - $ref: '#/components/parameters/queryParam'
-        - $ref: '#/components/parameters/sortParam'
-        - $ref: '#/components/parameters/fromParam'
-        - $ref: '#/components/parameters/sizeParam'
-        - $ref: '#/components/parameters/facetsParam'
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/SearchResult'
-                type: array
-          description: Successful operation
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: error
-      summary: 'Search images data. '
-      tags:
-        - images
-        - collections
-        - search
 
   /images/{id}:
     get:
@@ -524,37 +192,6 @@ paths:
       tags:
         - images
         - collections
-  
-  /places/search:
-    get:
-      operationId: searchPlaces
-      parameters:
-        - $ref: '#/components/parameters/qParam'
-        - $ref: '#/components/parameters/queryParam'
-        - $ref: '#/components/parameters/sortParam'
-        - $ref: '#/components/parameters/fromParam'
-        - $ref: '#/components/parameters/sizeParam'
-        - $ref: '#/components/parameters/facetsParam'
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/SearchResult'
-                type: array
-          description: Successful operation
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: error
-      summary: "Search places data."
-      tags:
-        - places
-        - collections
-        - search
 
   /places/{id}:
     get:
@@ -582,33 +219,6 @@ paths:
         - places
         - collections 
   
-  /publications:
-    get:
-      operationId: listPublications
-      parameters:
-        - $ref: '#/components/parameters/idsParam'
-        - $ref: '#/components/parameters/limitParam'
-        - $ref: '#/components/parameters/pageParam'
-        - $ref: '#/components/parameters/fieldsParam'
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/Publication'
-                type: array
-          description: Successful operation
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: error
-      summary: "List all publications sorted by most recent updated date."
-      tags:
-        - publications
-
   /sounds/{id}:
     get:
       operationId: getSoundById
@@ -659,7 +269,492 @@ paths:
       tags:
         - texts
         - collections
+
+  /tours/{id}:
+    get:
+      operationId: getTourById
+      parameters:
+        - $ref: '#/components/parameters/idParam'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Tour'
+                type: array
+          description: Successful operation
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: error
+      summary: Fetch a single record
+      tags:
+        - tours
+        - mobile
+
+  /videos/{id}:
+    get:
+      operationId: getVideoById
+      parameters:
+        - $ref: '#/components/parameters/idParam'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Video'
+                type: array
+          description: Successful operation
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: error
+      summary: "Fetch a single video record"
+      tags:
+        - videos
+        - collections
+
+  /artists:
+    get:
+      operationId: listArtists
+      parameters:
+        - description: "A comma-separated list of ids"
+          example: "1,2,3"
+          in: query
+          name: ids
+          schema:
+            type: string
+        - description: "Page Size"
+          in: query
+          name: limit
+          schema:
+            type: integer
+        - description: "Page to retrieve (1-based)"
+          in: query
+          name: page
+          schema:
+            type: integer
+        - description: "A comma-separated list of fields to return"
+          in: query
+          name: fields
+          schema:
+            type: string
+        - description: "A comma-separated list of subresources to embed"
+          in: query
+          name: include
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Agent'
+                type: array
+          description: Successful operation
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: error
+      summary: "A list of all artists sorted by most recent updated date."
+      tags:
+        - agents
+        - collections
   
+  /artworks:
+    get:
+      operationId: listArtworks
+      parameters:
+        - $ref: '#/components/parameters/idsParam'
+        - $ref: '#/components/parameters/limitParam'
+        - $ref: '#/components/parameters/pageParam'
+        - $ref: '#/components/parameters/fieldsParam'
+        - $ref: '#/components/parameters/includeParam'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Artwork'
+                type: array
+          description: Successful operation
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: error
+      summary: artworks sorted by most recent updated date.
+      tags:
+        - artworks
+        - collections
+
+  /digital-catalogs:
+    get:
+      operationId: listDigitalCatalogs
+      parameters:
+        - $ref: '#/components/parameters/idsParam'
+        - $ref: '#/components/parameters/limitParam'
+        - $ref: '#/components/parameters/pageParam'
+        - $ref: '#/components/parameters/fieldsParam'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/DigitalCatalog'
+                type: array
+          description: Successful operation
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: error
+      summary: >-
+        A list of all digital-catalogs sorted by last updated date in descending
+        order.
+      tags:
+        - digital-catalogs
+        - web
+
+  /exhibitions:
+    get:
+      operationId: listExhibitions
+      parameters:
+        - $ref: '#/components/parameters/idsParam'
+        - $ref: '#/components/parameters/limitParam'
+        - $ref: '#/components/parameters/pageParam'
+        - $ref: '#/components/parameters/fieldsParam'
+        - $ref: '#/components/parameters/includeParam'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Exhibition'
+                type: array
+          description: Successful operation
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: error
+      summary: "List all exhibitions sorted by most recent updated date."
+      tags:
+        - exhibitions
+        - collections
+
+  /highlights:
+    get:
+      operationId: listHighlights
+      parameters:
+        - $ref: '#/components/parameters/idsParam'
+        - $ref: '#/components/parameters/limitParam'
+        - $ref: '#/components/parameters/pageParam'
+        - $ref: '#/components/parameters/fieldsParam'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Highlight'
+                type: array
+          description: Successful operation
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: error
+      summary: "List of all highlights sorted by most recent updated date."
+      tags:
+        - highlights
+        - web
+
+  /publications:
+    get:
+      operationId: listPublications
+      parameters:
+        - $ref: '#/components/parameters/idsParam'
+        - $ref: '#/components/parameters/limitParam'
+        - $ref: '#/components/parameters/pageParam'
+        - $ref: '#/components/parameters/fieldsParam'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Publication'
+                type: array
+          description: Successful operation
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: error
+      summary: "List all publications sorted by most recent updated date."
+      tags:
+        - publications
+
+  /artworks/search:
+    get:
+      operationId: searchArtworks
+      parameters:
+        - description: "Query"
+          in: query
+          name: q
+          schema:
+            type: string
+        - description: "Elasticsearch domain syntax queries"
+          in: query
+          name: query
+          schema:
+            type: string
+        - description: "Used with `query`"
+          in: query
+          name: sort
+          schema:
+            type: string
+        - description: "Starting point of results."
+          in: query
+          name: from
+          schema:
+            type: integer
+        - description: "Number of results to return."
+          in: query
+          name: size
+          schema:
+            type: integer
+        - description: "A comma-separated list of 'count' aggregation facets to include in the results."
+          in: query
+          name: facets
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/SearchResult'
+                type: array
+          description: Successful operation
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: error
+      summary: >-
+        Search artworks data.
+      tags:
+        - artworks
+        - collections
+        - search
+  
+  /digital-catalogs/search:
+    get:
+      operationId: searchDigitalCatalogs
+      parameters:
+        - $ref: '#/components/parameters/qParam'
+        - $ref: '#/components/parameters/queryParam'
+        - $ref: '#/components/parameters/sortParam'
+        - $ref: '#/components/parameters/fromParam'
+        - $ref: '#/components/parameters/sizeParam'
+        - $ref: '#/components/parameters/facetsParam'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/SearchResult'
+                type: array
+          description: Successful operation
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: error
+      summary: 'Search digital-catalogs data. '
+      tags:
+        - digital-catalogs
+        - web
+        - search
+
+  /exhibitions/search:
+    get:
+      operationId: searchExhibitions
+      parameters:
+        - $ref: '#/components/parameters/qParam'
+        - $ref: '#/components/parameters/queryParam'
+        - $ref: '#/components/parameters/sortParam'
+        - $ref: '#/components/parameters/fromParam'
+        - $ref: '#/components/parameters/sizeParam'
+        - $ref: '#/components/parameters/facetsParam'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/SearchResult'
+                type: array
+          description: Successful operation
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: error
+      summary: 'Search exhibitions data. '
+      tags:
+        - exhibitions
+        - collections
+        - search
+
+  /galleries/search:
+    get:
+      operationId: searchGalleries
+      parameters:
+        - $ref: '#/components/parameters/qParam'
+        - $ref: '#/components/parameters/queryParam'
+        - $ref: '#/components/parameters/sortParam'
+        - $ref: '#/components/parameters/fromParam'
+        - $ref: '#/components/parameters/sizeParam'
+        - $ref: '#/components/parameters/facetsParam'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/SearchResult'
+                type: array
+          description: Successful operation
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: error
+      summary: 'Search galleries data. '
+      tags:
+        - galleries
+        - collections
+        - search
+
+  /highlights/search:
+    get:
+      operationId: searchHighlights
+      parameters:
+        - $ref: '#/components/parameters/qParam'
+        - $ref: '#/components/parameters/queryParam'
+        - $ref: '#/components/parameters/sortParam'
+        - $ref: '#/components/parameters/fromParam'
+        - $ref: '#/components/parameters/sizeParam'
+        - $ref: '#/components/parameters/facetsParam'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/SearchResult'
+                type: array
+          description: Successful operation
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: error
+      summary: 'Search highlights data. '
+      tags:
+        - highlights
+        - web
+        - search
+  
+  /images/search:
+    get:
+      operationId: searchImages
+      parameters:
+        - $ref: '#/components/parameters/qParam'
+        - $ref: '#/components/parameters/queryParam'
+        - $ref: '#/components/parameters/sortParam'
+        - $ref: '#/components/parameters/fromParam'
+        - $ref: '#/components/parameters/sizeParam'
+        - $ref: '#/components/parameters/facetsParam'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/SearchResult'
+                type: array
+          description: Successful operation
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: error
+      summary: 'Search images data. '
+      tags:
+        - images
+        - collections
+        - search
+
+  /places/search:
+    get:
+      operationId: searchPlaces
+      parameters:
+        - $ref: '#/components/parameters/qParam'
+        - $ref: '#/components/parameters/queryParam'
+        - $ref: '#/components/parameters/sortParam'
+        - $ref: '#/components/parameters/fromParam'
+        - $ref: '#/components/parameters/sizeParam'
+        - $ref: '#/components/parameters/facetsParam'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/SearchResult'
+                type: array
+          description: Successful operation
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: error
+      summary: "Search places data."
+      tags:
+        - places
+        - collections
+        - search
+
   /tours/search:
     get:
       operationId: searchTours
@@ -690,31 +785,6 @@ paths:
         - tours
         - mobile
         - search
-
-  /tours/{id}:
-    get:
-      operationId: getTourById
-      parameters:
-        - $ref: '#/components/parameters/idParam'
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/Tour'
-                type: array
-          description: Successful operation
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: error
-      summary: Fetch a single record
-      tags:
-        - tours
-        - mobile
   
   /videos/search:
     get:
@@ -746,41 +816,15 @@ paths:
         - videos
         - collections
         - search
-
-  /videos/{id}:
-    get:
-      operationId: getVideoById
-      parameters:
-        - $ref: '#/components/parameters/idParam'
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/Video'
-                type: array
-          description: Successful operation
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: error
-      summary: "Fetch a single video record"
-      tags:
-        - videos
-        - collections
+  
 components:
   parameters:
     includeParam:
-      description: "A comma-separated list of subresources to embed"
       in: query
       name: include
       schema:
         type: string
     fieldsParam:
-      description: "A comma-separated list of fields to return"
       in: query
       name: fields
       schema:
@@ -792,56 +836,47 @@ components:
       schema:
         type: integer
     idsParam:
-      description: "A comma-separated list of ids"
       example: "1,2,3"
       in: query
       name: ids
       schema:
         type: string
     limitParam:
-      description: "Page Size"
       in: query
       name: limit
       schema:
         type: integer
     pageParam:
-      description: "Page to retrieve (1-based)"
       in: query
       name: page
       schema:
         type: integer
     qParam:
-      description: "Query"
       in: query
       name: q
       schema:
         type: string
     queryParam:
-      description: "Elasticsearch domain syntax queries"
       in: query
       name: query
       schema:
         type: string
     sortParam:
-      description: "Used with `query`"
       in: query
       name: sort
       schema:
         type: string
     fromParam:
-      description: "Starting point of results."
       in: query
       name: from
       schema:
         type: integer
     sizeParam:
-      description: "Number of results to return."
       in: query
       name: size
       schema:
         type: integer
     facetsParam:
-      description: "A comma-separated list of 'count' aggregation facets to include in the results."
       in: query
       name: facets
       schema:
