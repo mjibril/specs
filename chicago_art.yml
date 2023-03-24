@@ -1,6 +1,6 @@
 openapi: 3.0.0
 externalDocs:
-  description: 'See more documentation on our API here:'
+  description: 'API Docs'
   url: https://api.artic.edu
 info:
   contact:
@@ -10,14 +10,19 @@ info:
     name: ''
   termsOfService: https://www.artic.edu/terms/terms-and-conditions
   title: Art Institution of Chicago API
-  version: 1.6-c-oas3
+  version: 1.6.1
 servers:
   - url: https://api.artic.edu/api/v1
 paths:
   /artists:
     get:
-      operationId: getArtists
-      parameters: []
+      operationId: listArtists
+      parameters:
+        - $ref: '#/components/parameters/idsParam'
+        - $ref: '#/components/parameters/limitParam'
+        - $ref: '#/components/parameters/pageParam'
+        - $ref: '#/components/parameters/fieldsParam'
+        - $ref: '#/components/parameters/includeParam'
       responses:
         '200':
           content:
@@ -33,20 +38,16 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: error
-      summary: A list of all artists sorted by last updated date in descending order.
+      summary: "A list of all artists sorted by most recent updated date."
       tags:
         - agents
         - collections
+
   /artists/{id}:
     get:
-      operationId: getArtistsId
+      operationId: getArtistById
       parameters:
-        - example: 1
-          in: path
-          name: id
-          required: true
-          schema:
-            type: string
+        - $ref: '#/components/parameters/idParam'
       responses:
         '200':
           content:
@@ -70,43 +71,13 @@ paths:
   
   /artworks:
     get:
-      operationId: getArtworks
+      operationId: listArtworks
       parameters:
-        - description: A comma-separated list of resource ids to retrieve
-          example: 1,2,3
-          in: query
-          name: ids
-          schema:
-            type: string
-        - description: limit
-          example: 1
-          in: query
-          name: limit
-          schema:
-            type: integer
-        - description: A comma-separated list of fields to return per resource
-          in: query
-          name: fields
-          schema:
-            type: string
-        - description: The page of resources to retrieve
-          example: 1
-          in: query
-          name: page
-          schema:
-            type: integer
-        - description: >-
-            A comma-separated list of subresource to embed in the returned
-            resources
-          in: query
-          name: include
-          schema:
-            enum:
-              - artist_pivots
-              - dates
-              - place_pivots
-              - sites
-            type: string
+        - $ref: '#/components/parameters/idsParam'
+        - $ref: '#/components/parameters/limitParam'
+        - $ref: '#/components/parameters/pageParam'
+        - $ref: '#/components/parameters/fieldsParam'
+        - $ref: '#/components/parameters/includeParam'
       responses:
         '200':
           content:
@@ -122,47 +93,21 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: error
-      summary: artworks sorted by last updated date in descending order.
+      summary: artworks sorted by most recent updated date.
       tags:
         - artworks
         - collections
+
   /artworks/search:
     get:
-      operationId: getArtworksSearch
+      operationId: searchArtworks
       parameters:
-        - description: Your search query
-          example: art
-          in: query
-          name: q
-          schema:
-            type: string
-        - description: >-
-            complex queries
-          in: query
-          name: query
-          schema:
-            type: string
-        - description: Used in conjunction with `query`
-          in: query
-          name: sort
-          schema:
-            type: string
-        - description: from
-          in: query
-          name: from
-          schema:
-            type: string
-        - description:  size
-          example: 1
-          in: query
-          name: size
-          schema:
-            type: string
-        - description: facets
-          in: query
-          name: facets
-          schema:
-            type: string
+        - $ref: '#/components/parameters/qParam'
+        - $ref: '#/components/parameters/queryParam'
+        - $ref: '#/components/parameters/sortParam'
+        - $ref: '#/components/parameters/fromParam'
+        - $ref: '#/components/parameters/sizeParam'
+        - $ref: '#/components/parameters/facetsParam'
       responses:
         '200':
           content:
@@ -179,21 +124,17 @@ paths:
                 $ref: '#/components/schemas/Error'
           description: error
       summary: >-
-        Search artworks data in the aggregator.
+        Search artworks data.
       tags:
         - artworks
         - collections
         - search
+
   /artworks/{id}:
     get:
-      operationId: getArtworksId
+      operationId: getArtworkById
       parameters:
-        - example: 1
-          in: path
-          name: id
-          required: true
-          schema:
-            type: string
+        - $ref: '#/components/parameters/idParam'
       responses:
         '200':
           content:
@@ -217,8 +158,12 @@ paths:
   
   /digital-catalogs:
     get:
-      operationId: getDigitalCatalogs
-      parameters: []
+      operationId: listDigitalCatalogs
+      parameters:
+        - $ref: '#/components/parameters/idsParam'
+        - $ref: '#/components/parameters/limitParam'
+        - $ref: '#/components/parameters/pageParam'
+        - $ref: '#/components/parameters/fieldsParam'
       responses:
         '200':
           content:
@@ -240,43 +185,17 @@ paths:
       tags:
         - digital-catalogs
         - web
+
   /digital-catalogs/search:
     get:
-      operationId: getDigitalCatalogsSearch
+      operationId: searchDigitalCatalogs
       parameters:
-        - description: Your search query
-          example: art
-          in: query
-          name: q
-          schema:
-            type: string
-        - description: >-
-            complex queries
-          in: query
-          name: query
-          schema:
-            type: string
-        - description: Used in conjunction with `query`
-          in: query
-          name: sort
-          schema:
-            type: string
-        - description: from
-          in: query
-          name: from
-          schema:
-            type: string
-        - description:  size
-          example: 1
-          in: query
-          name: size
-          schema:
-            type: string
-        - description: facets
-          in: query
-          name: facets
-          schema:
-            type: string
+        - $ref: '#/components/parameters/qParam'
+        - $ref: '#/components/parameters/queryParam'
+        - $ref: '#/components/parameters/sortParam'
+        - $ref: '#/components/parameters/fromParam'
+        - $ref: '#/components/parameters/sizeParam'
+        - $ref: '#/components/parameters/facetsParam'
       responses:
         '200':
           content:
@@ -292,21 +211,17 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: error
-      summary: 'Search digital-catalogs data in the aggregator. '
+      summary: 'Search digital-catalogs data. '
       tags:
         - digital-catalogs
         - web
         - search
+
   /digital-catalogs/{id}:
     get:
-      operationId: getDigitalCatalogsId
+      operationId: getDigitalCatalogById
       parameters:
-        - example: 1
-          in: path
-          name: id
-          required: true
-          schema:
-            type: string
+        - $ref: '#/components/parameters/idParam'
       responses:
         '200':
           content:
@@ -329,8 +244,13 @@ paths:
   
   /exhibitions:
     get:
-      operationId: getExhibitions
-      parameters: []
+      operationId: listExhibitions
+      parameters:
+        - $ref: '#/components/parameters/idsParam'
+        - $ref: '#/components/parameters/limitParam'
+        - $ref: '#/components/parameters/pageParam'
+        - $ref: '#/components/parameters/fieldsParam'
+        - $ref: '#/components/parameters/includeParam'
       responses:
         '200':
           content:
@@ -346,49 +266,21 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: error
-      summary: >-
-        A list of all exhibitions sorted by last updated date in descending
-        order.
+      summary: "List all exhibitions sorted by most recent updated date."
       tags:
         - exhibitions
         - collections
+
   /exhibitions/search:
     get:
-      operationId: getExhibitionsSearch
+      operationId: searchExhibitions
       parameters:
-        - description: Your search query
-          example: art
-          in: query
-          name: q
-          schema:
-            type: string
-        - description: >-
-            complex queries
-          in: query
-          name: query
-          schema:
-            type: string
-        - description: Used in conjunction with `query`
-          in: query
-          name: sort
-          schema:
-            type: string
-        - description: from
-          in: query
-          name: from
-          schema:
-            type: string
-        - description:  size
-          example: 1
-          in: query
-          name: size
-          schema:
-            type: string
-        - description: facets
-          in: query
-          name: facets
-          schema:
-            type: string
+        - $ref: '#/components/parameters/qParam'
+        - $ref: '#/components/parameters/queryParam'
+        - $ref: '#/components/parameters/sortParam'
+        - $ref: '#/components/parameters/fromParam'
+        - $ref: '#/components/parameters/sizeParam'
+        - $ref: '#/components/parameters/facetsParam'
       responses:
         '200':
           content:
@@ -404,21 +296,17 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: error
-      summary: 'Search exhibitions data in the aggregator. '
+      summary: 'Search exhibitions data. '
       tags:
         - exhibitions
         - collections
         - search
+
   /exhibitions/{id}:
     get:
-      operationId: getExhibitionsId
+      operationId: getExhibitionById
       parameters:
-        - example: 1
-          in: path
-          name: id
-          required: true
-          schema:
-            type: string
+        - $ref: '#/components/parameters/idParam'
       responses:
         '200':
           content:
@@ -442,41 +330,14 @@ paths:
   
   /galleries/search:
     get:
-      operationId: getGalleriesSearch
+      operationId: searchGalleries
       parameters:
-        - description: Your search query
-          example: art
-          in: query
-          name: q
-          schema:
-            type: string
-        - description: >-
-            complex queries
-          in: query
-          name: query
-          schema:
-            type: string
-        - description: Used in conjunction with `query`
-          in: query
-          name: sort
-          schema:
-            type: string
-        - description: from
-          in: query
-          name: from
-          schema:
-            type: string
-        - description:  size
-          example: 1
-          in: query
-          name: size
-          schema:
-            type: string
-        - description: facets
-          in: query
-          name: facets
-          schema:
-            type: string
+        - $ref: '#/components/parameters/qParam'
+        - $ref: '#/components/parameters/queryParam'
+        - $ref: '#/components/parameters/sortParam'
+        - $ref: '#/components/parameters/fromParam'
+        - $ref: '#/components/parameters/sizeParam'
+        - $ref: '#/components/parameters/facetsParam'
       responses:
         '200':
           content:
@@ -492,21 +353,17 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: error
-      summary: 'Search galleries data in the aggregator. '
+      summary: 'Search galleries data. '
       tags:
         - galleries
         - collections
         - search
+
   /galleries/{id}:
     get:
-      operationId: getGalleriesId
+      operationId: getGalleryById
       parameters:
-        - example: 1
-          in: path
-          name: id
-          required: true
-          schema:
-            type: string
+        - $ref: '#/components/parameters/idParam'
       responses:
         '200':
           content:
@@ -522,16 +379,19 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: error
-      summary: >-
-        Fetch a single record
+      summary: "Fetch a single gallery record"
       tags:
         - galleries
         - collections
   
   /highlights:
     get:
-      operationId: getHighlights
-      parameters: []
+      operationId: listHighlights
+      parameters:
+        - $ref: '#/components/parameters/idsParam'
+        - $ref: '#/components/parameters/limitParam'
+        - $ref: '#/components/parameters/pageParam'
+        - $ref: '#/components/parameters/fieldsParam'
       responses:
         '200':
           content:
@@ -547,49 +407,21 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: error
-      summary: >-
-        A list of all highlights sorted by last updated date in descending
-        order.
+      summary: "List of all highlights sorted by most recent updated date."
       tags:
         - highlights
         - web
+
   /highlights/search:
     get:
-      operationId: getHighlightsSearch
+      operationId: searchHighlights
       parameters:
-        - description: Your search query
-          example: art
-          in: query
-          name: q
-          schema:
-            type: string
-        - description: >-
-            complex queries
-          in: query
-          name: query
-          schema:
-            type: string
-        - description: Used in conjunction with `query`
-          in: query
-          name: sort
-          schema:
-            type: string
-        - description: from
-          in: query
-          name: from
-          schema:
-            type: string
-        - description:  size
-          example: 1
-          in: query
-          name: size
-          schema:
-            type: string
-        - description: facets
-          in: query
-          name: facets
-          schema:
-            type: string
+        - $ref: '#/components/parameters/qParam'
+        - $ref: '#/components/parameters/queryParam'
+        - $ref: '#/components/parameters/sortParam'
+        - $ref: '#/components/parameters/fromParam'
+        - $ref: '#/components/parameters/sizeParam'
+        - $ref: '#/components/parameters/facetsParam'
       responses:
         '200':
           content:
@@ -605,21 +437,17 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: error
-      summary: 'Search highlights data in the aggregator. '
+      summary: 'Search highlights data. '
       tags:
         - highlights
         - web
         - search
+
   /highlights/{id}:
     get:
-      operationId: getHighlightsId
+      operationId: getHighlightById
       parameters:
-        - example: 1
-          in: path
-          name: id
-          required: true
-          schema:
-            type: string
+        - $ref: '#/components/parameters/idParam'
       responses:
         '200':
           content:
@@ -642,40 +470,14 @@ paths:
   
   /images/search:
     get:
-      operationId: getImagesSearch
+      operationId: searchImages
       parameters:
-        - description: Your search query
-          example: art
-          in: query
-          name: q
-          schema:
-            type: string
-        - description:  complex queries
-          in: query
-          name: query
-          schema:
-            type: string
-        - description: Used in conjunction with `query`
-          in: query
-          name: sort
-          schema:
-            type: string
-        - description: from
-          in: query
-          name: from
-          schema:
-            type: string
-        - description: size
-          example: 1
-          in: query
-          name: size
-          schema:
-            type: string
-        - description: facets
-          in: query
-          name: facets
-          schema:
-            type: string
+        - $ref: '#/components/parameters/qParam'
+        - $ref: '#/components/parameters/queryParam'
+        - $ref: '#/components/parameters/sortParam'
+        - $ref: '#/components/parameters/fromParam'
+        - $ref: '#/components/parameters/sizeParam'
+        - $ref: '#/components/parameters/facetsParam'
       responses:
         '200':
           content:
@@ -691,21 +493,17 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: error
-      summary: 'Search images data in the aggregator. '
+      summary: 'Search images data. '
       tags:
         - images
         - collections
         - search
+
   /images/{id}:
     get:
-      operationId: getImagesId
+      operationId: getImageById
       parameters:
-        - example: 1
-          in: path
-          name: id
-          required: true
-          schema:
-            type: string
+        - $ref: '#/components/parameters/idParam'
       responses:
         '200':
           content:
@@ -727,43 +525,16 @@ paths:
         - images
         - collections
   
-  
   /places/search:
     get:
-      operationId: getPlacesSearch
+      operationId: searchPlaces
       parameters:
-        - description: Your search query
-          example: art
-          in: query
-          name: q
-          schema:
-            type: string
-        - description: complex queries
-          in: query
-          name: query
-          schema:
-            type: string
-        - description: sort field
-          in: query
-          name: sort
-          schema:
-            type: string
-        - description: from
-          in: query
-          name: from
-          schema:
-            type: string
-        - description: size
-          example: 1
-          in: query
-          name: size
-          schema:
-            type: string
-        - description: facets
-          in: query
-          name: facets
-          schema:
-            type: string
+        - $ref: '#/components/parameters/qParam'
+        - $ref: '#/components/parameters/queryParam'
+        - $ref: '#/components/parameters/sortParam'
+        - $ref: '#/components/parameters/fromParam'
+        - $ref: '#/components/parameters/sizeParam'
+        - $ref: '#/components/parameters/facetsParam'
       responses:
         '200':
           content:
@@ -779,21 +550,17 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: error
-      summary: Search places data in the aggregator.
+      summary: "Search places data."
       tags:
         - places
         - collections
         - search
+
   /places/{id}:
     get:
-      operationId: getPlacesId
+      operationId: getPlaceById
       parameters:
-        - example: 1
-          in: path
-          name: id
-          required: true
-          schema:
-            type: string
+        - $ref: '#/components/parameters/idParam'
       responses:
         '200':
           content:
@@ -813,14 +580,16 @@ paths:
        Fetch a single record
       tags:
         - places
-        - collections
-  
-  
+        - collections 
   
   /publications:
     get:
-      operationId: getPublications
-      parameters: []
+      operationId: listPublications
+      parameters:
+        - $ref: '#/components/parameters/idsParam'
+        - $ref: '#/components/parameters/limitParam'
+        - $ref: '#/components/parameters/pageParam'
+        - $ref: '#/components/parameters/fieldsParam'
       responses:
         '200':
           content:
@@ -836,24 +605,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: error
-      summary: >-
-        A list of all publications sorted by last updated date in descending
-        order.
+      summary: "List all publications sorted by most recent updated date."
       tags:
         - publications
-        - dsc
-
 
   /sounds/{id}:
     get:
-      operationId: getSoundsId
+      operationId: getSoundById
       parameters:
-        - example: 1
-          in: path
-          name: id
-          required: true
-          schema:
-            type: string
+        - $ref: '#/components/parameters/idParam'
       responses:
         '200':
           content:
@@ -874,18 +634,11 @@ paths:
         - sounds
         - collections
   
-  
-  
   /texts/{id}:
     get:
-      operationId: getTextsId
+      operationId: getTextById
       parameters:
-        - example: 1
-          in: path
-          name: id
-          required: true
-          schema:
-            type: string
+        - $ref: '#/components/parameters/idParam'
       responses:
         '200':
           content:
@@ -909,41 +662,14 @@ paths:
   
   /tours/search:
     get:
-      operationId: getToursSearch
+      operationId: searchTours
       parameters:
-        - description: Your search query
-          example: art
-          in: query
-          name: q
-          schema:
-            type: string
-        - description: >-
-            complex queries
-          in: query
-          name: query
-          schema:
-            type: string
-        - description: Used in conjunction with `query`
-          in: query
-          name: sort
-          schema:
-            type: string
-        - description: from
-          in: query
-          name: from
-          schema:
-            type: string
-        - description:  size
-          example: 1
-          in: query
-          name: size
-          schema:
-            type: string
-        - description: facets
-          in: query
-          name: facets
-          schema:
-            type: string
+        - $ref: '#/components/parameters/qParam'
+        - $ref: '#/components/parameters/queryParam'
+        - $ref: '#/components/parameters/sortParam'
+        - $ref: '#/components/parameters/fromParam'
+        - $ref: '#/components/parameters/sizeParam'
+        - $ref: '#/components/parameters/facetsParam'
       responses:
         '200':
           content:
@@ -959,21 +685,17 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: error
-      summary: 'Search tours data in the aggregator. '
+      summary: 'Search tours data. '
       tags:
         - tours
         - mobile
         - search
+
   /tours/{id}:
     get:
-      operationId: getToursId
+      operationId: getTourById
       parameters:
-        - example: 1
-          in: path
-          name: id
-          required: true
-          schema:
-            type: string
+        - $ref: '#/components/parameters/idParam'
       responses:
         '200':
           content:
@@ -996,41 +718,14 @@ paths:
   
   /videos/search:
     get:
-      operationId: getVideosSearch
+      operationId: searchVideos
       parameters:
-        - description: Your search query
-          example: art
-          in: query
-          name: q
-          schema:
-            type: string
-        - description: >-
-            complex queries
-          in: query
-          name: query
-          schema:
-            type: string
-        - description: Used in conjunction with `query`
-          in: query
-          name: sort
-          schema:
-            type: string
-        - description: from
-          in: query
-          name: from
-          schema:
-            type: string
-        - description:  size
-          example: 1
-          in: query
-          name: size
-          schema:
-            type: string
-        - description: facets
-          in: query
-          name: facets
-          schema:
-            type: string
+        - $ref: '#/components/parameters/qParam'
+        - $ref: '#/components/parameters/queryParam'
+        - $ref: '#/components/parameters/sortParam'
+        - $ref: '#/components/parameters/fromParam'
+        - $ref: '#/components/parameters/sizeParam'
+        - $ref: '#/components/parameters/facetsParam'
       responses:
         '200':
           content:
@@ -1046,21 +741,17 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: error
-      summary: 'Search videos data in the aggregator. '
+      summary: 'Search videos data.'
       tags:
         - videos
         - collections
         - search
+
   /videos/{id}:
     get:
-      operationId: getVideosId
+      operationId: getVideoById
       parameters:
-        - example: 1
-          in: path
-          name: id
-          required: true
-          schema:
-            type: string
+        - $ref: '#/components/parameters/idParam'
       responses:
         '200':
           content:
@@ -1076,94 +767,83 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: error
-      summary: >-
-       Fetch a single record
+      summary: "Fetch a single video record"
       tags:
         - videos
         - collections
 components:
   parameters:
-    artworkInclude:
-      description: A comma-separated list of subresource to embed 
+    includeParam:
+      description: "A comma-separated list of subresource to embed in the returned resources"
       in: query
       name: include
       schema:
-        enum:
-          - artist_pivots
-          - dates
-          - place_pivots
-          - sites
         type: string
-    facets:
-      description: facets
-      in: query
-      name: facets
-      schema:
-        type: string
-    fields:
-      description: A comma-separated list of fields to return per resource
+    fieldsParam:
+      description: "A comma-separated list of fields to return per resource"
       in: query
       name: fields
       schema:
         type: string
-    from:
-      description: from
-      in: query
-      name: from
-      schema:
-        type: string
-    id:
-      example: 1
+    idParam:
       in: path
       name: id
       required: true
       schema:
-        type: string
-    ids:
-      description: A comma-separated list of resource ids to retrieve
-      example: 1,2,3
+        type: integer
+    idsParam:
+      description: "A comma-separated list of resource ids to retrieve"
+      example: "1,2,3"
       in: query
       name: ids
       schema:
         type: string
-    limit:
-      description: limit
-      example: 1
+    limitParam:
+      description: "The number of resources to return per page (0-based, default: 12)"
       in: query
       name: limit
       schema:
         type: integer
-    page:
-      description: page
-      example: 1
+    pageParam:
+      description: "The page of resources to retrieve (1-based, default: 1)"
       in: query
       name: page
       schema:
         type: integer
-    q:
-      description: Your search query
-      example: art
+    qParam:
+      description: "Query string"
       in: query
       name: q
       schema:
         type: string
-    query:
-      description: complex  queries
+    queryParam:
+      description: "Elasticsearch domain syntax queries"
       in: query
       name: query
       schema:
         type: string
-    size:
-      description: size
-      example: 1
+    sortParam:
+      description: "Used in conjunction with `query`"
+      in: query
+      name: sort
+      schema:
+        type: string
+    fromParam:
+      description: "Starting point of results. Pagination via Elasticsearch conventions."
+      in: query
+      name: from
+      schema:
+        type: integer
+    sizeParam:
+      description: "Number of results to return. Pagination via Elasticsearch conventions."
       in: query
       name: size
       schema:
-        type: string
-    sort:
-      description: Used in conjunction with `query`
+        type: integer
+    facetsParam:
+      description: "A comma-separated list of 'count' aggregation facets to include in the results."
       in: query
-      name: sort
+      name: facets
       schema:
         type: string
   schemas:
@@ -1182,7 +862,7 @@ components:
         description:
           description: A biographical description of the agent
         id:
-          description: Unique identifier of this resource. Taken from the source system.
+          description: ID of this resource. Taken from the source system.
         is_artist:
           description: >-
             Whether the agent is an artist. Solely based on whether the agent is
@@ -1204,39 +884,33 @@ components:
         title:
           description: The name of this resource
         ulan_id:
-          description: Unique identifier of this agent in Getty's ULAN
+          description: ID of this agent in Getty's ULAN
         updated_at:
-          description: Date and time the record was updated in the aggregator database
+          type: string
       type: object
    
     Artwork:
       properties:
         alt_artist_ids:
           description: >-
-            Unique identifiers of the non-preferred artists/cultures associated
-            with this work
+            IDs of the non-preferred artists/cultures associated with this work
         alt_classification_ids:
           description: >-
-            Unique identifiers of all other non-preferred classification terms
-            for this work
+            IDs of all other non-preferred classification terms for this work
         alt_image_ids:
-          description: Unique identifiers of all non-preferred images of this work.
+          description: IDs of all non-preferred images of this work.
         alt_material_ids:
           description: >-
-            Unique identifiers of all other non-preferred material terms for
-            this work
+            IDs of all other non-preferred material terms for this work
         alt_style_ids:
           description: >-
-            Unique identifiers of all other non-preferred style terms for this
-            work
+            IDs of all other non-preferred style terms for this work
         alt_subject_ids:
           description: >-
-            Unique identifiers of all other non-preferred subject terms for this
-            work
+            IDs of all other non-preferred subject terms for this work
         alt_technique_ids:
           description: >-
-            Unique identifiers of all other non-preferred technique terms for
-            this work
+            IDs of all other non-preferred technique terms for this work
         alt_titles:
           description: Alternate names for this work
         api_link:
@@ -1249,16 +923,15 @@ components:
             names, nationality and lifespan dates
         artist_id:
           description: >-
-            Unique identifier of the preferred artist/culture associated with
-            this work
+            Preferred artist ID
         artist_ids:
-          description: Unique identifier of all artist/cultures associated with this work
+          description: All artists IDs
         artist_title:
-          description: Name of the preferred artist/culture associated with this work
+          description: "Preferred artist name"
         artist_titles:
-          description: Names of all artist/cultures associated with this work
+          description: "All artists names"
         artwork_type_id:
-          description: Unique identifier of the kind of object or work
+          description: ID of the kind of object or work
         artwork_type_title:
           description: The kind of object or work (e.g. Painting, Sculpture, Book)
         boost_rank:
@@ -1267,21 +940,19 @@ components:
             results. Noncontiguous.
         catalogue_display:
           description: >-
-            Brief text listing all the catalogues raisonnés which include this
-            work. This isn't an exhaustive list of publications where the work
-            has been mentioned. For that, see `publication_history`.
+            Brief text listing all the catalogues raisonnés which include this work. For all, see `publication_history`.
         category_ids:
-          description: Unique identifiers of the categories this work is a part of
+          description: Categories IDs
         category_titles:
-          description: Names of the categories this artwork is a part of
+          description: Categories Names
         classification_id:
-          description: Unique identifier of the preferred classification term for this work
+          description: Preferred Classification ID
         classification_ids:
-          description: Unique identifiers of all classification terms for this work
+          description: All Classification IDs
         classification_title:
-          description: The name of the preferred classification term for this work
+          description: Preferred Classification Title
         classification_titles:
-          description: The names of all classification terms related to this artwork
+          description: All Classification Titles
         color:
           description: Dominant color of this artwork in HSL
         colorfulness:
@@ -1289,25 +960,19 @@ components:
             Unbounded positive float representing an abstract measure of
             colorfulness.
         copyright_notice:
-          description: >-
-            Statement notifying how the work is protected by copyright. Applies
-            to the work itself, not image or other related assets.
+          type: string
         credit_line:
           description: Brief statement indicating how the work came into the collection
         date_display:
           description: >-
-            Readable, free-text description of the period of time associated
-            with the creation of this work. This might include date terms like
-            Dynasty, Era etc. Written by curators and editors in house style,
-            and is the preferred field for display on websites and apps. 
+            Readable, free-text description of the period of time associated with the creation of this work. This might include date terms like Dynasty, Era etc. Written by curators and editors in house style, and is the preferred field for display on websites and apps. 
         date_end:
           description: >-
             The year of the period of time associated with the creation of this
             work
         date_qualifier_id:
           description: >-
-            Unique identifier of the qualifer to the dates provided for this
-            record.
+            ID of the qualifer to the dates provided for this record.
         date_qualifier_title:
           description: Readable, text qualifer to the dates provided for this record.
         date_start:
@@ -1315,9 +980,7 @@ components:
             The year of the period of time associated with the creation of this
             work
         department_id:
-          description: >-
-            Unique identifier of the curatorial department that this work
-            belongs to
+          type: number
         department_title:
           description: Name of the curatorial department that this work belongs to
         description:
@@ -1329,7 +992,7 @@ components:
             section of a work. Free-form text formatted in a house style.
         document_ids:
           description: >-
-            Unique identifiers of assets that serve as documentation for this
+            IDs of assets that serve as documentation for this
             artwork
         exhibition_history:
           description: List of all the places this work has been exhibited
@@ -1338,7 +1001,7 @@ components:
         fiscal_year_deaccession:
           description: The fiscal year in which the work was deaccessioned.
         gallery_id:
-          description: Unique identifier of the location of this work in our museum
+          type: number
         gallery_title:
           description: The location of this work in our museum
         has_advanced_imaging:
@@ -1354,45 +1017,36 @@ components:
         has_not_been_viewed_much:
           description: Whether the artwork hasn't been visited on our website very much
         id:
-          description: Unique identifier of this resource. Taken from the source system.
+          type: integer
         image_id:
-          description: >-
-            Unique identifier of the preferred image to use to represent this
-            work
+          description: "Preferred Image ID"
         inscriptions:
           description: >-
-            A description of distinguishing or identifying physical markings
-            that are on the work
+            A description of distinguishing or identifying physical markings that are on the work
         internal_department_id:
-          description: >-
-            An internal department id we use for analytics. Does not correspond
-            to departments on the website.
+          type: number
         is_boosted:
           description: Whether this document should be boosted in search
         is_on_view:
           description: Whether the work is on display
         is_public_domain:
-          description: >-
-            Whether the work is in the public domain, meaning it was created
-            before copyrights existed or has left the copyright term
+          description: Whether the work is in the public domain
         is_zoomable:
           description: >-
-            Whether images of the work are allowed to be displayed in a zoomable
-            interface.
+            Whether images of the work are allowed to be displayed in a zoomable interface.
         latitude:
-          description: Latitude coordinate of the location of this work in our galleries
+          type: string
         latlon:
           description: >-
-            Latitude and longitude coordinates of the location of this work in
-            our galleries
+            Latitude and longitude coordinates of the location of this work in our galleries
         longitude:
-          description: Longitude coordinate of the location of this work in our galleries
+          type: string
         main_reference_number:
-          description: Unique identifier assigned to the artwork upon acquisition
+          description: ID assigned to the artwork upon acquisition
         material_id:
-          description: Unique identifier of the preferred material term for this work
+          description: ID of the preferred material term for this work
         material_ids:
-          description: Unique identifiers of all material terms for this work
+          description: IDs of all material terms for this work
         material_titles:
           description: The names of all material terms related to this artwork
         max_zoom_window_size:
@@ -1404,52 +1058,42 @@ components:
         on_loan_display:
           description: If an artwork is on loan, this contains details about the loan
         pageviews:
-          description: >-
-            Approx. number of times this artwork was viewed on our website since
-            Jan 1st, 2010
+          description: "Since Jan 1st, 2010"
         pageviews_recent:
-          description: >-
-            Approx. number of times this artwork was viewed on our website over
-            the past three months
+          description: "In the past three months"
         place_of_origin:
           description: >-
-            The location where the creation, design, or production of the work
-            took place, or the original location of the work
+            Where the creation took place or the original location of the work
         provenance_text:
-          description: >-
-            Ownership/collecting history of the work. May include names of
-            owners, dates, and possibly methods of transfer of ownership.
-            Free-form text formatted in a house style.
+          description: "Ownership/collecting history of the work."
         publication_history:
           description: Bibliographic list of all the places this work has been published
         publishing_verification_level:
           description: >-
-            Indicator of how much metadata on the work in published. Web Basic
-            is the least amount, Web Everything is the greatest.
+            Indicator of how much metadata on the work is published. Web Basic is the least amount, Web Everything is the greatest.
         section_ids:
           description: >-
-            Unique identifiers of the digital publication chapters this work in
-            included in
+            IDs of the digital publication chapters this work in included in
         section_titles:
           description: Names of the digital publication chapters this work is included in
         site_ids:
-          description: Unique identifiers of the microsites this work is a part of
+          description: IDs of the microsites this work is a part of
         sound_ids:
-          description: Unique identifiers of the audio about this work
+          description: IDs of the audio about this work
         source_updated_at:
           description: Date and time the resource was updated in the source system
         style_id:
-          description: Unique identifier of the preferred style term for this work
+          description: ID of the preferred style term for this work
         style_ids:
-          description: Unique identifiers of all style terms for this work
+          description: IDs of all style terms for this work
         style_title:
           description: The name of the preferred style term for this work
         style_titles:
           description: The names of all style terms related to this artwork
         subject_id:
-          description: Unique identifier of the preferred subject term for this work
+          description: ID of the preferred subject term for this work
         subject_ids:
-          description: Unique identifiers of all subject terms for this work
+          description: IDs of all subject terms for this work
         subject_titles:
           description: The names of all subject terms related to this artwork
         suggest_autocomplete_all:
@@ -1458,34 +1102,34 @@ components:
             directly.
         suggest_autocomplete_boosted:
           description: >-
-            Internal field to power the `/autocomplete` endpoint. Do not use
-            directly.
+            Internal field to power the `/autocomplete` endpoint. Do not use directly.
         technique_id:
-          description: Unique identifier of the preferred technique term for this work
+          description: Preferred technique ID
         technique_ids:
-          description: Unique identifiers of all technique terms for this work
+          description: All technique IDs
         technique_titles:
-          description: The names of all technique terms related to this artwork
+          description: All technique titles.
         term_titles:
-          description: The names of the taxonomy tags for this work
+          description: Taxonomy tags for this work
         text_ids:
-          description: Unique identifiers of the texts about this work
+          description: IDs of the texts about this work
         theme_titles:
           description: The names of all thematic publish categories related to this artwork
         thumbnail:
           description: >-
-            Metadata about the image referenced by `image_id`. Currently, all
-            thumbnails are IIIF images. You must build your own image URLs using
-            IIIF Image API conventions. See our API documentation for more
-            details.
+            Metadata about the image referenced by `image_id`. Currently, all thumbnails are IIIF images. You must build your own image URLs using IIIF Image API conventions. See our API documentation for more details.
         timestamp:
-          description: Date and time the record was updated in the aggregator search index
+          description: Last update in the search index
+          type: string
+          format: date-time
         title:
-          description: The name of this resource
+          type: string
         updated_at:
-          description: Date and time the record was updated in the aggregator database
+          description: Last update in the database
+          type: string
+          format: date-time
         video_ids:
-          description: Unique identifiers of the videos about this work
+          description: IDs of the videos about this work
       type: object
    
     DigitalCatalog:
@@ -1497,7 +1141,7 @@ components:
         copy:
           description: The text of the page
         id:
-          description: Unique identifier of this resource. Taken from the source system.
+          description: ID of this resource. Taken from the source system.
         source_updated_at:
           description: Date and time the resource was updated in the source system
         suggest_autocomplete_all:
@@ -1539,32 +1183,32 @@ components:
         aic_start_at:
           description: Date the exhibition opened at the Art Institute of Chicago
         alt_image_ids:
-          description: Unique identifiers of all non-preferred images of this exhibition.
+          description: IDs of all non-preferred images of this exhibition.
         api_link:
           description: REST API link for this resource
         api_model:
           description: REST API resource type or endpoint
         artist_ids:
           description: >-
-            Unique identifiers of the artist agent records representing who was
+            IDs of the artist agent records representing who was
             shown in the exhibition
         artwork_ids:
-          description: Unique identifiers of the artworks that were part of the exhibition
+          description: IDs of the artworks that were part of the exhibition
         artwork_titles:
           description: Names of the artworks that were part of the exhibition
         document_ids:
           description: >-
-            Unique identifiers of assets that serve as documentation for this
+            IDs of assets that serve as documentation for this
             exhibition
         gallery_id:
-          description: Unique identifier of the gallery that mainly housed the exhibition
+          description: ID of the gallery that mainly housed the exhibition
         gallery_title:
           description: The name of the gallery that mainly housed the exhibition
         id:
-          description: Unique identifier of this resource. Taken from the source system.
+          description: ID of this resource. Taken from the source system.
         image_id:
           description: >-
-            Unique identifier of the preferred image to use to represent this
+            ID of the preferred image to use to represent this
             exhibition
         image_url:
           description: URL to the hero image from the website
@@ -1577,7 +1221,7 @@ components:
         short_description:
           description: Brief explanation of what this exhibition is
         site_ids:
-          description: Unique identifiers of the microsites this exhibition is a part of
+          description: IDs of the microsites this exhibition is a part of
         source_updated_at:
           description: Date and time the resource was updated in the source system
         status:
@@ -1608,7 +1252,7 @@ components:
         floor:
           description: The level the gallery is on, e.g., 1, 2, 3, or LL
         id:
-          description: Unique identifier of this resource. Taken from the source system.
+          description: ID of this resource. Taken from the source system.
         is_closed:
           description: Whether the gallery is currently closed
         latitude:
@@ -1650,7 +1294,7 @@ components:
         copy:
           description: The text of the highlight description
         id:
-          description: Unique identifier of this resource. Taken from the source system.
+          description: ID of this resource. Taken from the source system.
         source_updated_at:
           description: Date and time the resource was updated in the source system
         suggest_autocomplete_all:
@@ -1681,7 +1325,7 @@ components:
         api_model:
           description: REST API resource type or endpoint
         artwork_ids:
-          description: Unique identifiers of the artworks associated with this asset
+          description: IDs of the artworks associated with this asset
         artwork_titles:
           description: Names of the artworks associated with this asset
         color:
@@ -1694,7 +1338,7 @@ components:
           description: Text of or URL to the contents of this asset
         content_e_tag:
           description: >-
-            Arbitrary unique identifier that changes when the binary file gets
+            Arbitrary ID that changes when the binary file gets
             updated
         credit_line:
           description: Asset-specific copyright information
@@ -1703,15 +1347,15 @@ components:
         height:
           description: Native height of the image
         id:
-          description: Unique identifier of this resource. Taken from the source system.
+          type: integer
         iiif_url:
           description: IIIF URL of this image
         is_educational_resource:
-          description: Whether this resource is considered to be educational
+          type: boolean
         is_multimedia_resource:
-          description: Whether this resource is considered to be multimedia
+          type: boolean
         is_teacher_resource:
-          description: Whether this resource is considered to be educational
+          type: boolean
         lake_guid:
           description: Unique UUID of this resource in LAKE, our DAMS.
         lqip:
@@ -1750,7 +1394,7 @@ components:
         api_model:
           description: REST API resource type or endpoint
         id:
-          description: Unique identifier of this resource. Taken from the source system.
+          type: integer
         latitude:
           description: Latitude coordinate of the center of the room
         longitude:
@@ -1786,9 +1430,9 @@ components:
         api_model:
           description: REST API resource type or endpoint
         id:
-          description: Unique identifier of this resource. Taken from the source system.
+          type: integer
         section_ids:
-          description: Unique identifiers of the sections of this publication
+          description: IDs of the sections of this publication
         source_updated_at:
           description: Date and time the resource was updated in the source system
         suggest_autocomplete_all:
@@ -1813,13 +1457,13 @@ components:
         _score:
           description: Search index ranking of the result
         api_id:
-          description: API unique identifier
+          description: API ID
         api_link:
           description: URL to this recource in the API
         api_model:
           description: Name of the model the resource represents
         id:
-          description: Unique identifier within the search index
+          description: ID within the search index
         is_boosted:
           description: Whether this record has been flagged to be boosted
         thumbnail:
@@ -1837,7 +1481,7 @@ components:
         api_model:
           description: REST API resource type or endpoint
         id:
-          description: Unique identifier of this resource. Taken from the source system.
+          type: integer
         source_updated_at:
           description: Date and time the resource was updated in the source system
         suggest_autocomplete_all:
@@ -1873,25 +1517,25 @@ components:
         api_model:
           description: REST API resource type or endpoint
         artwork_ids:
-          description: Unique identifiers of the artworks associated with this asset
+          description: IDs of the artworks associated with this asset
         artwork_titles:
           description: Names of the artworks associated with this asset
         content:
           description: Text of or URL to the contents of this asset
         content_e_tag:
           description: >-
-            Arbitrary unique identifier that changes when the binary file gets
+            Arbitrary ID that changes when the binary file gets
             updated
         credit_line:
           description: Asset-specific copyright information
         id:
-          description: Unique identifier of this resource. Taken from the source system.
+          type: integer
         is_educational_resource:
-          description: Whether this resource is considered to be educational
+          type: boolean
         is_multimedia_resource:
-          description: Whether this resource is considered to be multimedia
+          type: boolean
         is_teacher_resource:
-          description: Whether this resource is considered to be educational
+          type: boolean
         lake_guid:
           description: Unique UUID of this resource in LAKE, our DAMS.
         source_updated_at:
@@ -1930,7 +1574,7 @@ components:
         description:
           description: Explanation of what the tour is
         id:
-          description: Unique identifier of this resource. Taken from the source system.
+          type: integer
         image:
           description: The main image for the tour
         intro:
@@ -1969,25 +1613,25 @@ components:
         api_model:
           description: REST API resource type or endpoint
         artwork_ids:
-          description: Unique identifiers of the artworks associated with this asset
+          description: IDs of the artworks associated with this asset
         artwork_titles:
           description: Names of the artworks associated with this asset
         content:
           description: Text of or URL to the contents of this asset
         content_e_tag:
           description: >-
-            Arbitrary unique identifier that changes when the binary file gets
+            Arbitrary ID that changes when the binary file gets
             updated
         credit_line:
           description: Asset-specific copyright information
         id:
-          description: Unique identifier of this resource. Taken from the source system.
+          type: integer
         is_educational_resource:
-          description: Whether this resource is considered to be educational
+          type: boolean
         is_multimedia_resource:
-          description: Whether this resource is considered to be multimedia
+          type: boolean
         is_teacher_resource:
-          description: Whether this resource is considered to be educational
+          type: boolean
         lake_guid:
           description: Unique UUID of this resource in LAKE, our DAMS.
         source_updated_at:
