@@ -61,7 +61,7 @@ paths:
             type: string
         - in : path
           name:  entity
-          description: 'the endtity to fetch e.g. MissionAssignments, DisasterDeclarationSummaries'
+          description: 'the entity to fetch e.g. MissionAssignments, DisasterDeclarationSummaries'
           required: true
           schema:
             type: string

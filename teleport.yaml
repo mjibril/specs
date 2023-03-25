@@ -2,6 +2,7 @@ openapi: 3.0.0
 info:
   title: Teleport
   version: 1.0.0-oas3
+  description: "Provides information on cities (by name, using auto-complete or by geographic coordinates) countries and their administrative divisions timezones urban areas (a.k.a. Teleport Cities).Also included income, living costs & quality of life data in 264+ most creative cities in the world"
 paths:
   /cities/:
     get:
@@ -19,14 +20,6 @@ paths:
           required: false
           schema:
             type: integer
-        - description: Relationship paths to embed
-          in: query
-          name: embed
-          explode: true
-          schema:
-            type: array
-            items:
-              type: string
       responses:
         '200':
           description: Successful response
@@ -48,14 +41,6 @@ paths:
           required: true
           schema:
             type: string
-        - description: Relationship paths to embed
-          in: query
-          name: embed
-          explode: true
-          schema:
-            type: array
-            items:
-              type: string
       responses:
         '200':
           description: Successful response
@@ -76,15 +61,7 @@ paths:
   /continents/:
     get:
       operationId: listContinents
-      parameters:
-        - description: Relationship paths to embed
-          in: query
-          name: embed
-          explode: true
-          schema:
-            type: array
-            items:
-              type: string
+      parameters: []
       responses:
         '200':
           description: Successful response
@@ -106,14 +83,6 @@ paths:
           required: true
           schema:
             type: string
-        - description: Relationship paths to embed in the response
-          in: query
-          name: embed
-          explode: true
-          schema:
-            type: array
-            items:
-              type: string
       responses:
         '200':
           description: Successful response
@@ -141,14 +110,6 @@ paths:
           required: true
           schema:
             type: string
-        - description: Relationship paths to embed
-          in: query
-          name: embed
-          explode: true
-          schema:
-            type: array
-            items:
-              type: string
       responses:
         '200':
           description: Successful response
@@ -177,14 +138,6 @@ paths:
           required: true
           schema:
             type: string
-        - description: Relationship paths to embed
-          in: query
-          name: embed
-          explode: true
-          schema:
-            type: array
-            items:
-              type: string
       responses:
         '200':
           description: Successful response
@@ -206,15 +159,7 @@ paths:
   /countries/:
     get:
       operationId: listCountries
-      parameters:
-        - description: Relationship paths to embed in the response
-          in: query
-          name: embed
-          explode: true
-          schema:
-            type: array
-            items:
-              type: string
+      parameters: []
       responses:
         '200':
           description: Successful response
@@ -238,14 +183,6 @@ paths:
           required: true
           schema:
             type: string
-        - description: Relationship paths to embed in the response
-          in: query
-          name: embed
-          explode: true
-          schema:
-            type: array
-            items:
-              type: string
       responses:
         '200':
           description: Successful response
@@ -273,14 +210,6 @@ paths:
           required: true
           schema:
             type: string
-        - description: Relationship paths to embed
-          in: query
-          name: embed
-          explode: true
-          schema:
-            type: array
-            items:
-              type: string
       responses:
         '200':
           description: Successful response
@@ -316,14 +245,6 @@ paths:
           required: true
           schema:
             type: string
-        - description: Relationship paths to embed in the response
-          in: query
-          name: embed
-          explode: true
-          schema:
-            type: array
-            items:
-              type: string
       responses:
         '200':
           description: Successful response
@@ -357,14 +278,7 @@ paths:
           required: true
           schema:
             type: string
-        - in: query
-          description: Relationship paths to embed
-          name: embed
-          explode: true
-          schema:
-            type: array
-            items:
-              type: string
+
       responses:
         '200':
           description: Successful response
@@ -392,14 +306,7 @@ paths:
           required: true
           schema:
             type: string
-        - in: query
-          description: Relationship paths to embed
-          name: embed
-          explode: true
-          schema:
-            type: array
-            items:
-              type: string
+
       responses:
         '200':
           description: Successful response
@@ -427,14 +334,6 @@ paths:
           required: true
           schema:
             type: string
-        - description: Relationship paths to embed
-          in: query
-          name: embed
-          explode: true
-          schema:
-            type: array
-            items:
-              type: string
       responses:
         '200':
           description: Successful response
@@ -459,14 +358,7 @@ paths:
           required: true
           schema:
             type: string
-        - description: Relationship paths to embed
-          in: query
-          name: embed
-          explode: true
-          schema:
-            type: array
-            items:
-              type: string
+
       responses:
         '200':
           description: Successful response
@@ -484,15 +376,7 @@ paths:
   /timezones/:
     get:
       operationId: listTimezones
-      parameters:
-        - description: Relationship paths to embed
-          in: query
-          name: embed
-          explode: true
-          schema:
-            type: array
-            items:
-              type: string
+      parameters: []
       responses:
         '200':
           description: Successful response
@@ -516,14 +400,6 @@ paths:
           required: true
           schema:
             type: string
-        - description: Relationship paths to embed
-          in: query
-          name: embed
-          explode: true
-          schema:
-            type: array
-            items:
-              type: string
       responses:
         '200':
           description: Successful response
@@ -557,14 +433,6 @@ paths:
           required: true
           schema:
             type: string
-        - description: Relationship paths to embed
-          in: query
-          name: embed
-          explode: true
-          schema:
-            type: array
-            items:
-              type: string
       responses:
         '200':
           description: Successful response
@@ -585,15 +453,7 @@ paths:
   /urban_areas/:
     get:
       operationId: listUrbanAreas
-      parameters:
-        - description: Relationship paths to embed
-          in: query
-          name: embed
-          explode: true
-          schema:
-            type: array
-            items:
-              type: string
+      parameters: []
       responses:
         '200':
           description: Successful response
@@ -617,14 +477,6 @@ paths:
           required: true
           schema:
             type: string
-        - description: Relationship paths to embed
-          in: query
-          name: embed
-          explode: true
-          schema:
-            type: array
-            items:
-              type: string
       responses:
         '200':
           description: Successful response
@@ -652,14 +504,6 @@ paths:
           required: true
           schema:
             type: string
-        - description: Relationship paths to embed
-          in: query
-          name: embed
-          explode: true
-          schema:
-            type: array
-            items:
-              type: string
       responses:
         '200':
           description: Successful response
@@ -687,14 +531,6 @@ paths:
           required: true
           schema:
             type: string
-        - description: Relationship paths to embed
-          in: query
-          name: embed
-          explode: true
-          schema:
-            type: array
-            items:
-              type: string
       responses:
         '200':
           description: Successful response
@@ -722,14 +558,6 @@ paths:
           required: true
           schema:
             type: string
-        - description: Relationship paths to embed in the response
-          in: query
-          name: embed
-          explode: true
-          schema:
-            type: array
-            items:
-              type: string
       responses:
         '200':
           description: Successful response
@@ -757,14 +585,6 @@ paths:
           required: true
           schema:
             type: string
-        - description: Relationship paths to embed
-          in: query
-          name: embed
-          explode: true
-          schema:
-            type: array
-            items:
-              type: string
       responses:
         '200':
           description: Successful response
@@ -792,14 +612,6 @@ paths:
           required: true
           schema:
             type: string
-        - description: Relationship paths to embed in the response
-          in: query
-          name: embed
-          explode: true
-          schema:
-            type: array
-            items:
-              type: string
       responses:
         '200':
           description: Successful response
