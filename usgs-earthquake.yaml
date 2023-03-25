@@ -5,11 +5,11 @@ servers:
 info:
   version: 1.0.0
   title: usgs-earthquake
-  description: The API for the USGS Earthquake Program
+  description: Find recent or historic earthquakes, lists, information on selected significant earthquakes, earthquake resources by states and around the world.
 paths:
   /application.json:
     get:
-      summary: Get Application Information
+      summary: Get Application Information including catalogs, contributors, event types, product types and magnitude types
       operationId: application
       description: Request parameter values for the interface.
       responses:
@@ -19,28 +19,6 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/ApplicationResponse'
-  /catalogs:
-    get:
-      operationId: catalogs
-      description: available catalogs
-      responses:
-        '200':
-          description: catalog information
-          content:
-            application/xml:
-              schema:
-                type: string
-  /contributors:
-    get:
-      operationId: contributors
-      description: available contributors
-      responses:
-        '200':
-          description: contributors information
-          content:
-            application/json:
-              schema:
-                type: string
   /count:
     get:
       summary: Get Count
@@ -201,12 +179,12 @@ paths:
           name: eventtype
           schema:
             type: string
-        - description: Limit to product
+        - description: Limit to product type
           in: query
           name: producttype
           schema:
             type: string
-        - description: limit to productcode.
+        - description: limit to product code.
           in: query
           name: productcode
           schema:
@@ -389,7 +367,7 @@ paths:
           name: eventtype
           schema:
             type: string
-        - description: Limit to product
+        - description: Limit to product type
           in: query
           name: producttype
           schema:
