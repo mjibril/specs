@@ -2,14 +2,14 @@ openapi: 3.0.0
 info:
   version: '1.1'
   title: Open Street Map (OSM)
-  description: "Nominatim  is a tool to search OSM data by name and address and to generate synthetic addresses of OSM points (reverse geocoding)."
+  description: "Nominatim  is a tool to search Open Street Maps (OSM) data by name and address and to generate synthetic addresses of OSM points (reverse geocoding)."
 servers: 
   - url: https://nominatim.openstreetmap.org
     description: Main service
 paths:
   /lookup:
     get:
-      description: '[Full description:](https://nominatim.org/release-docs/develop/api/Lookup/) is available'
+      description: 'Allows to query the address and other details of one or multiple OSM objects like node, way or relation.'
       summary: OSM - Address lookup
       operationId: lookupGet
       parameters:
@@ -67,7 +67,7 @@ paths:
       
   /reverse:
     get:
-      description: '[Full description :](https://nominatim.org/release-docs/develop/api/Reverse/)'
+      description: 'Gets address given a set of coordinates. Does not exactly compute the address for the coordinate it receives. It works by finding the closest suitable OSM object and returning its address information.'
       summary: OSM - Reverse
       operationId: ReverseGet
       parameters:
@@ -137,7 +137,7 @@ paths:
                 $ref: '#/components/schemas/ReverseResponse'
   /search:
     get:
-      description: '[Full documentation](https://nominatim.org/release-docs/develop/api/Search/) '
+      description: 'Allows look up of a location from a textual description or address. Nominatim supports structured and free-form search queries.'
       summary: OSM - Search
       operationId: searchGet
       parameters:
@@ -194,7 +194,7 @@ paths:
             enum:
               - '0'
               - '1'
-          description: 'Include a breakdown of the address into elements)'
+          description: 'Include a breakdown of the address into elements'
         - name: extratags
           in: query
           schema:
