@@ -26,7 +26,7 @@ paths:
       - Art
   /v1/art/{artID}:
     get:
-      description: Get art data .
+      description: Get art data 
       operationId: getV1ArtArtid
       parameters:
       - explode: false

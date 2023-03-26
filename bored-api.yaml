@@ -11,7 +11,7 @@ servers:
 paths:
   /api/activity:
     get:
-      summary: Get a random activity
+      description: Get a random activity
       operationId: activity
       parameters:
         - in: query

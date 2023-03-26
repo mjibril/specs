@@ -47,7 +47,7 @@ paths:
     get:
       tags: 
       - Constructors
-      description: ""
+      description: "Get Car Constructors"
       operationId: getConstructorsByYear
       parameters:
       - name: year

@@ -28,7 +28,7 @@ paths:
             application/vnd.teleport.v1+json:
               schema:
                 $ref: '#/components/schemas/CitySearchResults'
-      summary: Find cities by name
+      description: Find cities by name
       tags:
         - cities
   /cities/{city_id}/:
@@ -55,7 +55,7 @@ paths:
         '404':
           description: City ID not found
           x-teleport-mime-type: application/vnd.teleport.v1+json
-      summary: Get city information
+      description: Get city information
       tags:
         - cities
   /continents/:
@@ -70,7 +70,7 @@ paths:
             application/vnd.teleport.v1+json:
               schema:
                 $ref: '#/components/schemas/ContinentList'
-      summary: List all continents
+      description: List all continents
       tags:
         - continents
   /continents/{continent_id}/:
@@ -97,7 +97,7 @@ paths:
         '404':
           description: Continent ID not found
           x-teleport-mime-type: application/vnd.teleport.v1+json
-      summary: Get continent information
+      description: Get continent information
       tags:
         - continents
   /continents/{continent_id}/countries/:
@@ -124,7 +124,7 @@ paths:
         '404':
           description: Continent ID not found
           x-teleport-mime-type: application/vnd.teleport.v1+json
-      summary: Get continent country list
+      description: Get continent country list
       tags:
         - continents
         - countries
@@ -152,7 +152,7 @@ paths:
         '404':
           description: Continent ID not found
           x-teleport-mime-type: application/vnd.teleport.v1+json
-      summary: Get continent urban area list
+      description: Get continent urban area list
       tags:
         - continents
         - urban_areas
@@ -168,7 +168,7 @@ paths:
             application/vnd.teleport.v1+json:
               schema:
                 $ref: '#/components/schemas/CountryList'
-      summary: List all countries
+      description: List all countries
       tags:
         - countries
   /countries/{country_id}/:
@@ -197,7 +197,7 @@ paths:
         '404':
           description: Country ID not found
           x-teleport-mime-type: application/vnd.teleport.v1+json
-      summary: Get country information
+      description: Get country information
       tags:
         - countries
   /countries/{country_id}/admin1_divisions/:
@@ -224,7 +224,7 @@ paths:
         '404':
           description: Country ID not found
           x-teleport-mime-type: application/vnd.teleport.v1+json
-      summary: List all first-level administrative divisions for a country
+      description: List all first-level administrative divisions for a country
       tags:
         - countries
   /countries/{country_id}/admin1_divisions/{admin1_id}/:
@@ -259,7 +259,7 @@ paths:
         '404':
           description: Country or administrative division ID not found
           x-teleport-mime-type: application/vnd.teleport.v1+json
-      summary: Get  first-level administrative division information
+      description: Get  first-level administrative division information
       tags:
         - countries
   /countries/{country_id}/admin1_divisions/{admin1_id}/cities/:
@@ -293,7 +293,7 @@ paths:
         '404':
           description: Country or administrative division ID not found
           x-teleport-mime-type: application/vnd.teleport.v1+json
-      summary: List cities for a first-level administrative division
+      description: List cities for a first-level administrative division
       tags:
         - countries
   /countries/{country_id}/salaries/:
@@ -321,7 +321,7 @@ paths:
         '404':
           description: Country ID not found
           x-teleport-mime-type: application/vnd.teleport.v1+json
-      summary: Get 25th, 50th, 75th percentile for country salaries
+      description: Get 25th, 50th, 75th percentile for country salaries
       tags:
         - countries
   /ipaddresses/{address}/:
@@ -345,7 +345,7 @@ paths:
         '400':
           description: Invalid IP address supplied
           x-teleport-mime-type: application/vnd.teleport.v1+json
-      summary: Looks up location based on IP address
+      description: Looks up location based on IP address
       tags:
         - ipaddress
   /locations/{coordinates}/:
@@ -370,7 +370,7 @@ paths:
         '400':
           description: Invalid coordinates supplied
           x-teleport-mime-type: application/vnd.teleport.v1+json
-      summary: Gets geographical features at a location.
+      description: Gets geographical features at a location.
       tags:
         - locations
   /timezones/:
@@ -385,7 +385,7 @@ paths:
             application/vnd.teleport.v1+json:
               schema:
                 $ref: '#/components/schemas/TimezoneList'
-      summary: List all timezones
+      description: List all timezones
       tags:
         - timezones
   /timezones/{tz_id}/:
@@ -413,7 +413,7 @@ paths:
         '404':
           description: Timezone ID not found
           x-teleport-mime-type: application/vnd.teleport.v1+json
-      summary: Get timezone information
+      description: Get timezone information
       tags:
         - timezones
   /timezones/{tz_id}/offsets/:
@@ -447,7 +447,7 @@ paths:
         '404':
           description: Timezone ID not found
           x-teleport-mime-type: application/vnd.teleport.v1+json
-      summary: Get timezone information
+      description: Get timezone information
       tags:
         - timezones
   /urban_areas/:
@@ -462,7 +462,7 @@ paths:
             application/vnd.teleport.v1+json:
               schema:
                 $ref: '#/components/schemas/UrbanAreaList'
-      summary: List all Teleport Urban Areas
+      description: List all Teleport Urban Areas
       tags:
         - urban_areas
   /urban_areas/{ua_id}/:
@@ -491,7 +491,7 @@ paths:
         '404':
           description: Urban Area ID not found
           x-teleport-mime-type: application/vnd.teleport.v1+json
-      summary: Get urban area information
+      description: Get urban area information
       tags:
         - urban_areas
   /urban_areas/{ua_id}/cities/:
@@ -518,7 +518,7 @@ paths:
         '404':
           description: Urban Area ID not found
           x-teleport-mime-type: application/vnd.teleport.v1+json
-      summary: Get urban area cities list
+      description: Get urban area cities list
       tags:
         - urban_areas
   /urban_areas/{ua_id}/details/:
@@ -545,7 +545,7 @@ paths:
         '404':
           description: Urban Area ID not found
           x-teleport-mime-type: application/vnd.teleport.v1+json
-      summary: Get urban area detailed data
+      description: Get urban area detailed data
       tags:
         - urban_areas
   /urban_areas/{ua_id}/images/:
@@ -572,7 +572,7 @@ paths:
         '404':
           description: Urban Area ID not found
           x-teleport-mime-type: application/vnd.teleport.v1+json
-      summary: Get urban area images
+      description: Get urban area images
       tags:
         - urban_areas
   /urban_areas/{ua_id}/salaries/:
@@ -599,7 +599,7 @@ paths:
         '404':
           description: Urban Area ID not found
           x-teleport-mime-type: application/vnd.teleport.v1+json
-      summary: Get 25th, 50th, 75th percentile for urban area salaries
+      description: Get 25th, 50th, 75th percentile for urban area salaries
       tags:
         - urban_areas
   /urban_areas/{ua_id}/scores/:
@@ -626,7 +626,7 @@ paths:
         '404':
           description: Urban Area ID not found
           x-teleport-mime-type: application/vnd.teleport.v1+json
-      summary: Get urban area scores
+      description: Get urban area scores
       tags:
         - urban_areas
 tags:

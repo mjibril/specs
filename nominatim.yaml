@@ -10,7 +10,7 @@ paths:
   /lookup:
     get:
       description: 'Allows to query the address and other details of one or multiple OSM objects like node, way or relation.'
-      summary: OSM - Address lookup
+      description: OSM - Address lookup
       operationId: lookupGet
       parameters:
         - name: osm_ids
@@ -68,7 +68,7 @@ paths:
   /reverse:
     get:
       description: 'Gets address given a set of coordinates. Does not exactly compute the address for the coordinate it receives. It works by finding the closest suitable OSM object and returning its address information.'
-      summary: OSM - Reverse
+      description: OSM - Reverse
       operationId: ReverseGet
       parameters:
         - name: format
@@ -138,7 +138,7 @@ paths:
   /search:
     get:
       description: 'Allows look up of a location from a textual description or address. Nominatim supports structured and free-form search queries.'
-      summary: OSM - Search
+      description: OSM - Search
       operationId: searchGet
       parameters:
         - name: format

@@ -9,7 +9,7 @@ servers:
 paths:
   /v1/MissionAssignments/{_id}:
     get:
-      summary: 'Get a single mission assignment summary by Id'
+      description: 'Get a single mission assignment summary by Id'
       operationId: missionAssignmentById
       parameters: 
         - in : path
@@ -46,7 +46,7 @@ paths:
                       $ref: "#/components/schemas/MissionAssignment"
   /v1/MissionAssignments:
     get:
-      summary: 'Mission Assignment, as defined in the 44 Code of Federal Regulations, is a work order issued by FEMA to another Federal agency directing completion of a specified task and citing funding, other managerial controls, and guidance'
+      description: 'Mission Assignment, as defined in the 44 Code of Federal Regulations, is a work order issued by FEMA to another Federal agency directing completion of a specified task and citing funding, other managerial controls, and guidance'
       operationId: missionAssignments
       parameters:
         - in : query
@@ -134,7 +134,7 @@ paths:
                       $ref: "#/components/schemas/MissionAssignment"
   /v2/DisasterDeclarationsSummaries/{_id}:
     get:
-      summary: 'Get a single disaster declaration summary by Id'
+      description: 'Get a single disaster declaration summary by Id'
       operationId: declarationSummaryById
       parameters: 
         - in : path
@@ -171,7 +171,7 @@ paths:
                       $ref: "#/components/schemas/DeclarationSummary"
   /v2/DisasterDeclarationsSummaries:
     get:
-      summary: 'FEMA Disaster Declarations Summary is a summarized dataset describing all
+      description: 'FEMA Disaster Declarations Summary is a summarized dataset describing all
        federally declared disasters. This dataset lists all official FEMA Disaster Declarations,
         beginning with the first disaster declaration in 1953 and features all three disaster 
         declaration types: major disaster, emergency, and fire management assistance.'
