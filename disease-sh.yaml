@@ -1,3 +1,558 @@
+openapi: 3.0.0
+externalDocs:
+  description: Find out more about this API
+  url: https://github.com/disease-sh/API
+info:
+  description: |
+  
+    An API for reliable global disease information focused on Covid-19 related statistics. Here are some field definitions,
+    1. yesterday - get information from a day ago, from today
+    2. twoDaysAgo - get information from two days ago, from today
+    3. lastdays - number of days from today to get information
+    4. sort - the name of the field to sort the returned data by
+    5. fullData - return data in the simple form or containing the full data
+  license:
+    name: GNU V3
+    url: https://github.com/disease-sh/API/blob/master/LICENSE
+  title: disease.sh Docs - An open API for disease-related statistics
+  version: 3.0.0-oas3
+
+paths:
+  /v3/covid-19/all:
+    get:
+      operationId: getAll
+      description: Get information about Covid-19
+      parameters:
+      - in: query
+        name: yesterday
+        schema:
+          enum:
+          - 'true'
+          - 'false'
+          - '1'
+          - '0'
+          type: string
+        example : '1'
+      - in: query
+        name: twoDaysAgo
+        schema:
+          enum:
+          - 'true'
+          - 'false'
+          - '1'
+          - '0'
+          type: string
+        example : '0'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/covidAll'
+          description: Status OK
+      summary: Get global COVID-19 totals
+      tags:
+      - 'COVID-19: Worldometers'
+  /v3/covid-19/continents:
+    get:
+      operationId: getContinents
+      description: Get Covid-19 data on continents
+      parameters:
+      - in: query
+        name: yesterday
+        schema:
+          enum:
+          - 'true'
+          - 'false'
+          - '1'
+          - '0'
+          type: string
+        example : '1'
+      - in: query
+        name: twoDaysAgo
+        schema:
+          enum:
+          - 'true'
+          - 'false'
+          - '1'
+          - '0'
+          type: string
+        example : '0'
+      - in: query
+        name: sort
+        schema:
+          enum:
+          - cases
+          - todayCases
+          - deaths
+          - todayDeaths
+          - recovered
+          - active
+          - critical
+          - casesPerOneMillion
+          - deathsPerOneMillion
+          type: string
+        example: cases
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/covidContinents'
+          description: Status OK
+      summary: Get COVID-19 totals for all continents
+      tags:
+      - 'COVID-19: Worldometers'
+  /v3/covid-19/continents/{continent}:
+    get:
+      operationId: getContinentsContinent
+      description: Get Covid-19 data on a specific continent
+      parameters:
+      - in: path
+        name: continent
+        required: true
+        schema:
+          type: string
+        example: europe
+      - in: query
+        name: yesterday
+        schema:
+          enum:
+          - 'true'
+          - 'false'
+          - '1'
+          - '0'
+          type: string
+        example: '0'
+      - in: query
+        name: twoDaysAgo
+        schema:
+          enum:
+          - 'true'
+          - 'false'
+          - '1'
+          - '0'
+          type: string
+        example: '1'
+      - description: fuzzy search
+        in: query
+        name: strict
+        schema:
+          default: 'true'
+          enum:
+          - 'true'
+          - 'false'
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/covidContinent'
+          description: Status OK
+      summary: Get COVID-19 totals for a specific continent
+      tags:
+      - 'COVID-19: Worldometers'
+  /v3/covid-19/countries:
+    get:
+      operationId: getCountries
+      description: Get Covid-19 data for countries
+      parameters:
+      - in: query
+        name: yesterday
+        schema:
+          enum:
+          - 'true'
+          - 'false'
+          - '1'
+          - '0'
+          type: string
+        example : '1'
+      - in: query
+        name: twoDaysAgo
+        schema:
+          enum:
+          - 'true'
+          - 'false'
+          - '1'
+          - '0'
+          type: string
+        example : '0'
+      - in: query
+        name: sort
+        schema:
+          enum:
+          - cases
+          - todayCases
+          - deaths
+          - todayDeaths
+          - recovered
+          - active
+          - critical
+          - casesPerOneMillion
+          - deathsPerOneMillion
+          type: string
+
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/covidCountries'
+          description: Status OK
+      summary: Get COVID-19 totals for all countries
+      tags:
+      - 'COVID-19: Worldometers'
+  /v3/covid-19/countries/{countries}:
+    get:
+      operationId: getCountriesCountries
+      description: Get Covid-19 data for multiple countries      
+      parameters:
+      - description: Multiple countries separated by comma
+        in: path
+        name: countries
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: yesterday
+        schema:
+          enum:
+          - 'true'
+          - 'false'
+          - '1'
+          - '0'
+          type: string
+      - in: query
+        name: twoDaysAgo
+        schema:
+          enum:
+          - 'true'
+          - 'false'
+          - '1'
+          - '0'
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/covidCountries'
+          description: Status OK
+      summary: Get COVID-19 totals for a specific set of countries
+      tags:
+      - 'COVID-19: Worldometers'
+  /v3/covid-19/countries/{country}:
+    get:
+      operationId: getCountriesCountry
+      description: Get Covid-19 data for a specific country
+      parameters:
+      - description: country code
+        in: path
+        name: country
+        required: true
+        schema:
+          type: string
+        example : us
+      - in: query
+        name: yesterday
+        schema:
+          enum:
+          - 'true'
+          - 'false'
+          - '1'
+          - '0'
+          type: string
+      - in: query
+        name: twoDaysAgo
+        schema:
+          enum:
+          - 'true'
+          - 'false'
+          - '1'
+          - '0'
+          type: string
+      - description: fuzzy search or be strict when searching country name
+        in: query
+        name: strict
+        schema:
+          default: 'true'
+          enum:
+          - 'true'
+          - 'false'
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/covidCountry'
+          description: Status OK
+      summary: Get COVID-19 totals for a specific country
+      tags:
+      - 'COVID-19: Worldometers'
+  /v3/covid-19/states:
+    get:
+      operationId: getStates
+      description: Get Covid-19 data for all US states
+      parameters:
+      - in: query
+        name: sort
+        schema:
+          enum:
+          - cases
+          - todayCases
+          - deaths
+          - todayDeaths
+          - active
+          type: string
+      - in: query
+        name: yesterday
+        schema:
+          enum:
+          - 'true'
+          - 'false'
+          - '1'
+          - '0'
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/covidStates'
+          description: Status OK
+      summary: Get COVID-19 totals for all US States
+      tags:
+      - 'COVID-19: Worldometers'
+  /v3/covid-19/states/{states}:
+    get:
+      operationId: getStatesStates
+      description: Get Covid-19 data for specific US states
+      parameters:
+      - description: State name or comma separated names
+        in: path
+        name: states
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: yesterday
+        schema:
+          enum:
+          - 'true'
+          - 'false'
+          - '1'
+          - '0'
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/covidState'
+          description: Status OK
+      summary: Get COVID-19 totals for specific US State(s)
+      tags:
+      - 'COVID-19: Worldometers'
+  /v3/covid-19/vaccine/coverage:
+    get:
+      operationId: getVaccineCoverage
+      description: Get Covid-19 global vaccine coverage
+      parameters:
+      - in: query
+        name: lastdays
+        schema:
+          default: 30
+          type: string
+      - in: query
+        name: fullData
+        schema:
+          default: 'false'
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                fullTimeline:
+                  $ref: '#/components/examples/fullVaccineTimeline'
+                simpleTimeline:
+                  $ref: '#/components/examples/simpleVaccineTimeline'
+              schema:
+                $ref: '#/components/schemas/vaccineCoverage'
+          description: Status Ok
+      summary: Get total global COVID-19 vaccine doses administered
+  /v3/covid-19/vaccine/coverage/countries:
+    get:
+      operationId: getVaccineCoverageCountries
+      description: Get Covid-19 vaccine coverage for reporting countries
+      parameters:
+      - in: query
+        name: lastdays
+        schema:
+          default: 30
+          type: string
+      - in: query
+        name: fullData
+        schema:
+          default: 'false'
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                fullTimeline:
+                  $ref: '#/components/examples/countriesFullVaccineTimeline'
+                simpleTimeline:
+                  $ref: '#/components/examples/countriesSimpleVaccineTimeline'
+              schema:
+                $ref: '#/components/schemas/vaccineCountriesCoverage'
+          description: Status Ok
+      summary: Get COVID-19 vaccine doses administered
+      tags:
+      - 'COVID-19: Vaccine'
+  /v3/covid-19/vaccine/coverage/countries/{country}:
+    get:
+      operationId: getVaccineCoverageCountriesCountry
+      description: Get a country's Covid-19 vaccine coverage
+      parameters:
+      - description: country code
+        in: path
+        name: country
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: lastdays
+        schema:
+          default: 30
+          type: string
+      - in: query
+        name: fullData
+        schema:
+          default: 'false'
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                fullTimeline:
+                  $ref: '#/components/examples/countryFullVaccineTimeline'
+                simpleTimeline:
+                  $ref: '#/components/examples/countrySimpleVaccineTimeline'
+              schema:
+                $ref: '#/components/schemas/vaccineCountryCoverage'
+          description: Status Ok
+      summary: Get COVID-19 vaccine doses administered for a country
+      tags:
+      - 'COVID-19: Vaccine'
+  /v3/covid-19/vaccine/coverage/states:
+    get:
+      operationId: getVaccineCoverageStates
+      description: Get all US states Covid-19 vaccine coverage
+      parameters:
+      - in: query
+        name: lastdays
+        schema:
+          default: 30
+          type: string
+      - in: query
+        name: fullData
+        schema:
+          default: 'false'
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                fullTimeline:
+                  $ref: '#/components/examples/statesFullVaccineTimeline'
+                simpleTimeline:
+                  $ref: '#/components/examples/statesSimpleVaccineTimeline'
+              schema:
+                $ref: '#/components/schemas/vaccineStatesCoverage'
+          description: Status Ok
+      summary: Get COVID-19 vaccine doses administered for all states
+      tags:
+      - 'COVID-19: Vaccine'
+  /v3/covid-19/vaccine/coverage/states/{state}:
+    
+    get:
+      operationId: getVaccineCoverageStatesState
+      description: Get a US state's Covid-19 vaccine coverage
+      parameters:
+      - description: A valid state name
+        in: path
+        name: state
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: lastdays
+        schema:
+          default: 30
+          type: string
+      - in: query
+        name: fullData
+        schema:
+          default: 'false'
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                fullTimeline:
+                  $ref: '#/components/examples/stateFullVaccineTimeline'
+                simpleTimeline:
+                  $ref: '#/components/examples/stateSimpleVaccineTimeline'
+              schema:
+                $ref: '#/components/schemas/vaccineStateCoverage'
+          description: Status Ok
+      summary: Get COVID-19 vaccine doses administered for a state
+      tags:
+      - 'COVID-19: Vaccine'
+  /v3/covid-19/variants/countries/:
+    get:
+      description: Returns a list of supported country names
+      operationId: getVariantsCountries
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/variantsECDC'
+          description: Status Ok
+      summary: Get a list of supported countries for ECDC specific data
+      tags:
+      - 'COVID-19: Variants'
+  /v3/covid-19/variants/countries/{country}:
+    get:
+      operationId: getVariantsCountriesCountry
+      description: Get Covid-19 variants per country
+      parameters:
+      - description: A valid country name endpoint
+        in: path
+        name: country
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/variantsCountriesECDC'
+          description: Status Ok
+      summary: Get COVID-19 ECDC reported data for a specific country
+      tags:
+      - 'COVID-19: Variants'
+servers:
+- url: https://disease.sh
 components:
   examples:
     countriesFullVaccineTimeline:
@@ -392,576 +947,3 @@ components:
       items:
         type: string
       type: array
-externalDocs:
-  description: Find out more about this API
-  url: https://github.com/disease-sh/API
-info:
-  description: Third Party API for reliable global disease information
-  license:
-    name: GNU V3
-    url: https://github.com/disease-sh/API/blob/master/LICENSE
-  title: disease.sh Docs - An open API for disease-related statistics
-  version: 3.0.0-oas3
-openapi: 3.0.0
-paths:
-  /v3/covid-19/all:
-    get:
-      operationId: getV3Covid19All
-      parameters:
-      - description: a day ago
-        in: query
-        name: yesterday
-        schema:
-          enum:
-          - 'true'
-          - 'false'
-          - '1'
-          - '0'
-          type: string
-        example : '1'
-      - description: two days ago
-        in: query
-        name: twoDaysAgo
-        schema:
-          enum:
-          - 'true'
-          - 'false'
-          - '1'
-          - '0'
-          type: string
-        example : '0'
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/covidAll'
-          description: Status OK
-      summary: Get global COVID-19 totals
-      tags:
-      - 'COVID-19: Worldometers'
-  /v3/covid-19/continents:
-    get:
-      operationId: getV3Covid19Continents
-      parameters:
-      - description: a day ago
-        in: query
-        name: yesterday
-        schema:
-          enum:
-          - 'true'
-          - 'false'
-          - '1'
-          - '0'
-          type: string
-        example : '1'
-      - description: two days ago
-        in: query
-        name: twoDaysAgo
-        schema:
-          enum:
-          - 'true'
-          - 'false'
-          - '1'
-          - '0'
-          type: string
-        example : '0'
-      - description: field to sort
-        in: query
-        name: sort
-        schema:
-          enum:
-          - cases
-          - todayCases
-          - deaths
-          - todayDeaths
-          - recovered
-          - active
-          - critical
-          - casesPerOneMillion
-          - deathsPerOneMillion
-          type: string
-        example: cases
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/covidContinents'
-          description: Status OK
-      summary: Get COVID-19 totals for all continents
-      tags:
-      - 'COVID-19: Worldometers'
-  /v3/covid-19/continents/{continent}:
-    get:
-      operationId: getV3Covid19ContinentsContinent
-      parameters:
-      - description: Continent name
-        in: path
-        name: continent
-        required: true
-        schema:
-          type: string
-        example: europe
-      - description: a day ago
-        in: query
-        name: yesterday
-        schema:
-          enum:
-          - 'true'
-          - 'false'
-          - '1'
-          - '0'
-          type: string
-        example: '0'
-      - description: two days ago
-        in: query
-        name: twoDaysAgo
-        schema:
-          enum:
-          - 'true'
-          - 'false'
-          - '1'
-          - '0'
-          type: string
-        example: '1'
-      - description: fuzzy search
-        in: query
-        name: strict
-        schema:
-          default: 'true'
-          enum:
-          - 'true'
-          - 'false'
-          type: string
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/covidContinent'
-          description: Status OK
-      summary: Get COVID-19 totals for a specific continent
-      tags:
-      - 'COVID-19: Worldometers'
-  /v3/covid-19/countries:
-    get:
-      operationId: getV3Covid19Countries
-      parameters:
-      - description: a day ago
-        in: query
-        name: yesterday
-        schema:
-          enum:
-          - 'true'
-          - 'false'
-          - '1'
-          - '0'
-          type: string
-        example : '1'
-      - description: two days ago
-        in: query
-        name: twoDaysAgo
-        schema:
-          enum:
-          - 'true'
-          - 'false'
-          - '1'
-          - '0'
-          type: string
-        example : '0'
-      - description: Field to sort
-        in: query
-        name: sort
-        schema:
-          enum:
-          - cases
-          - todayCases
-          - deaths
-          - todayDeaths
-          - recovered
-          - active
-          - critical
-          - casesPerOneMillion
-          - deathsPerOneMillion
-          type: string
-
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/covidCountries'
-          description: Status OK
-      summary: Get COVID-19 totals for all countries
-      tags:
-      - 'COVID-19: Worldometers'
-  /v3/covid-19/countries/{countries}:
-    get:
-      operationId: getV3Covid19CountriesCountries
-      parameters:
-      - description: Multiple countries separated by comma
-        in: path
-        name: countries
-        required: true
-        schema:
-          type: string
-      - description: a day ago
-        in: query
-        name: yesterday
-        schema:
-          enum:
-          - 'true'
-          - 'false'
-          - '1'
-          - '0'
-          type: string
-      - description: two days ago
-        in: query
-        name: twoDaysAgo
-        schema:
-          enum:
-          - 'true'
-          - 'false'
-          - '1'
-          - '0'
-          type: string
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/covidCountries'
-          description: Status OK
-      summary: Get COVID-19 totals for a specific set of countries
-      tags:
-      - 'COVID-19: Worldometers'
-  /v3/covid-19/countries/{country}:
-    get:
-      operationId: getV3Covid19CountriesCountry
-      parameters:
-      - description: country code
-        in: path
-        name: country
-        required: true
-        schema:
-          type: string
-        example : us
-      - description: a day ago
-        in: query
-        name: yesterday
-        schema:
-          enum:
-          - 'true'
-          - 'false'
-          - '1'
-          - '0'
-          type: string
-      - description: two days ago
-        in: query
-        name: twoDaysAgo
-        schema:
-          enum:
-          - 'true'
-          - 'false'
-          - '1'
-          - '0'
-          type: string
-      - description: fuzzy search
-        in: query
-        name: strict
-        schema:
-          default: 'true'
-          enum:
-          - 'true'
-          - 'false'
-          type: string
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/covidCountry'
-          description: Status OK
-      summary: Get COVID-19 totals for a specific country
-      tags:
-      - 'COVID-19: Worldometers'
-  /v3/covid-19/states:
-    get:
-      operationId: getV3Covid19States
-      parameters:
-      - description: fields to sort
-        in: query
-        name: sort
-        schema:
-          enum:
-          - cases
-          - todayCases
-          - deaths
-          - todayDeaths
-          - active
-          type: string
-      - description: a day ago
-        in: query
-        name: yesterday
-        schema:
-          enum:
-          - 'true'
-          - 'false'
-          - '1'
-          - '0'
-          type: string
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/covidStates'
-          description: Status OK
-      summary: Get COVID-19 totals for all US States
-      tags:
-      - 'COVID-19: Worldometers'
-  /v3/covid-19/states/{states}:
-    get:
-      operationId: getV3Covid19StatesStates
-      parameters:
-      - description: State name or comma separated names
-        in: path
-        name: states
-        required: true
-        schema:
-          type: string
-      - description: a day ago
-        in: query
-        name: yesterday
-        schema:
-          enum:
-          - 'true'
-          - 'false'
-          - '1'
-          - '0'
-          type: string
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/covidState'
-          description: Status OK
-      summary: Get COVID-19 totals for specific US State(s)
-      tags:
-      - 'COVID-19: Worldometers'
-  /v3/covid-19/vaccine:
-    get:
-      operationId: getV3Covid19Vaccine
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/vaccines'
-          description: Status Ok
-      summary: Get vaccine trial data from RAPS
-      tags:
-      - 'COVID-19: Vaccine'
-  /v3/covid-19/vaccine/coverage:
-    get:
-      operationId: getV3Covid19VaccineCoverage
-      parameters:
-      - description: Number of days
-        in: query
-        name: lastdays
-        schema:
-          default: 30
-          type: string
-      - description: simple or full
-        in: query
-        name: fullData
-        schema:
-          default: 'false'
-          type: string
-      responses:
-        '200':
-          content:
-            application/json:
-              examples:
-                fullTimeline:
-                  $ref: '#/components/examples/fullVaccineTimeline'
-                simpleTimeline:
-                  $ref: '#/components/examples/simpleVaccineTimeline'
-              schema:
-                $ref: '#/components/schemas/vaccineCoverage'
-          description: Status Ok
-      summary: Get total global COVID-19 vaccine doses administered
-  /v3/covid-19/vaccine/coverage/countries:
-    get:
-      operationId: getV3Covid19VaccineCoverageCountries
-      parameters:
-      - description: Number of days
-        in: query
-        name: lastdays
-        schema:
-          default: 30
-          type: string
-      - description: simple or full.
-        in: query
-        name: fullData
-        schema:
-          default: 'false'
-          type: string
-      responses:
-        '200':
-          content:
-            application/json:
-              examples:
-                fullTimeline:
-                  $ref: '#/components/examples/countriesFullVaccineTimeline'
-                simpleTimeline:
-                  $ref: '#/components/examples/countriesSimpleVaccineTimeline'
-              schema:
-                $ref: '#/components/schemas/vaccineCountriesCoverage'
-          description: Status Ok
-      summary: Get COVID-19 vaccine doses administered
-      tags:
-      - 'COVID-19: Vaccine'
-  /v3/covid-19/vaccine/coverage/countries/{country}:
-    get:
-      operationId: getV3Covid19VaccineCoverageCountriesCountry
-      parameters:
-      - description: country code
-        in: path
-        name: country
-        required: true
-        schema:
-          type: string
-      - description: Number of days
-        in: query
-        name: lastdays
-        schema:
-          default: 30
-          type: string
-      - description: simple or full.
-        in: query
-        name: fullData
-        schema:
-          default: 'false'
-          type: string
-      responses:
-        '200':
-          content:
-            application/json:
-              examples:
-                fullTimeline:
-                  $ref: '#/components/examples/countryFullVaccineTimeline'
-                simpleTimeline:
-                  $ref: '#/components/examples/countrySimpleVaccineTimeline'
-              schema:
-                $ref: '#/components/schemas/vaccineCountryCoverage'
-          description: Status Ok
-      summary: Get COVID-19 vaccine doses administered for a country
-      tags:
-      - 'COVID-19: Vaccine'
-  /v3/covid-19/vaccine/coverage/states:
-    get:
-      operationId: getV3Covid19VaccineCoverageStates
-      parameters:
-      - description: Number of days
-        in: query
-        name: lastdays
-        schema:
-          default: 30
-          type: string
-      - description: simple or full.
-        in: query
-        name: fullData
-        schema:
-          default: 'false'
-          type: string
-      responses:
-        '200':
-          content:
-            application/json:
-              examples:
-                fullTimeline:
-                  $ref: '#/components/examples/statesFullVaccineTimeline'
-                simpleTimeline:
-                  $ref: '#/components/examples/statesSimpleVaccineTimeline'
-              schema:
-                $ref: '#/components/schemas/vaccineStatesCoverage'
-          description: Status Ok
-      summary: Get COVID-19 vaccine doses administered for all states
-      tags:
-      - 'COVID-19: Vaccine'
-  /v3/covid-19/vaccine/coverage/states/{state}:
-    get:
-      operationId: getV3Covid19VaccineCoverageStatesState
-      parameters:
-      - description: A valid state name
-        in: path
-        name: state
-        required: true
-        schema:
-          type: string
-      - description: Number of days
-        in: query
-        name: lastdays
-        schema:
-          default: 30
-          type: string
-      - description: simple or full.
-        in: query
-        name: fullData
-        schema:
-          default: 'false'
-          type: string
-      responses:
-        '200':
-          content:
-            application/json:
-              examples:
-                fullTimeline:
-                  $ref: '#/components/examples/stateFullVaccineTimeline'
-                simpleTimeline:
-                  $ref: '#/components/examples/stateSimpleVaccineTimeline'
-              schema:
-                $ref: '#/components/schemas/vaccineStateCoverage'
-          description: Status Ok
-      summary: Get COVID-19 vaccine doses administered for a state
-      tags:
-      - 'COVID-19: Vaccine'
-  /v3/covid-19/variants/countries/:
-    get:
-      description: Returns a list of supported country names
-      operationId: getV3Covid19VariantsCountries
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/variantsECDC'
-          description: Status Ok
-      summary: Get a list of supported countries for ECDC specific data
-      tags:
-      - 'COVID-19: Variants'
-  /v3/covid-19/variants/countries/{country}:
-    get:
-      operationId: getV3Covid19VariantsCountriesCountry
-      parameters:
-      - description: A valid country name endpoint
-        in: path
-        name: country
-        required: true
-        schema:
-          type: string
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/variantsCountriesECDC'
-          description: Status Ok
-      summary: Get COVID-19 ECDC reported data for a specific country
-      tags:
-      - 'COVID-19: Variants'
-servers:
-- url: https://disease.sh
