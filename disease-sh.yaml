@@ -840,35 +840,13 @@ components:
             type: number
         type: object
       type: array
-    phases:
-      properties:
-        candidates:
-          type: string
-        phase:
-          type: string
+    
     simpleVaccineTimeline:
       properties:
         date:
           type: number
       type: object
-    vaccine:
-      properties:
-        candidate:
-          type: string
-        details:
-          type: string
-        institutions:
-          items:
-            type: string
-          type: array
-        mechanism:
-          type: string
-        sponsors:
-          items:
-            type: string
-          type: array
-        trialPhase:
-          type: string
+    
     vaccineCountriesCoverage:
       items:
         $ref: '#/components/schemas/vaccineCountryCoverage'
@@ -899,20 +877,7 @@ components:
       items:
         $ref: '#/components/schemas/vaccineStateCoverage'
       type: array
-    vaccines:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/vaccine'
-          type: array
-        phases:
-          items:
-            $ref: '#/components/schemas/phases'
-          type: array
-        source:
-          type: string
-        totalCandidates:
-          type: string
+
     variantsCountriesECDC:
       items:
         properties:
