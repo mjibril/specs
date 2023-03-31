@@ -79,9 +79,8 @@ paths:
           - ARCHIVED
           type: string
       - description: 'Limits the response to events tagged with one of the listed
-          severity values.  Multiple
-          values may be listed, and should be separated by a comma. The default is
-          to return events of any severity.'
+          severity values.  Multiple values may be listed, and should be separated 
+          by a comma. The default is to return events of any severity.'
         in: query
         name: severity
         schema:
@@ -115,22 +114,22 @@ paths:
           - WEATHER_CONDITION
           - ROAD_CONDITION
           type: string
-      - description: Limits the response to events based on the date and time that
+      - description: "Limits the response to events based on the date and time that
           the event was created (first recorded). The date/time must be specified
           in ISO 8601 format, and may be prefixed by one of the following operators
           [<, <=, >, >=] to indicate 'before', 'before or equal to', 'after' or 'after
-          or equal to' respectively.  
+          or equal to' respectively."
         in: query
         name: created
         required: false
         schema:
           default: '>2015-09-01T12:00:00Z'
           type: string
-      - description: Limits the response to events based on the date and time that
+      - description: "Limits the response to events based on the date and time that
           the event was last updated. The date/time must be specified in ISO 8601
           format, and may be prefixed by one of the following operators [<, <=, >,
           >=] to indicate 'before', 'before or equal to', 'after' or 'after or equal
-          to' respectively.  
+          to' respectively."
         in: query
         name: updated
         required: false
@@ -195,8 +194,8 @@ paths:
       - resources
   /jurisdictiongeography:
     get:
-      operationId: getJurisdictiongeography
-      description: The jurisdiction geography contains the location boundaries of the jurisdiction
+      operationId: getJurisdictionGeography
+      summary: The jurisdiction geography contains the location boundaries of the jurisdiction
       parameters:
       - description: The format of the response
         in: query
@@ -214,7 +213,7 @@ paths:
       tags:
       - resources
 servers:
-- url: http://api.open511.gov.bc.ca/
-- url: https://api.open511.gov.bc.ca/
+  - url: http://api.open511.gov.bc.ca/
+  - url: https://api.open511.gov.bc.ca/
 tags:
-- name: resources
+  - name: resources
