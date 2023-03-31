@@ -35,7 +35,7 @@ paths:
   /areas:
     get:
       operationId: getAreas
-      summary: Lists the geographical areas (e.g. districts) that can be used to filter events. 
+      description: Lists the geographical areas (e.g. districts) that can be used to filter events. 
       parameters:
       - description: The format of the response
         in: query
@@ -170,13 +170,12 @@ paths:
       responses:
         '200':
           description: List of packages
-      summary: Lists road events
       tags:
       - resources
   /jurisdiction:
     get:
+      description: Lists the jurisdictions publishing data through this Open511 API implementation
       operationId: getJurisdiction
-      summary: The jurisdiction represents a government entity (city, state/province department of transportation, agency, etc.) publishing Open511 data
       parameters:
       - description: The format of the response
         in: query
@@ -191,13 +190,13 @@ paths:
       responses:
         '200':
           description: List of packages
-      summary: Lists the jurisdictions publishing data through this Open511 API implementation
+
       tags:
       - resources
   /jurisdictiongeography:
     get:
       operationId: getJurisdictiongeography
-      summary: The jurisdiction geography contains the location boundaries of the jurisdiction
+      description: The jurisdiction geography contains the location boundaries of the jurisdiction
       parameters:
       - description: The format of the response
         in: query
@@ -212,7 +211,6 @@ paths:
       responses:
         '200':
           description: List of packages
-      summary: Provides the geographical boundaries for all the jurisdictions.
       tags:
       - resources
 servers:
