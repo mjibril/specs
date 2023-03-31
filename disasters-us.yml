@@ -191,8 +191,7 @@ paths:
           example: 1
         - in : query
           name:  $inlinecount
-          description: 'Query options that controls if a total count 
-          of all entities matching the request MUST be returned as part of the result'
+          description: "Query options that controls if a total count of all entities matching the request MUST be returned as part of the result"
           schema:
             type: string
             enum: 
