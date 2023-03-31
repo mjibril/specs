@@ -9,7 +9,7 @@ servers:
 paths:
   /lookup:
     get:
-      description: 'Allows to query the address and other details of one or multiple OSM objects like node, way or relation.'
+      summary: 'Allows to query the address and other details of one or multiple OSM objects like node, way or relation.'
       description: OSM - Address lookup
       operationId: lookupGet
       parameters:
@@ -67,7 +67,7 @@ paths:
       
   /reverse:
     get:
-      description: 'Gets address given a set of coordinates. Does not exactly compute the address for the coordinate it receives. It works by finding the closest suitable OSM object and returning its address information.'
+      summary: 'Gets address given a set of coordinates. Does not exactly compute the address for the coordinate it receives. It works by finding the closest suitable OSM object and returning its address information.'
       description: OSM - Reverse
       operationId: ReverseGet
       parameters:
@@ -137,7 +137,7 @@ paths:
                 $ref: '#/components/schemas/ReverseResponse'
   /search:
     get:
-      description: 'Allows look up of a location from a textual description or address. Nominatim supports structured and free-form search queries.'
+      summary: 'Allows look up of a location from a textual description or address. Nominatim supports structured and free-form search queries.'
       description: OSM - Search
       operationId: searchGet
       parameters:
