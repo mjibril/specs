@@ -109,7 +109,7 @@ paths:
             default: json
         - in : query
           name:  $filter
-          description: 'Used to "filter" the results returned. The API provides a number of operations that can be used to build your request. The API provides as subset of the available options in the OData specification. Please note that dates should be represented in an ISO-8601 format.'
+          description: 'Used to "filter" the results returned. The API provides a number of operations that can be used to build your request. The API provides as subset of the available options in the OData specification. Please note that dates should be represented in an ISO-8601 format. Example fields to search include declarationType, agency, statementOfWork and disasterDescription.'
           schema:
             type: string
           examples:       
@@ -234,7 +234,7 @@ paths:
             default: json
         - in : query
           name:  $filter
-          description: 'Used to "filter" the results returned. The API provides a number of operations that can be used to build your request. The API provides as subset of the available options in the OData specification. Please note that dates should be represented in an ISO-8601 format.'
+          description: 'Used to "filter" the results returned. The API provides a number of operations that can be used to build your request. The API provides as subset of the available options in the OData specification. Please note that dates should be represented in an ISO-8601 format.  Example fields are declarationType, declarationDate, incidentType and declarationTitle.'
           schema:
             type: string
           examples:       
