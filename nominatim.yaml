@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   version: '1.1'
   title: Open Street Map (OSM)
-  description: "Nominatim  is a tool to search Open Street Maps (OSM) data by name and address and to generate synthetic addresses of OSM points (reverse geocoding)."
+  description: "Nominatim  is a tool to search Open Street Maps (OSM) data by name and address and to generate synthetic addresses of OSM points (reverse geocoding). Note: a map view of any latitude and longitude can be viewed using the URL https://openstreetmap.org/?lat={latitude}&lon={longitude}&zoom=17&layers=M by subsituting the longitude and latitude in the URL."
 servers: 
   - url: https://nominatim.openstreetmap.org
     description: Main service
