@@ -58,6 +58,16 @@ paths:
         accidents, construction, special events) '
       operationId: getEvents
       parameters:
+      - description: The number of items to fetch
+        in: query
+        name: limit
+        schema:
+          type: int
+      - description: The offset for pagination
+        in: query
+        name: offset
+        schema:
+          type: int
       - description: The format of the response
         in: query
         name: format
