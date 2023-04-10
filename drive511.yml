@@ -223,7 +223,6 @@ paths:
       tags:
       - resources
 servers:
-  - url: http://api.open511.gov.bc.ca/
   - url: https://api.open511.gov.bc.ca/
 tags:
   - name: resources
